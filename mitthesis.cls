@@ -370,6 +370,8 @@
 
 \def\department#1{\gdef\@department{#1}}
 
+\def\homefaculty#1{\gdef\@homefaculty{#1}}
+
 % If you are getting two degrees, use \and between the names.
 \def\degree#1{\setbox0\hbox{#1}	 %for side effect of setting \@degreeword
   \gdef\@degree{#1}}
@@ -437,7 +439,7 @@ reserved.\par\permission}}
 \def\supervisor#1#2{\setbox\@titlesupervisor\vbox
   {\unvbox\@titlesupervisor \vskip 10pt% plus 1fil minus 1fil
   \def\baselinestretch{1}\large
-  \signature{Certified by}{#1 \\ #2 \\ Thesis Supervisor}}
+  \signature{Supervised by}{#1 \\ #2 \\ Thesis Supervisor}}
   \setbox\@abstractsupervisor\vbox{\unvbox\@abstractsupervisor
   \vskip\baselineskip \def\baselinestretch{1}\@normalsize 
   \par\noindent Thesis Supervisor: #1 \\ Title: #2}}
@@ -466,17 +468,17 @@ at the
 \par\MIT\par
 \@degreemonth\ \@degreeyear
 \par
-\@copyrightnotice
-\par
-\vskip 3\baselineskip
-\signature{Author}{\@department \\ \@thesisdate}
+%\@copyrightnotice
+%\par
+\vskip 4\baselineskip
+\signature{Author}{\@author \\ \@homefaculty \\ \@thesisdate}
 \par
 \vfill
 \unvbox\@titlesupervisor
 \par
 \vfill
-\signature{Accepted by}{\@chairmanname \\ \@chairmantitle}
-\vfill
+%\signature{Accepted by}{\@chairmanname \\ \@chairmantitle}
+%\vfill
 \end{titlepage}}
 
 % this environment should probably be called abstract,
