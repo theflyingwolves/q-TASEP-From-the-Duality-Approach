@@ -1,11 +1,59 @@
-\chapter{Duality and Nested Contour Integral Ansatz Solution}
-In this chapter, we recall the definition of duality between two Markov process defined in \cite{interacting-particle-system}. Then we prove the duality between q-TASEP and q-TAZRP. We then conclude by giving an ansatz solution for q-TASEP with step initial data as well as half stationary initial data. 
+\chapter{Duality and Nested Contour Integral}
+In this chapter, we recall the general definition of duality between two Markov process defined in \cite{interacting-particle-system} and provide some remarks on the definition. We then prove the duality between q-TASEP and q-TAZRP and conclude by giving an ansatz solution for q-TASEP with step initial data as well as half stationary initial data in the form of nested contour integrals.
 
 \section{Duality}
-a
-\section{Duality between q-TASEP and q-TAZRP}
-a
+We begin by recalling the general definition of duality from $Definition 3.1$ of \cite{interacting-particle-system}.
+\begin{definition}
+Suppose $x(t)$ and $y(t)$ are two independent Markov processes with state space $X$ and $Y$ respectively, and let $H(x,y)$ be a bounded measurable function on $X\times Y$. Then the processes $x(t)$ and $y(t)$ are said to be \textbf{dual} to one another with respect to $H$ if $$\mathbb{E}^{x}[H(x(t),y)] = \mathbb{E}^{y}[H(x,y(t))]$$ for all $x \in X$ and $y \in Y$. Here $\mathbb{E}^x$ is the expectation taken with respect to the process $x(t)$ with initial data $x(0) = x$ and similarly for $\mathbb{E}^y$.
+\end{definition}
+Note that with duality, we can easily derive that the infinitesimal generator $\Omega^x$ and $\Omega^y$ of the processes $x(t)$ and $y(t)$, respectively, acting on the function $H(x,y)$ are equivalent, i.e., 
+\begin{align}
+(\Omega^x H(\cdot,y))(x) &= \lim_{t \rightarrow 0} \frac{\mathbb{E}^{x}[H(x(t),y)] - H(x,y)}{t}\\
+												&= \lim_{t \rightarrow 0} \frac{\mathbb{E}^{y}[H(x,y(t))] - H(x,y)}{t}\\
+												&= (\Omega^x H(x,\cdot))(y)
+\end{align}
+In fact, the reverse is also true \tobeclarified{under some weak conditions}. That is, given that the infinitesimal generator of two Markov processes $x(t)$ and $y(t)$ acting on function $H(x,y)$ are equal, we can derive that the two processes are dual with respect to the function $H(x,y)$. 
+
+\begin{theorem}
+The q-TASEP, $\vec{x}(t)$ with state space $X^N$ and particle jump rate parameters $a_i>0$, and the q-TAZRP, $\vec{y}(t)$, with state space $Y^N$ and rate functions $g_i(k)=a_i(1-q^k)$ are dual with respect to $$H(\vec{x},\vec{y}) = \prod_{i=0}^{N} q^{(x_i + i)y_i}.$$
+\end{theorem}
+
+\begin{proof}
+It suffices to verify that $(L^{q-TASEP} H(\cdot , \vec{y}))(\vec{x}) = (L^{q-TAZRP} H(\vec{x}, \cdot))(\vec{y})$. By definition,
+\begin{align}
+(L^{q-TASEP} H(\cdot , \vec{y}))(\vec{x}) &= \sum_{i=1}^{N} a_i (1-q^{x_{i-1} - x_i - 1}) (H(\vec{x}_i^+,\vec{y}) - H(\vec{x},\vec{y}))\\
+																				&= \sum_{i=1}^{N} a_i (1-q^{x_{i-1} - x_i - 1}) (\prod_{j=0,j \neq i}^{N} q^{(x_j+j)y_j} (q^{(x_i+1+i)y_i} - q^{(x_i + i)y_i}))\\
+																				&= \sum_{i=1}^{N} a_i (1-q^{x_{i-1} - x_i - 1})(q^{y_i} - 1) H(\vec{x},\vec{y}) \label{eqn:duality-tasep}
+\end{align}
+Similarly, for q-TAZRP we also have the following
+\begin{align}
+(L^{q-TAZRP} H(\vec{x}, \cdot))(\vec{y}) &= \sum_{i=1}^{N} a_i (1-q^{y_i}) (H(\vec{x},\vec{y}^{i,i-1}) - H(\vec{x},\vec{y}))\\
+																				&= \sum_{i=1}^{N} a_i (1-q^{y_i})\prod_{j=0,j \neq i, i-1}^{N} q^{(x_j+j)y_j} \notag \\
+																				&\hphantom{{} = 1} \times (q^{(x_i+i)(y_i-1)} q^{(x_{i-1}+i-1)(y_{i-1}+1)} - q^{(x_i + i)y_i} q^{(x_{i-1} + i-1)y_{i-1}}) \\
+																				&= \sum_{i=1}^{N} a_i (1-q^{y_i}) (q^{x_{i-1} - x_i - 1} - 1) H(\vec{x},\vec{y}) \label{eqn:duality-tazrp}
+\end{align}
+Comparing Equation (\ref{eqn:duality-tasep}) and (\ref{eqn:duality-tazrp}), we conclude that $(L^{q-TASEP} H(\cdot , \vec{y}))(\vec{x}) = (L^{q-TAZRP} H(\vec{x}, \cdot))(\vec{y})$, thus proving the duality.
+\end{proof}
 \section{Evolution Equation Systems}
-a
+In this section, we are going to define two evolution equation systems, namely, the \emph{true evolution equation} and the \emph{free evolution equation}. It's then shown that $\mathbb{E}[H(\vec{x}(t),\vec{y})]$ for all $\vec{y} \in Y^N$ is a solution to the \emph{true evolution equation} and that with certain initial data, the solution to the \emph{true evolution equation} is also a solution to the \emph{free evolution equation}. We conclude that $\mathbb{E}[H(\vec{x}(t),\vec{y})]$ for all $\vec{y} \in Y^N$ solves the \emph{free evolution equation}.
+
+\begin{definition}
+We say that $h(t;\vec{y}): \mathbb{R}_+ \times Y^N \rightarrow \mathbb{R}$ solves the \textbf{\emph{true evolution equation}} with initial data $h_0(\vec{y})$ if:
+\begin{enumerate}
+\item[(1)] For all $\vec{y} \in Y^N$ and $t \in \mathbb{R}_+$, $$\frac{d}{dt} h(t;\vec{y}) = L^{q-TAZRP} h(t;\vec{y});$$
+\item[(2)] For all $\vec{y} \in Y^N$ such that $y_0 > 0$, $h(t;\vec{y}) = 0$ for all $t \in \mathbb{R}_+$;
+\item[(3)] For all $\vec{y} \in Y^N$, $h(0;\vec{y}) = h_0(\vec{y})$.
+\end{enumerate}
+\end{definition}
+
+\begin{definition}
+We say that $u(t;\vec{n}):\mathbb{R}_+ \times (\mathbb{Z}_{\ge 0})^k \rightarrow \mathbb{R}$ solves the \textbf{\emph{free evolution equation}} with $k-1$ boundary conditions if:
+\begin{enumerate}
+\item[(1)] For all $\vec{n} \in (\mathbb{Z}_{\ge 0})^k$ and $t \in \mathbb{R}$, $$\frac{d}{dt} u(t;\vec{n}) = (1-q) \sum_{i=1}^{k} a_{n_i} \nabla_i u(t;\vec{n});$$
+\item[(2)] For all $\vec{n} \in (\mathbb{Z}_{\ge 0})^k$ such that for some $i \in \{1,...,k-1\}$, $n_i = n_{i+1}$, $$\nabla_i u(t;\vec{n}) = q \nabla_{i+1} u(t;\vec{n});$$
+\item[(3)] For all $\vec{n} \in (\mathbb{Z}_{\ge 0})^k$ such that $n_k = 0$, $u(t;\vec{n}) = 0$ for all $t \in \mathbb{R}_+$;
+\item[(4)] For all $\vec{n} \in W^k_{>0}$, $u(0,\vec{n}) = H(\vec{x},\vec{y}(\vec{n}))$.
+\end{enumerate}
+\end{definition}
 \section{Nested Contour Integral Solution}
 a
