@@ -41,7 +41,7 @@
 
 \newtheorem{theorem}{THEOREM}[chapter]
 \newtheorem{corollary}{COROLLARY}[theorem]
-\newtheorem{lemma}[theorem]{LEMMA}
+\newtheorem{lemma}{LEMMA}[theorem]
 
 \theoremstyle{proposition}
 \newtheorem{proposition}{PROPOSITION}[chapter]
@@ -53,6 +53,7 @@
 \newtheorem{definition}{DEFINITION}[chapter]
 
 \newcommand\tobeclarified[1]{\textcolor{red}{#1}}
+\newcommand\numberthis{\addtocounter{equation}{1}\tag{\theequation}}
 
 \pagestyle{plain}
 

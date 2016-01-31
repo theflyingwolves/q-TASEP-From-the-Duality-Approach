@@ -7,37 +7,46 @@ We begin by recalling the general definition of duality from $Definition 3.1$ of
 Suppose $x(t)$ and $y(t)$ are two independent Markov processes with state space $X$ and $Y$ respectively, and let $H(x,y)$ be a bounded measurable function on $X\times Y$. Then the processes $x(t)$ and $y(t)$ are said to be \textbf{dual} to one another with respect to $H$ if $$\mathbb{E}^{x}[H(x(t),y)] = \mathbb{E}^{y}[H(x,y(t))]$$ for all $x \in X$ and $y \in Y$. Here $\mathbb{E}^x$ is the expectation taken with respect to the process $x(t)$ with initial data $x(0) = x$ and similarly for $\mathbb{E}^y$.
 \end{definition}
 Note that with duality, we can easily derive that the infinitesimal generator $\Omega^x$ and $\Omega^y$ of the processes $x(t)$ and $y(t)$, respectively, acting on the function $H(x,y)$ are equivalent, i.e., 
-\begin{align}
+\begin{align*}
 (\Omega^x H(\cdot,y))(x) &= \lim_{t \rightarrow 0} \frac{\mathbb{E}^{x}[H(x(t),y)] - H(x,y)}{t}\\
 												&= \lim_{t \rightarrow 0} \frac{\mathbb{E}^{y}[H(x,y(t))] - H(x,y)}{t}\\
 												&= (\Omega^x H(x,\cdot))(y)
-\end{align}
-In fact, the reverse is also true \tobeclarified{under some weak conditions}. That is, given that the infinitesimal generator of two Markov processes $x(t)$ and $y(t)$ acting on function $H(x,y)$ are equal, we can derive that the two processes are dual with respect to the function $H(x,y)$. 
+\end{align*}
+In fact, the reverse is also true under some weak conditions \cite{generator-duality}. That is, given that the infinitesimal generator of two Markov processes $x(t)$ and $y(t)$ acting on function $H(x,y)$ are equal, we can derive that the two processes are dual with respect to the function $H(x,y)$. 
 
 \begin{theorem}
+\label{thm-duality}
 The q-TASEP, $\vec{x}(t)$ with state space $X^N$ and particle jump rate parameters $a_i>0$, and the q-TAZRP, $\vec{y}(t)$, with state space $Y^N$ and rate functions $g_i(k)=a_i(1-q^k)$ are dual with respect to $$H(\vec{x},\vec{y}) = \prod_{i=0}^{N} q^{(x_i + i)y_i}.$$
 \end{theorem}
 
+\begin{remark}
+It is noted that in the definition, $x_0 = \infty$ as we have discussed before. Therefore, for any $\vec{y}$ with $y_0 > 0$, $H(\vec{x},\vec{y}) = 0$.
+\end{remark}
+
+\begin{lemma}
+\label{lem:duality}
+Assume q-TASEP $\vec{x}(t)$ with initial condition $\vec{x}$ and q-TAZRP $\vec{y}(t)$ with initial condition $\vec{y}$. Then $$(L^{q-TASEP} H(\cdot , \vec{y}))(\vec{x}) = (L^{q-TAZRP} H(\vec{x}, \cdot))(\vec{y})$$.
+\end{lemma}
 \begin{proof}
-It suffices to verify that $(L^{q-TASEP} H(\cdot , \vec{y}))(\vec{x}) = (L^{q-TAZRP} H(\vec{x}, \cdot))(\vec{y})$. By definition,
-\begin{align}
+By definition,
+\begin{align*}
 (L^{q-TASEP} H(\cdot , \vec{y}))(\vec{x}) &= \sum_{i=1}^{N} a_i (1-q^{x_{i-1} - x_i - 1}) (H(\vec{x}_i^+,\vec{y}) - H(\vec{x},\vec{y}))\\
 																				&= \sum_{i=1}^{N} a_i (1-q^{x_{i-1} - x_i - 1}) (\prod_{j=0,j \neq i}^{N} q^{(x_j+j)y_j} (q^{(x_i+1+i)y_i} - q^{(x_i + i)y_i}))\\
-																				&= \sum_{i=1}^{N} a_i (1-q^{x_{i-1} - x_i - 1})(q^{y_i} - 1) H(\vec{x},\vec{y}) \label{eqn:duality-tasep}
-\end{align}
+																				&= \sum_{i=1}^{N} a_i (1-q^{x_{i-1} - x_i - 1})(q^{y_i} - 1) H(\vec{x},\vec{y}) \numberthis \label{eqn:duality-tasep}
+\end{align*}
 Similarly, for q-TAZRP we also have the following
-\begin{align}
+\begin{align*}
 (L^{q-TAZRP} H(\vec{x}, \cdot))(\vec{y}) &= \sum_{i=1}^{N} a_i (1-q^{y_i}) (H(\vec{x},\vec{y}^{i,i-1}) - H(\vec{x},\vec{y}))\\
 																				&= \sum_{i=1}^{N} a_i (1-q^{y_i})\prod_{j=0,j \neq i, i-1}^{N} q^{(x_j+j)y_j} \notag \\
 																				&\hphantom{{} = 1} \times (q^{(x_i+i)(y_i-1)} q^{(x_{i-1}+i-1)(y_{i-1}+1)} - q^{(x_i + i)y_i} q^{(x_{i-1} + i-1)y_{i-1}}) \\
-																				&= \sum_{i=1}^{N} a_i (1-q^{y_i}) (q^{x_{i-1} - x_i - 1} - 1) H(\vec{x},\vec{y}) \label{eqn:duality-tazrp}
-\end{align}
-Comparing Equation (\ref{eqn:duality-tasep}) and (\ref{eqn:duality-tazrp}), we conclude that $(L^{q-TASEP} H(\cdot , \vec{y}))(\vec{x}) = (L^{q-TAZRP} H(\vec{x}, \cdot))(\vec{y})$, thus proving the duality.
+																				&= \sum_{i=1}^{N} a_i (1-q^{y_i}) (q^{x_{i-1} - x_i - 1} - 1) H(\vec{x},\vec{y}) \numberthis \label{eqn:duality-tazrp}
+\end{align*}
+Comparing Equation (\ref{eqn:duality-tasep}) and (\ref{eqn:duality-tazrp}), we conclude that $$(L^{q-TASEP} H(\cdot , \vec{y}))(\vec{x}) = (L^{q-TAZRP} H(\vec{x}, \cdot))(\vec{y}).$$
 \end{proof}
-\section{Evolution Equation Systems}
-In this section, we are going to define two evolution equation systems, namely, the \emph{true evolution equation} and the \emph{free evolution equation}. It's then shown that $\mathbb{E}[H(\vec{x}(t),\vec{y})]$ for all $\vec{y} \in Y^N$ is a solution to the \emph{true evolution equation} and that with certain initial data, the solution to the \emph{true evolution equation} is also a solution to the \emph{free evolution equation}. We conclude that $\mathbb{E}[H(\vec{x}(t),\vec{y})]$ for all $\vec{y} \in Y^N$ solves the \emph{free evolution equation}.
 
+Before we continue to the proof of Theorem \ref{thm-duality}, we define a system of ordinary differential equation:
 \begin{definition}
+\label{dfn:true-evolution-equation}
 We say that $h(t;\vec{y}): \mathbb{R}_+ \times Y^N \rightarrow \mathbb{R}$ solves the \textbf{\emph{true evolution equation}} with initial data $h_0(\vec{y})$ if:
 \begin{enumerate}
 \item[(1)] For all $\vec{y} \in Y^N$ and $t \in \mathbb{R}_+$, $$\frac{d}{dt} h(t;\vec{y}) = L^{q-TAZRP} h(t;\vec{y});$$
@@ -46,14 +55,65 @@ We say that $h(t;\vec{y}): \mathbb{R}_+ \times Y^N \rightarrow \mathbb{R}$ solve
 \end{enumerate}
 \end{definition}
 
+\begin{remark}
+It is remarked that the existence and uniqueness of solutions to the \textbf{\emph{true evolution equation}} is assured. This follows from elementary ODE theories since the system reduces to a finite number of differential equations. 
+\end{remark}
+
+\begin{proof}[Proof of Theorem \ref{thm-duality}:]
+We prove the theorem by showing that both $\mathbb{E}^{\vec{x}}[H(\vec{x}(t),\vec{y})]$ and $\mathbb{E}^{\vec{y}}[H(\vec{x},\vec{y}(t))]$ is a solution to the \textbf{\emph{true evolution equation}} as defined in Definition \ref{dfn:true-evolution-equation}. Then by uniqueness, duality follows. 
+
+That $\mathbb{E}^{\vec{y}}[H(\vec{x},\vec{y}(t))]$ is a solution to the \textbf{\emph{true evolution equation}} is clear from the fact that $$\frac{d}{dt}\mathbb{E}^{\vec{y}}[H(\vec{x},\vec{y}(t))] = \lim_{t \rightarrow 0} \frac{\mathbb{E}^{\vec{y}}[H(\vec{x},\vec{y}(t))] - H(\vec{x},\vec{y})}{t} = L^{q-TAZRP} \mathbb{E}^{\vec{y}}[H(\vec{x},\vec{y}(t))],$$ with initial and boundary conditions easily checked. 
+
+It then suffices to show that $\mathbb{E}^{\vec{x}}[H(\vec{x}(t),\vec{y})]$ is a solution to the \textbf{\emph{true evolution equation}}. Since the initial and boundary conditions can be easily checked, we only need to show that $\frac{d}{dt} \mathbb{E}^{\vec{x}}[H(\vec{x}(t),\vec{y})] = L^{q-TAZRP} \mathbb{E}^{\vec{x}}[H(\vec{x}(t),\vec{y})]$ as below:
+\begin{align*}
+\frac{d}{dt} \mathbb{E}^{\vec{x}}[H(\vec{x}(t),\vec{y})] &= L^{q-TASEP} \mathbb{E}^{\vec{x}}[H(\vec{x}(t),\vec{y})] \quad (\text{by definition})\\
+																												 &= \tobeclarified{\mathbb{E}^{\vec{x}} [L^{q-TASEP} H(\vec{x}(t),\vec{y})]}\\
+																												 &= \mathbb{E}^{\vec{x}} [L^{q-TAZRP} H(\vec{x}(t),\vec{y})] \quad (\text{by Lemma }\ref{lem:duality}) \\
+																												 &= L^{q-TAZRP} \mathbb{E}^{\vec{x}} [H(\vec{x}(t),\vec{y})] \quad (\text{Since $L^{q-TAZRP}$ acts on $\vec{y}$})
+\end{align*}
+\end{proof}
+\section{Evolution Equation Systems}
+In this section, we are going to define another evolution equation systems, namely, the \emph{free evolution equation} and show that a solution to the \emph{free evolution equation} also solves the \emph{true evolution equation} with certain initial data. We then conclude that $\mathbb{E}[H(\vec{x}(t),\vec{y})]$ for all $\vec{y} \in Y^N$ solves the \emph{free evolution equation}.
+
+Before moving on to the definition of the \emph{free evolution equation}, we introduce a notion $\nabla_i$ defined by $\nabla_i f(\vec{n}) = f(\vec{n}_i^-) - f(\vec{n})$ for $\vec{n} = (n_1, \dots, n_k)$, where $\vec{n}_i^- = (n_1,\dots,n_{i-1}, n_i - 1, n_{i+1}, \dots, n_k)$.
+
 \begin{definition}
-We say that $u(t;\vec{n}):\mathbb{R}_+ \times (\mathbb{Z}_{\ge 0})^k \rightarrow \mathbb{R}$ solves the \textbf{\emph{free evolution equation}} with $k-1$ boundary conditions if:
+\label{def:free-evolution-equation}
+Given $\vec{x} \in X^N$, the state space of a q-TASEP, we say that $u(t;\vec{n}):\mathbb{R}_+ \times (\mathbb{Z}_{\ge 0})^k \rightarrow \mathbb{R}$ solves the \textbf{\emph{free evolution equation}} with $k-1$ boundary conditions if:
 \begin{enumerate}
 \item[(1)] For all $\vec{n} \in (\mathbb{Z}_{\ge 0})^k$ and $t \in \mathbb{R}$, $$\frac{d}{dt} u(t;\vec{n}) = (1-q) \sum_{i=1}^{k} a_{n_i} \nabla_i u(t;\vec{n});$$
 \item[(2)] For all $\vec{n} \in (\mathbb{Z}_{\ge 0})^k$ such that for some $i \in \{1,...,k-1\}$, $n_i = n_{i+1}$, $$\nabla_i u(t;\vec{n}) = q \nabla_{i+1} u(t;\vec{n});$$
 \item[(3)] For all $\vec{n} \in (\mathbb{Z}_{\ge 0})^k$ such that $n_k = 0$, $u(t;\vec{n}) = 0$ for all $t \in \mathbb{R}_+$;
-\item[(4)] For all $\vec{n} \in W^k_{>0}$, $u(0,\vec{n}) = H(\vec{x},\vec{y}(\vec{n}))$.
+\item[(4)] For all $\vec{n} \in W^k_{>0}$, $u(0,\vec{n}) = H(\vec{x},\vec{y}(\vec{n}))$. 
 \end{enumerate}
 \end{definition}
+
+It's not clear up to now that a solution exists for the \emph{free evolution equation}. However, we are going to show that if one exists, then it must also solve the \emph{true evolution equation} with the corresponding initial data. This is stated as a proposition below:
+
+\begin{proposition}
+If $u(t;\vec{n}):\mathbb{R}_+ \times (\mathbb{Z}_{\ge 0})^k \rightarrow \mathbb{R}$ is a solution to the \emph{free evolution equation} with $\vec{x} \in X^N$, then for all $\vec{y} \in Y^N$ such that $\sum_{i=1}^{N} y_i = k$, $$\mathbb{E}^{\vec{x}}[H(\vec{x}(t), \vec{y})] = u(t;\vec{n}(\vec{y})).$$
+\end{proposition}
+
+\begin{remark}
+It should be noted that $u(t;\vec{n}(\vec{y}))$ is a restriction of the solution $u(t;\vec{n})$ with domain $\mathbb{R}_+ \times (\mathbb{Z}_{\ge 0})^k$ to the domain $\mathbb{R}_+ \times W_{>0}^k$. Therefore, we are not claiming the truthness of the inverse because we are not sure whether the inverse extension would be possible for any given $\vec{y} \in Y^N$.
+\end{remark}
+
+\begin{proof}
+Recall that $\mathbb{E}^{\vec{x}}[H(\vec{x}(t), \vec{y})]$ is the solution to the \emph{true evolution equation} with initial data $H(\vec{x}, \vec{y})$. In order to show that $\mathbb{E}^{\vec{x}}[H(\vec{x}(t), \vec{y})] = u(t;\vec{n}(\vec{y}))$, we only need to show that for any solution $u(t;\vec{n})$ of the \emph{free evolution equation}, when restricted to the domain $\mathbb{R}_+ \times W_{>0}^k$, it also solves the \emph{true evolution equation} with initial data $H(\vec{x},\vec{y}(\vec{n}))$, where $\sum_{i=1}^{N} y_i = k$. It then suffices to check $v(t;\vec{y}) = u(t; \vec{n}(\vec{y}))$ against the three conditions in Definition \ref{dfn:true-evolution-equation}. 
+\begin{enumerate}
+\item[(1)] For all $\vec{y} \in Y^N$ and $t \in \mathbb{R}^+$, we want to show that $$(1-q) \sum_{i=1}^{k} a_{n_i} \nabla_i u(t;\vec{n}) = \frac{d}{dt} u(t;\vec{n}(\vec{y}))= \frac{d}{dt} v(t;\vec{y}) = \sum_{i=1}^{N} a_i (1-q^{y_i}) (v(t;\vec{y}^{i,i-1}) - v(t;\vec{y})).$$ For this purpose, we claim that for each site $i$ with $y_i$ number of particles $n_{k_1} = n_{k_2} = \dots = n_{k_{y_i}} = i$, $$(1-q) \sum_{j=k_1}^{k_{y_i}} a_{i} \nabla_j u(t;\vec{n}) = a_i (1-q^{y_i}) (v(t;\vec{y}^{i,i-1}) - v(t;\vec{y})).$$ Then by summing up over $i$, all sites, we get the desired equality. 
+
+For notational simplicity, we only prove the claim for $i = N$, and other sites work similarly. That is, we want to show that $$(1-q) \sum_{j=1}^{y_N} a_{N} \nabla_j u(t;\vec{n}) = a_N (1-q^{y_N}) \nabla_{y_N} u(t;\vec{n}).$$
+It follows from Condition (2) of Definition \ref{def:free-evolution-equation} that
+\begin{align*}
+(1-q) \sum_{j=1}^{y_N} a_{N} \nabla_j u(t;\vec{n}) &= (1-q) \sum_{j=1}^{y_N} a_{N} q^{y_N - j} \nabla_{y_N} y(t;\vec{n})\\
+&= (1-q) a_{N} \nabla_{y_N} y(t;\vec{n}) \sum_{j=1}^{y_N} q^{y_N - j}\\
+&= a_N (1-q^{y_N}) \nabla_{y_N} u(t;\vec{n}).
+\end{align*}
+\item[(2)] Assume that $\vec{y} \in Y^N$ with $\sum_{i=1}^{N} y_i = k$ such that $y_0 > 0$. Then we would have $\vec{n}(\vec{y})$ satisfying $n_k = 0$. From Definition \ref{def:free-evolution-equation} Condition (3), it follows that $v(t;\vec{y}) = u(t;\vec{n}(\vec{y})) = 0$.
+\item[(3)] For all $\vec{y} \in Y^N$, $v(0;\vec{y}) = u(0; \vec{n}(\vec{y})) = H(\vec{x},\vec{y})$.
+\end{enumerate}
+\end{proof}
+
 \section{Nested Contour Integral Solution}
 a
