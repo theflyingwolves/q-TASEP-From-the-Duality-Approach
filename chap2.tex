@@ -47,7 +47,7 @@ Comparing Equation (\ref{eqn:duality-tasep}) and (\ref{eqn:duality-tazrp}), we c
 Before we continue to the proof of Theorem \ref{thm-duality}, we define a system of ordinary differential equation:
 \begin{definition}
 \label{dfn:true-evolution-equation}
-We say that $h(t;\vec{y}): \mathbb{R}_+ \times Y^N \rightarrow \mathbb{R}$ solves the \textbf{\emph{true evolution equation}} with initial data $h_0(\vec{y})$ if:
+We say that $h(t;\vec{y}): \mathbb{R}_+ \times Y^N \rightarrow \mathbb{R}$ solves the \textbf{\emph{true evolution equation system}} with initial data $h_0(\vec{y})$ if:
 \begin{enumerate}
 \item[(1)] For all $\vec{y} \in Y^N$ and $t \in \mathbb{R}_+$, $$\frac{d}{dt} h(t;\vec{y}) = L^{q-TAZRP} h(t;\vec{y});$$
 \item[(2)] For all $\vec{y} \in Y^N$ such that $y_0 > 0$, $h(t;\vec{y}) = 0$ for all $t \in \mathbb{R}_+$;
@@ -56,15 +56,15 @@ We say that $h(t;\vec{y}): \mathbb{R}_+ \times Y^N \rightarrow \mathbb{R}$ solve
 \end{definition}
 
 \begin{remark}
-It is remarked that the existence and uniqueness of solutions to the \textbf{\emph{true evolution equation}} is assured. This follows from elementary ODE theories since the system reduces to a finite number of differential equations. 
+It is remarked that the existence and uniqueness of solutions to the \textbf{\emph{true evolution equation system}} is assured. This follows from elementary ODE theories since the system reduces to a finite number of differential equations. 
 \end{remark}
 
 \begin{proof}[Proof of Theorem \ref{thm-duality}:]
-We prove the theorem by showing that both $\mathbb{E}^{\vec{x}}[H(\vec{x}(t),\vec{y})]$ and $\mathbb{E}^{\vec{y}}[H(\vec{x},\vec{y}(t))]$ is a solution to the \textbf{\emph{true evolution equation}} as defined in Definition \ref{dfn:true-evolution-equation}. Then by uniqueness, duality follows. 
+We prove the theorem by showing that both $\mathbb{E}^{\vec{x}}[H(\vec{x}(t),\vec{y})]$ and $\mathbb{E}^{\vec{y}}[H(\vec{x},\vec{y}(t))]$ is a solution to the \textbf{\emph{true evolution equation system}} as defined in Definition \ref{dfn:true-evolution-equation}. Then by uniqueness, duality follows. 
 
-That $\mathbb{E}^{\vec{y}}[H(\vec{x},\vec{y}(t))]$ is a solution to the \textbf{\emph{true evolution equation}} is clear from the fact that $$\frac{d}{dt}\mathbb{E}^{\vec{y}}[H(\vec{x},\vec{y}(t))] = \lim_{t \rightarrow 0} \frac{\mathbb{E}^{\vec{y}}[H(\vec{x},\vec{y}(t))] - H(\vec{x},\vec{y})}{t} = L^{q-TAZRP} \mathbb{E}^{\vec{y}}[H(\vec{x},\vec{y}(t))],$$ with initial and boundary conditions easily checked. 
+That $\mathbb{E}^{\vec{y}}[H(\vec{x},\vec{y}(t))]$ is a solution to the \textbf{\emph{true evolution equation system}} is clear from the fact that $$\frac{d}{dt}\mathbb{E}^{\vec{y}}[H(\vec{x},\vec{y}(t))] = \lim_{t \rightarrow 0} \frac{\mathbb{E}^{\vec{y}}[H(\vec{x},\vec{y}(t))] - H(\vec{x},\vec{y})}{t} = L^{q-TAZRP} \mathbb{E}^{\vec{y}}[H(\vec{x},\vec{y}(t))],$$ with initial and boundary conditions easily checked. 
 
-It then suffices to show that $\mathbb{E}^{\vec{x}}[H(\vec{x}(t),\vec{y})]$ is a solution to the \textbf{\emph{true evolution equation}}. Since the initial and boundary conditions can be easily checked, we only need to show that $\frac{d}{dt} \mathbb{E}^{\vec{x}}[H(\vec{x}(t),\vec{y})] = L^{q-TAZRP} \mathbb{E}^{\vec{x}}[H(\vec{x}(t),\vec{y})]$ as below:
+It then suffices to show that $\mathbb{E}^{\vec{x}}[H(\vec{x}(t),\vec{y})]$ is a solution to the \textbf{\emph{true evolution equation system}}. Since the initial and boundary conditions can be easily checked, we only need to show that $\frac{d}{dt} \mathbb{E}^{\vec{x}}[H(\vec{x}(t),\vec{y})] = L^{q-TAZRP} \mathbb{E}^{\vec{x}}[H(\vec{x}(t),\vec{y})]$ as below:
 \begin{align*}
 \frac{d}{dt} \mathbb{E}^{\vec{x}}[H(\vec{x}(t),\vec{y})] &= L^{q-TASEP} \mathbb{E}^{\vec{x}}[H(\vec{x}(t),\vec{y})] \quad (\text{by definition})\\
 																												 &= \tobeclarified{\mathbb{E}^{\vec{x}} [L^{q-TASEP} H(\vec{x}(t),\vec{y})]}\\
@@ -72,14 +72,16 @@ It then suffices to show that $\mathbb{E}^{\vec{x}}[H(\vec{x}(t),\vec{y})]$ is a
 																												 &= L^{q-TAZRP} \mathbb{E}^{\vec{x}} [H(\vec{x}(t),\vec{y})] \quad (\text{Since $L^{q-TAZRP}$ acts on $\vec{y}$})
 \end{align*}
 \end{proof}
+Using the duality, in order to find $\mathbb{E}^{\vec{x}}[H(\vec{x}(t),\vec{y})]$, it suffices to find $\mathbb{E}^{\vec{y}}[H(\vec{x},\vec{y}(t))]$. Note that the difference between the two expression is that the former is evaluating an expectation in the context of a q-TASEP, while the latter is evaluating the expectation in the context of a q-TAZRP. In what follows, we are going to show how to evaluate the expectation $\mathbb{E}^{\vec{y}}[H(\vec{x},\vec{y}(t))]$ in q-TAZRP using the \emph{free evolution equation system}. With this, we then are able to get an explicit formula for $\mathbb{E}^{\vec{x}}[H(\vec{x}(t),\vec{y})]$.
 \section{Evolution Equation Systems}
-In this section, we are going to define another evolution equation systems, namely, the \emph{free evolution equation} and show that a solution to the \emph{free evolution equation} also solves the \emph{true evolution equation} with certain initial data. We then conclude that $\mathbb{E}[H(\vec{x}(t),\vec{y})]$ for all $\vec{y} \in Y^N$ solves the \emph{free evolution equation}.
+\label{evolution-equation-system}
+In this section, we are going to define another evolution equation systems, namely, the \emph{free evolution equation system} and show that a solution to the \emph{free evolution equation} also solves the \emph{true evolution equation system} with certain initial data. We then conclude that $\mathbb{E}[H(\vec{x}(t),\vec{y})]$ for all $\vec{y} \in Y^N$ solves the \emph{free evolution equation}.
 
-Before moving on to the definition of the \emph{free evolution equation}, we introduce a notion $\nabla_i$ defined by $\nabla_i f(\vec{n}) = f(\vec{n}_i^-) - f(\vec{n})$ for $\vec{n} = (n_1, \dots, n_k)$, where $\vec{n}_i^- = (n_1,\dots,n_{i-1}, n_i - 1, n_{i+1}, \dots, n_k)$.
+Before moving on to the definition of the \emph{free evolution equation system}, we introduce a notion $\nabla_i$ defined by $\nabla_i f(\vec{n}) = f(\vec{n}_i^-) - f(\vec{n})$ for $\vec{n} = (n_1, \dots, n_k)$, where $\vec{n}_i^- = (n_1,\dots,n_{i-1}, n_i - 1, n_{i+1}, \dots, n_k)$.
 
 \begin{definition}
 \label{def:free-evolution-equation}
-Given $\vec{x} \in X^N$, the state space of a q-TASEP, we say that $u(t;\vec{n}):\mathbb{R}_+ \times (\mathbb{Z}_{\ge 0})^k \rightarrow \mathbb{R}$ solves the \textbf{\emph{free evolution equation}} with $k-1$ boundary conditions if:
+Given $\vec{x} \in X^N$, the state space of a q-TASEP, we say that $u(t;\vec{n}):\mathbb{R}_+ \times (\mathbb{Z}_{\ge 0})^k \rightarrow \mathbb{R}$ solves the \textbf{\emph{free evolution equation system}} with $k-1$ boundary conditions if:
 \begin{enumerate}
 \item[(1)] For all $\vec{n} \in (\mathbb{Z}_{\ge 0})^k$ and $t \in \mathbb{R}$, $$\frac{d}{dt} u(t;\vec{n}) = (1-q) \sum_{i=1}^{k} a_{n_i} \nabla_i u(t;\vec{n});$$
 \item[(2)] For all $\vec{n} \in (\mathbb{Z}_{\ge 0})^k$ such that for some $i \in \{1,...,k-1\}$, $n_i = n_{i+1}$, $$\nabla_i u(t;\vec{n}) = q \nabla_{i+1} u(t;\vec{n});$$
@@ -88,10 +90,10 @@ Given $\vec{x} \in X^N$, the state space of a q-TASEP, we say that $u(t;\vec{n})
 \end{enumerate}
 \end{definition}
 
-It's not clear up to now that a solution exists for the \emph{free evolution equation}. However, we are going to show that if one exists, then it must also solve the \emph{true evolution equation} with the corresponding initial data. This is stated as a proposition below:
+It's not clear up to now that a solution exists for the \emph{free evolution equation system}. However, we are going to show that if one exists, then it must also solve the \emph{true evolution equation system} with the corresponding initial data. This is stated as a proposition below:
 
 \begin{proposition}
-If $u(t;\vec{n}):\mathbb{R}_+ \times (\mathbb{Z}_{\ge 0})^k \rightarrow \mathbb{R}$ is a solution to the \emph{free evolution equation} with $\vec{x} \in X^N$, then for all $\vec{y} \in Y^N$ such that $\sum_{i=1}^{N} y_i = k$, $$\mathbb{E}^{\vec{x}}[H(\vec{x}(t), \vec{y})] = u(t;\vec{n}(\vec{y})).$$
+If $u(t;\vec{n}):\mathbb{R}_+ \times (\mathbb{Z}_{\ge 0})^k \rightarrow \mathbb{R}$ is a solution to the \emph{free evolution equation system} with $\vec{x} \in X^N$, then for all $\vec{y} \in Y^N$ such that $\sum_{i=1}^{N} y_i = k$, $$\mathbb{E}^{\vec{x}}[H(\vec{x}(t), \vec{y})] = u(t;\vec{n}(\vec{y})).$$
 \end{proposition}
 
 \begin{remark}
@@ -99,7 +101,7 @@ It should be noted that $u(t;\vec{n}(\vec{y}))$ is a restriction of the solution
 \end{remark}
 
 \begin{proof}
-Recall that $\mathbb{E}^{\vec{x}}[H(\vec{x}(t), \vec{y})]$ is the solution to the \emph{true evolution equation} with initial data $H(\vec{x}, \vec{y})$. In order to show that $\mathbb{E}^{\vec{x}}[H(\vec{x}(t), \vec{y})] = u(t;\vec{n}(\vec{y}))$, we only need to show that for any solution $u(t;\vec{n})$ of the \emph{free evolution equation}, when restricted to the domain $\mathbb{R}_+ \times W_{>0}^k$, it also solves the \emph{true evolution equation} with initial data $H(\vec{x},\vec{y}(\vec{n}))$, where $\sum_{i=1}^{N} y_i = k$. It then suffices to check $v(t;\vec{y}) = u(t; \vec{n}(\vec{y}))$ against the three conditions in Definition \ref{dfn:true-evolution-equation}. 
+Recall that $\mathbb{E}^{\vec{x}}[H(\vec{x}(t), \vec{y})]$ is the solution to the \emph{true evolution equation system} with initial data $H(\vec{x}, \vec{y})$. In order to show that $\mathbb{E}^{\vec{x}}[H(\vec{x}(t), \vec{y})] = u(t;\vec{n}(\vec{y}))$, we only need to show that for any solution $u(t;\vec{n})$ of the \emph{free evolution equation system}, when restricted to the domain $\mathbb{R}_+ \times W_{>0}^k$, it also solves the \emph{true evolution equation system} with initial data $H(\vec{x},\vec{y}(\vec{n}))$, where $\sum_{i=1}^{N} y_i = k$. It then suffices to check $v(t;\vec{y}) = u(t; \vec{n}(\vec{y}))$ against the three conditions in Definition \ref{dfn:true-evolution-equation}. 
 \begin{enumerate}
 \item[(1)] For all $\vec{y} \in Y^N$ and $t \in \mathbb{R}^+$, we want to show that $$(1-q) \sum_{i=1}^{k} a_{n_i} \nabla_i u(t;\vec{n}) = \frac{d}{dt} u(t;\vec{n}(\vec{y}))= \frac{d}{dt} v(t;\vec{y}) = \sum_{i=1}^{N} a_i (1-q^{y_i}) (v(t;\vec{y}^{i,i-1}) - v(t;\vec{y})).$$ For this purpose, we claim that for each site $i$ with $y_i$ number of particles $n_{k_1} = n_{k_2} = \dots = n_{k_{y_i}} = i$, $$(1-q) \sum_{j=k_1}^{k_{y_i}} a_{i} \nabla_j u(t;\vec{n}) = a_i (1-q^{y_i}) (v(t;\vec{y}^{i,i-1}) - v(t;\vec{y})).$$ Then by summing up over $i$, all sites, we get the desired equality. 
 
@@ -116,4 +118,63 @@ It follows from Condition (2) of Definition \ref{def:free-evolution-equation} th
 \end{proof}
 
 \section{Nested Contour Integral Solution}
-a
+As discussed in Section \ref{evolution-equation-system}, existence of solutions to the \emph{free evolution equation system} is not clear in general. However, in this section, we are going to provide solutions to the \emph{free evolution equation system} with step and half stationary initial data in the form of nested contour integral.
+
+\begin{theorem}
+\label{thm:nested-contour-integration}
+Fix $q \in (0,1)$, $a_i > 0$ for $i \ge 1$ and let $\vec{n} = (n_1,n_2, \dots, n_k).$ The \emph{free evolution equation system} as defined in Section \ref{evolution-equation-system} is solved by the following:
+\begin{enumerate}
+\item[(1)] For step initial data, 
+\begin{equation}
+\label{step-nested-contour}
+u(t;\vec{n}) = \frac{(-1)^k q^{k(k-1)/2}}{(2 \pi i)^k} \times \int \dots \int \prod_{1 \le A < B \le k} \frac{z_A - z_B}{z_A - qz_B} \prod_{j=1}^k \left( \prod_{m=1}^{n_j} \frac{a_m}{a_m - z_j}\right) e^{(q-1)tz_j} \frac{dz_j}{z_j}, \numberthis
+\end{equation}
+where the integration contour for $z_A$ contains $\{qz_B\}_{B > A}$ and all $a_m's$ but not $0$.
+\item[(2)] For half stationary initial data with parameter $\alpha > 0$, 
+\begin{equation}
+\label{half-stationary-nested-contour}
+u(t;\vec{n}) = \frac{(-1)^k q^{k(k-1)/2}}{(2 \pi i)^k} \times \int \dots \int \prod_{1 \le A < B \le k} \frac{z_A - z_B}{z_A - qz_B} \prod_{j=1}^k \left( \prod_{m=1}^{n_j} \frac{a_m}{a_m - z_j}\right) e^{(q-1)tz_j} \frac{dz_j}{z_j - \alpha/q}, \numberthis
+\end{equation}
+where the integration contour for $z_A$ contains $\{qz_B\}_{B > A}$ and all $a_m's$ but not $\alpha / q$.
+\end{enumerate}
+\end{theorem}
+
+\begin{corollary}
+\label{nested-contour-corollary}
+For q-TASEP with step initial data and $\vec{n} \in W^k_{>0}$, $$\mathbb{E} \left[ \prod_{j=1}^k q^{x_{n_j}+n_j} \right] = \frac{(-1)^k q^{k(k-1)/2}}{(2 \pi i)^k} \times \int \dots \int \prod_{1 \le A < B \le k} \frac{z_A - z_B}{z_A - qz_B} \prod_{j=1}^k \left( \prod_{m=1}^{n_j} \frac{a_m}{a_m - z_j}\right) e^{(q-1)tz_j} \frac{dz_j}{z_j},$$ where the integration contour for $z_A$ contains $\{qz_B\}_{B > A}$ and all $a_m's$ but not $0$.
+\end{corollary}
+
+\begin{proof}[Proof of Corollary \ref{nested-contour-corollary}]
+Noting that the right hand side is simply a restriction of Equation (\ref{step-nested-contour}), and that $u(t;\vec{n})$ is equal to $\mathbb{E}^{\vec{x}}[H(\vec{x}(t), \vec{y})]$, it then suffices to show that $\mathbb{E}[H(\vec{x}(t), \vec{y})] =\mathbb{E} \left[ \prod_{i=1}^N q^{(x_i(t) + i) y_i} \right]= \mathbb{E} \left[ \prod_{j=1}^k q^{x_{n_j}+n_j} \right]$, where the expectation is taken with the step initial data. Recall that $y_i = |\{n_j: n_j = i\}|$, therefore
+\begin{align*}
+\prod_{i=1}^N q^{(x_i + i) y_i} &= \prod_{i=1}^{N} \prod_{j=n_{i,1}}^{n_{i,1}+y_i} q^{x_{n_i} + n_i}\\
+																&= \prod_{j=1}^k q^{x_{n_j}+n_j},
+\end{align*}
+where $n_{i,1} = \min \{j : n_j = i\}$.
+\end{proof}
+
+\begin{proof}[Proof of Theorem \ref{thm:nested-contour-integration}]
+We first prove the case for step initial data. That is, we need to show that the function $u(t;\vec{n})$ as defined satisfies the four conditions in Definition \ref{def:free-evolution-equation}, referred to as (1) - (4). 
+
+\begin{enumerate}
+\item[(1)] Let $$f(t;\vec{n}) = \prod_{j=1}^k \left( \prod_{m=1}^{n_j} \frac{a_m}{a_m - z_j}\right) e^{(q-1)tz_j}$$ such that $$u(t;\vec{n}) = \frac{(-1)^k q^{k(k-1)/2}}{(2 \pi i)^k} \times \int \dots \int \prod_{1 \le A < B \le k} \frac{z_A - z_B}{z_A - qz_B} f(t;\vec{n}) \prod_{j=1}^k \frac{dz_j}{z_j}.$$
+Note that $$\frac{d}{dt} f(t;\vec{n}) = (q-1) \left( \sum_{i=1}^k z_i \right) f(t;\vec{n})$$ and that
+\begin{align*}
+\nabla_i f(t;\vec{n}) &= \prod_{j=1, j \neq i}^k \left( \prod_{m=1}^{n_j} \frac{a_m}{a_m - z_j}\right) e^{(q-1)tz_j} \prod_{m=1}^{n_i-1} \frac{a_m}{a_m - z_i} \left( 1 - \frac{a_{n_i}}{a_{n_i} - z_i} \right) \\
+&= \prod_{j=1, j \neq i}^k \left( \prod_{m=1}^{n_j} \frac{a_m}{a_m - z_j}\right) e^{(q-1)tz_j} \prod_{m=1}^{n_i-1} \frac{a_m}{a_m - z_i} \left( -\frac{z_i}{a_{n_i} - z_i} \right)\\
+&= - \frac{z_i}{a_{n_i}} f(t;\vec{n}) \numberthis \label{proof-nested-contour}
+\end{align*}
+Therefore, we have $$\frac{d}{dt} f(t;\vec{n}) = (1-q) \sum_{i=1}^k a_{n_i} \nabla_i f(t;\vec{n}).$$
+Condition (1) follows from the fact that $$\frac{d}{dt} u(t;\vec{n}) = \frac{d}{dt} f(t;\vec{n}) = (1-q) \sum_{i=1}^k a_{n_i} \nabla_i f(t;\vec{n}) = (1-q) \sum_{i=1}^k a_{n_i} \nabla_i u(t;\vec{n}).$$
+\item[(2)] Without loss of generality, assume $z_1 = z_2$. 
+
+From Equation (\ref{proof-nested-contour}), we have that $\nabla_i u(t;\vec{n}) = - \frac{z_i}{a_{n_i}} u(t;\vec{n})$ and hence 
+\begin{align*}
+& \quad (\nabla_1 - q \nabla_2) u(t;\vec{n}) \\
+&= - \frac{z_1 - qz_2}{a_{n_1}} u(t;\vec{n}) \\
+&= \frac{(-1)^k q^{k(k-1)/2}}{(2 \pi i)^k} \times \int \dots \int \left( - \frac{z_1 - qz_2}{a_{n_1}} \right) \prod_{1 \le A < B \le k} \frac{z_A - z_B}{z_A - qz_B} f(t;\vec{n}) \prod_{j=1}^k \frac{dz_j}{z_j} \\
+&= \frac{(-1)^k q^{k(k-1)/2}}{(2 \pi i)^k} \times \int \dots \int \left( - \frac{z_1 - z_2}{a_{n_1}} \right) \prod_{A<B, (A,B) \neq (1,2)} \frac{z_A - z_B}{z_A - qz_B} f(t;\vec{n}) \prod_{j=1}^k \frac{dz_j}{z_j} 
+\end{align*}
+From the last equality, the contours of $z_1$ and $z_2$ can be deformed to be the same without encountering any poles (since the term $z_1 - qz_2$ in the denominator has been canceled). 
+\end{enumerate}
+\end{proof}
