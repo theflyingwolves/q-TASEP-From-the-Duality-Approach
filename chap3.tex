@@ -1,1 +1,103 @@
 \chapter{Fredholm Determinants}
+In last chapter, we have derived a nested contour integral expression for $\mathbb{E}[\prod_{j=1}^k q^{x_{n_j}+n_j}]$ using some ODE systems. In this chapter we introduce Fredholm Determinants and try to transform the nested contour integrals into the form of a Fredholm determinants. However, from now onwards, we will only be focusing on the distribution of a single particle $x_n(t)$, since the joint distribution of an arbitrary collection of particles $x_{n_1}(t), \dots, x_{n_l}(t)$ will involve some further complexities that will bring challenges into getting a relatively simple expression. To do this, we apply Corollary \ref{nested-contour-corollary} with $\vec{n} = (n,n,\dots, n)$, which results in $\mathbb{E}[\prod_{j=1}^k q^{x_{n_j}+n_j}] = q^{kn} \mathbb{E} [q^{kx_n(t)}]$. 
+
+\section{Fredholm Determinants}
+We begin by quoting the definition of a Fredholm determinant from Definition 3.2.6 in \cite{macdonald2014}.
+
+\begin{definition}
+Fix a Hilbert space $L^2(X,\mu)$ where $X$ is a measurable space and $\mu$ is a measure on $X$. When $X = \Gamma$, a simple smooth contour in $\mathbb{C}$, we write $L^2(\Gamma)$ where $\mu$ is understood to be the path measure along $\Gamma$ divided by $2 \pi i$. When $X$ is the product of a discrete set $D$ and a contour $\Gamma$, $\mu$ is understood to be the product of the counting measure on $D$ and the path measure along $\Gamma$ divided by $2 \pi i$.
+Let K be an integral operator acting on $f(\cdot) \in L^2(X,\mu)$ by $$(Kf)(x) = \int_X K(x,y) f(y) d\mu(y).$$ $K(x,y)$ is called the kernel of $K$. A formal Fredholm determinant expansion of $I+K$ is a formal series written as $$det(I+K) = 1 + \sum_{n=1}^{\infty} \frac{1}{n!} \int_X \dots \int_X det[K(x_i,x_j)]_{i,j=1}^{n} \prod_{i=1}^{n} d\mu(x_i)$$
+If the above series is absolutely convergent, then we call this a numerical Fredholm determinant expansion.
+\end{definition}
+
+In order to transform a nested contour integrals of similar forms to the ones given in Theorem \ref{thm:nested-contour-integration}, the idea is to deform the nested contours so that they coincide. However, there are two types of deformation, namely the Mellin-Barnes type and the Cauchy type. The philosophy for the Mellin-Barnes type approach is to deform the contours in such a way that all of the poles corresponding to $z_A = qz_B$ for $A < B$ are encountered. This is, in some sense, shrinking the contours so that they coincide. The Cauchy type approach does the opporsite that it enlarges the contours so that they coincide. Poles at $z_k = 0$ are encountered in this process.
+
+In the following sections, we introduce the two approaches in details and see how each of them can be applied to q-TASEP. But before that, we first identify the exact form of nested contours to be manipulated by Definition 3.1 in \cite{macdonald2014}.
+
+\begin{definition}
+\label{mu_k_def}
+For a meromorphic function $f(z)$ and $k \ge 1$ set $\mathbb{A}$ to be a fixed set of poles of $f$ (not including 0) and assume that $q^m \mathbb{A}$ is disjoint from $\mathbb{A}$ for all $m \ge 1$. Define
+$$\mu_k = \frac{(-1)^k q^{k(k-1)/2}}{(2 \pi i)^k} \int \dots \int \prod_{1 \le A < B \le k} \frac{z_A - z_B} {z_A - qz_B} \prod_{i=1}^k f(z_i) \frac{dz_i}{z_i},$$ where the integration contour for $z_A$ contains $\{qz_B\}_{B > A}$, the fixed set of poles $\mathbb{A}$ of $f(z)$ but not $0$ or any other poles. 
+\end{definition}
+
+Notice that when we take $f(z) = \left( \prod_{m=1}^{n} \frac{a_m}{a_m - z} \right) e^{(q-1)tz}$, $u(t;\vec{n})$ for step initial data in Theorem \ref{thm:nested-contour-integration} is recovered.
+
+\section{Mellin-Barnes type determinants}
+Before going into the details of the Mellin-Barnes type manipulation, we introduce some notations used.\\
+For $\lambda = (\lambda_1 \ge \lambda_2 \ge \dots \ge 0)$, we write $\lambda \vdash k$ if $\sum_i \lambda_i = k$ and $\lambda = 1^{m_1} 2^{m_2} \dots$ if $i$ appears $m_i$ times in $\lambda$. Let $l(\lambda) = \sum_i m_i$ denote the number of non-zero elements of $\lambda$.\\
+In Mellin-Barnes type determinants, the nested contours are deformed to coincide so that the only poles encountered are at $z_A = qz_B$ for $A < B$. With this philosophy, we transform the $\mu_k$ as defined in Definition \ref{mu_k_def} into the following form with the contours shrinked to coincide. The result is given in the following proposition.
+\begin{proposition}
+\label{mellin-barnes-transform}
+\begin{align*}
+\mu_k &= k_q! \sum_{\substack{{\lambda \vdash k}\\ {\lambda = 1^{m_1} 2^{m_2} \dots}}} \frac{1}{m_1! m_2! \dots} \frac{(1-q)^k}{(2 \pi i)^{l(\lambda)}} \\
+			& \quad \times \int \dots \int det\left[ \frac{1}{w_iq^{\lambda_i} - w_j} \right]_{i,j=1}^{l(\lambda)} \times \prod_{j=1}^{l(\lambda)} f(w_j) f(qw_j) \dots f(q^{\lambda_j-1} w_j) dw_j \numberthis \label{new_mu_k}
+\end{align*}
+where the $w_j$ contours contain the same fixed set of singularities $\mathbb{A}$ of $f(z)$ but no other poles and $k_q! = \prod_{i=1}^{k} \frac{1-q^i}{1-q}$.
+\end{proposition}
+
+\begin{remark}
+Note that in Equation \ref{new_mu_k} the contours have been deformed to coincide with each other containing the same fixed set of singularities. 
+\end{remark}
+
+\begin{proof}
+Before moving on to the proof, we discuss a transformation of the RHS of Equation \ref{mellin-barnes-transform}. 
+
+In Equation \ref{mellin-barnes-transform}, for each $j$, in order to evaluate the integral, for each $\lambda \vdash k$, we have to sum over all possible combination of $l(\lambda)$ poles chosen from the fixed set $\mathbb{A}$ of poles of $f(z)$. Because of the determinant, zero contribution would occur if identical poles were chosen for different variable $w_i \neq w_j$ since it would result in two identical columns in the determinant. Therefore, when considering a set of $l(\lambda)$ poles, we will make sure that the poles chosen are mutually distinct.
+
+Moreover, for a particular $\lambda$ with some $\lambda_i = \lambda_j$ for $i \neq j$, interchanging $\lambda_i$ and $\lambda_j$ will not affect the evaluation. This allows us to cancel away the prefactor of $\frac{1}{m_1! m_2! \dots}$. Hence, we can replace the summation over $\lambda$ in Equation \ref{mellin-barnes-transform} by a summation over disjoint subsets of $\mathit{J}$ of size $m_1$, $m_2$, etc, where $m_1 + 2m_2 + \dots = k$. Denote these subsets by $S_1, S_2, \dots$ respectively and write $S = (S_1, S_2, \dots ) = (b_1, \dots, b_{m_1}, b_{m_1+1}, \dots, b_{m_1 + m_2}, \dots)$, where $b_i \in S_1$ for $1 \le i \le m_1$, $b_i \in S_2$ for $m_1 < i \le m_2$ and so on. Denote the set of all such collections of subsets $S's$ to be $\mathcal{S}$. Then by evaluating the corresponding residues Equation \ref{mellin-barnes-transform} can be transformed to
+\begin{equation}
+\mu_k = \sum_{S \in \mathcal{S}} k_q! (1-q)^k \prod_{j=1}^{m_1+m_2+\dots} Res_{w=b_j} f(w) f(qb_j) \dots f(q^{\lambda(b_j)} b_j) det\left[ \frac{1}{b_iq^{\lambda(b_i)} - b_j} \right]_{i,j=1}^{m_1+m_2+\dots}
+\end{equation}
+The proof is by induction on $k$. For $k=1$, by definition, 
+$$\mu_1 = - \frac{1}{2 \pi i} \int f(z_1) \frac{dz_1}{z_1}.$$ Moreover, $\lambda = (1,0)$ and Equation \ref{new_mu_k} reduces to $$\frac{1-q}{2 \pi i} \int \frac{1}{q w_1 - w_1 } f(w_1) dw_1 = - \frac{1}{2 \pi i} \int f(w_1) \frac{dw_1}{w_1}.$$ Comparing the two expression, we get that $LHS = RHS$ for $k = 1$.
+
+For the induction step, let $k \in \mathbb{Z}_+$ and assume that Proposition \ref{mellin-barnes-transform} holds for $k-1$. Let $\mathit{J}$ denote an index set of $\mathbb{A}$ $(\mathit{J} = \{1,\dots,|\mathbb{A}|\})$ and recall the definition of $\mu_k$ in Definition \ref{mu_k_def} that $$\mu_k = \frac{(-1)^k q^{k(k-1)/2}}{(2 \pi i)^k} \int \dots \int \prod_{1 \le A < B \le k} \frac{z_A - z_B} {z_A - qz_B} \prod_{i=1}^k f(z_i) \frac{dz_i}{z_i},$$ we evaluate the integral over $z_k$ using residue calculus to get
+\begin{align*}
+\mu_k &= (-q^{k-1}) \sum_{j \in \mathit{J}} \frac{Res_{z = a_j} f(z)}{a_j} (-1)^{k-1} \frac{q^{(k-1)(k-2)/2}}{(2 \pi i)^{k-1}} \\
+& \quad \times \int \dots \int \prod_{1 \le A < B \le k-1} \frac{z_A - z_B}{z_A - qz_B} \prod_{i=1}^{k-1} \frac{z_i - a_j}{z_i - qa_j} \frac{f(z_i)}{z_i} dz_i. \numberthis \label{induction-mu}
+\end{align*}
+Notice that the integral on the right hand side of Equation \ref{induction-mu} is an $k-1$ fold nested contour integral, to which we can apply our induction assumption with $\tilde{f}_j(z) = f(z) \frac{z-a_j}{z-qa_j}$ and the new sets of poles $\tilde{\mathbb{A}}_j = (\mathbb{A} \setminus \{a_j\}) \cup \{qa_j\}$. The resulting form is 
+\begin{align*}
+\mu_k &= (-q^{k-1}) \sum_{j \in \mathit{J}} \frac{Res_{z = a_j} f(z)}{a_j} \times (k-1)_q! \sum_{\substack{{\lambda \vdash k-1}\\ {\lambda = 1^{m_1} 2^{m_2} \dots}}} \frac{1}{m_1! m_2! \dots} \frac{(1-q)^{k-1}}{(2 \pi i)^{l(\lambda)}} \\
+			& \quad \times \int \dots \int det\left[ \frac{1}{w_iq^{\lambda_i} - w_j} \right]_{i,j=1}^{l(\lambda)} \times \prod_{t=1}^{l(\lambda)} \tilde{f}_j(w_t) \tilde{f}_j(qw_t) \dots \tilde{f}_j(q^{\lambda_t-1} w_t) dw_t \numberthis \label{mu-form-2}
+\end{align*}
+
+From the transformation at the beginning of the proof, we can see that the form above can be transformed to 
+\begin{align*}
+\mu_k &= (-q^{k-1}) (k-1)_q! (1-q)^{k-1} \sum_{j \in \mathit{J}} \sum_{\tilde{S} \in \tilde{\mathcal{S}}_j} \frac{1}{a_j}  det\left[ \frac{1}{ \tilde{b}_i q^{\tilde{\lambda}(\tilde{b}_i)} - \tilde{b}_l } \right]_{\tilde{b}_i, \tilde{b}_l \in \tilde{\mathcal{S}}}\\
+& \quad \times \prod_{\tilde{b} \in \tilde{S} \setminus \{qa_j\}} Res_{w = \tilde{b}} \tilde{f}_j(w) \tilde{f}_j(q\tilde{b}) \dots \tilde{f}_j(q^{\tilde{\lambda}(\tilde{b}) - 1} \tilde{b}) \\
+& \quad \times Res_{w = a_j} f(w) \times Res_{w = qa_j} \tilde{f}_j(w) \tilde{f}_j(q^2 a_j) \dots \tilde{f}_j(q^{\tilde{\lambda}(qa_j)} a_j) \numberthis \label{mu_form-3}
+\end{align*}
+where $\tilde{\mathcal{S}}_j$ denotes the set of all collections $\tilde{S}$ of subsets $\tilde{S}_{j,1}, \tilde{S}_{j,2}, \dots$ of $\tilde{\mathbb{A}}_j$, where $\tilde{S}_{j,k}$ is of size $\tilde{m}_k$ and $\tilde{m}_1 + 2\tilde{m}_2 + \dots = k-1$. Also, we reorder the elements in $\tilde{S}$ to be $\tilde{S} = (\tilde{b}_1, \tilde{b}_2, \dots, \tilde{b}_{\tilde{m}_1}, \dots$ so that the first $\tilde{m}_1$ elements belong to $\tilde{S}_{j,1}$ etc.\\ \\
+Note that for $t \neq j$, 
+\begin{align*}
+\tilde{f}_j(a_t) \tilde{f}_j(qa_t) \dots \tilde{f}_j(q^{\lambda_t-1} a_t) &= \frac{a_t - a_j}{a_t - qa_j} \frac{qa_t - a_j}{qa_t - qa_j} \dots \frac{q^{\lambda_t-1} a_t - a_j}{q^{\lambda_t-1} a_t - qa_j} f(a_t) \dots f(q^{\lambda_t-1}a_t) \\
+&= \frac{q^{\lambda_t - 1} a_t - a_j}{a_t - qa_j} q^{1 - \lambda_t} f(a_t) \dots f(q^{\lambda_t-1}a_t) \numberthis \label{equality-mu-1}
+\end{align*}
+and 
+\begin{align*}
+& Res_{w = qa_j} \tilde{f}_j(w) \tilde{f}_j(q^2 a_j) \dots \tilde{f}_j(q^{\tilde{\lambda}(qa_j)} a_j)\\
+& \quad = (q-1)a_j \frac{q^2a_j - a_j}{q^2 a_j - qa_j} \dots \frac{q^{\tilde{\lambda}(qa_j)}a_j - a_j}{q^{\tilde{\lambda}(qa_j)} a_j - qa_j} f(qa_j) \dots f(q^{\tilde{\lambda}(qa_j)} a_j) \\
+& \quad = (q^{\tilde{\lambda}(qa_j)}a_j - a_j) q^{2 - \tilde{\lambda}(qa_j)} f(qa_j) \dots f(q^{\tilde{\lambda}(qa_j)} a_j) \numberthis \label{equality-mu-1}
+\end{align*}
+Applying \ref{equality-mu-1} 
+\end{proof}
+
+With Proposition \ref{mellin-barnes-transform}, we have successfully transformed the nested contours so that they can coincide with each other. That is, while the pervious contour for $z_A$ contains poles at $\mathbb{A}$ and $\{z_B\}_{B>A}$, current contour for $w_A$ only contain poles at $\mathbb{A}$. Therefore, the contours for $w_i$, $i = 1, \dots, k$ can now be chosen to be the same contour, denoted as $C_{\mathbb{A}}$ that contains poles only at $\mathbb{A}$ and no other poles. With this, we are able to write a generating function of the contour integrals in Fredhold determinants form using the following proposition:
+
+\begin{proposition}
+\label{step-1-mellin-barnes}
+Consider $\mu_k$ as in Equation \ref{new_mu_k} with closed contours $C_{\mathbb{A}}$ for $k = 1,2,\dots$. Then the following formal equality holds:
+$$\sum_{k \ge 0} \mu_k \frac{\zeta^k}{k_q!} = det(I+K_{\zeta}^{1}),$$ where $K_{\zeta}^1:L^2(\mathbb{Z}_{>0} \times C_{\mathbb{A}}) \rightarrow L^2(\mathbb{Z}_{>0} \times C_{\mathbb{A}})$ is defined by its integral kernel $$K_{\zeta}^1(n_1, w_1; n_2, w_2)= \frac{(1-q)^{n_1} \zeta^{n_1} f(w_1) f(qw_1) \dots f(q^{n_1-1}w_1)}{q_{n_1}w_1 - w_2}.$$
+\end{proposition}
+
+We defer the proof of the proposition and state the final result of the Mellin-Barnes type determinants continuing from Proposition \ref{step-1-mellin-barnes}. 
+
+\begin{proposition}
+\label{step-2-mellin-barnes}
+Assume $f(w) = g(w) / g(qw)$ for some function $g$. Then the following formal identity holds:
+$$det(I+K_{\zeta}^1) = det(I+K_{\zeta}^2),$$ where $det(I+K_{\zeta}^1)$ is given in Proposition \ref{step-1-mellin-barnes} and $K_{\zeta}^2:L^2(C_{\mathbb{A}}) \rightarrow L^2(C_{\mathbb{A}})$ is given by its integration kernel $$K_{\zeta}^2(w,w') = \frac{1}{2 \pi i} \int_{C_{1,2,\dots}} \Gamma(-s) \Gamma(1+s) (-(1-q)\zeta)^s \frac{g(w)}{g(q^sw)} \frac{1}{q^sw - w'} ds.$$ The integration contour $C_{1,2,\dots}$ is an infinite contour negatively oriented that encloses $1,2,\dots$ and no poles of $f(q^s)$.
+\end{proposition}
+\begin{remark}
+One possible contour for $C_{1,2,\dots}$ is $\frac{1}{2} + i\mathbb{R}$ oriented from $\frac{1}{2} - i\infty$ to $\frac{1}{2} + i\infty$.
+\end{remark}
