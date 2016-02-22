@@ -23,67 +23,123 @@ $$\mu_k = \frac{(-1)^k q^{k(k-1)/2}}{(2 \pi i)^k} \int \dots \int \prod_{1 \le A
 Notice that when we take $f(z) = \left( \prod_{m=1}^{n} \frac{a_m}{a_m - z} \right) e^{(q-1)tz}$, $u(t;\vec{n})$ for step initial data in Theorem \ref{thm:nested-contour-integration} is recovered.
 
 \section{Mellin-Barnes type determinants}
-Before going into the details of the Mellin-Barnes type manipulation, we introduce some notations used.\\
+First, we introduce some notations used.\\
 For $\lambda = (\lambda_1 \ge \lambda_2 \ge \dots \ge 0)$, we write $\lambda \vdash k$ if $\sum_i \lambda_i = k$ and $\lambda = 1^{m_1} 2^{m_2} \dots$ if $i$ appears $m_i$ times in $\lambda$. Let $l(\lambda) = \sum_i m_i$ denote the number of non-zero elements of $\lambda$.\\
 In Mellin-Barnes type determinants, the nested contours are deformed to coincide so that the only poles encountered are at $z_A = qz_B$ for $A < B$. With this philosophy, we transform the $\mu_k$ as defined in Definition \ref{mu_k_def} into the following form with the contours shrinked to coincide. The result is given in the following proposition.
 \begin{proposition}
 \label{mellin-barnes-transform}
+Define
 \begin{align*}
-\mu_k &= k_q! \sum_{\substack{{\lambda \vdash k}\\ {\lambda = 1^{m_1} 2^{m_2} \dots}}} \frac{1}{m_1! m_2! \dots} \frac{(1-q)^k}{(2 \pi i)^{l(\lambda)}} \\
+\gamma_k &= k_q! \sum_{\substack{{\lambda \vdash k}\\ {\lambda = 1^{m_1} 2^{m_2} \dots}}} \frac{1}{m_1! m_2! \dots} \frac{(1-q)^k}{(2 \pi i)^{l(\lambda)}} \\
 			& \quad \times \int \dots \int det\left[ \frac{1}{w_iq^{\lambda_i} - w_j} \right]_{i,j=1}^{l(\lambda)} \times \prod_{j=1}^{l(\lambda)} f(w_j) f(qw_j) \dots f(q^{\lambda_j-1} w_j) dw_j \numberthis \label{new_mu_k}
 \end{align*}
-where the $w_j$ contours contain the same fixed set of singularities $\mathbb{A}$ of $f(z)$ but no other poles and $k_q! = \prod_{i=1}^{k} \frac{1-q^i}{1-q}$.
+where the $w_j$ contours contain the same fixed set of singularities $\mathbb{A}$ of $f(z)$ but no other poles and $k_q! = \prod_{i=1}^{k} \frac{1-q^i}{1-q}$. Then for all $k \in \mathbb{Z}$,
+$$\gamma_k = \mu_k$$
 \end{proposition}
 
 \begin{remark}
-Note that in Equation \ref{new_mu_k} the contours have been deformed to coincide with each other containing the same fixed set of singularities. 
+Note that in $\gamma_k$ the contours have been deformed to coincide with each other containing the same fixed set of singularities. 
 \end{remark}
 
-\begin{proof}
-Before moving on to the proof, we discuss a transformation of the RHS of Equation \ref{mellin-barnes-transform}. 
-
-In Equation \ref{mellin-barnes-transform}, for each $j$, in order to evaluate the integral, for each $\lambda \vdash k$, we have to sum over all possible combination of $l(\lambda)$ poles chosen from the fixed set $\mathbb{A}$ of poles of $f(z)$. Because of the determinant, zero contribution would occur if identical poles were chosen for different variable $w_i \neq w_j$ since it would result in two identical columns in the determinant. Therefore, when considering a set of $l(\lambda)$ poles, we will make sure that the poles chosen are mutually distinct.
+Before moving on to the proof, we discuss a transformation of the RHS of Equation \ref{mellin-barnes-transform}. \\
+In $\gamma_k$, in order to evaluate the integral, for each $\lambda \vdash k$, we have to sum over all possible combination of $l(\lambda)$ poles chosen from the fixed set $\mathbb{A}$ of poles of $f(z)$. Because of the determinant, zero contribution would occur if identical poles were chosen for different variable $w_i \neq w_j$ since it would result in two identical columns in the determinant. Therefore, when considering a set of $l(\lambda)$ poles, we will make sure that the poles chosen are mutually distinct.
 
 Moreover, for a particular $\lambda$ with some $\lambda_i = \lambda_j$ for $i \neq j$, interchanging $\lambda_i$ and $\lambda_j$ will not affect the evaluation. This allows us to cancel away the prefactor of $\frac{1}{m_1! m_2! \dots}$. Hence, we can replace the summation over $\lambda$ in Equation \ref{mellin-barnes-transform} by a summation over disjoint subsets of $\mathit{J}$ of size $m_1$, $m_2$, etc, where $m_1 + 2m_2 + \dots = k$. Denote these subsets by $S_1, S_2, \dots$ respectively and write $S = (S_1, S_2, \dots ) = (b_1, \dots, b_{m_1}, b_{m_1+1}, \dots, b_{m_1 + m_2}, \dots)$, where $b_i \in S_1$ for $1 \le i \le m_1$, $b_i \in S_2$ for $m_1 < i \le m_2$ and so on. Denote the set of all such collections of subsets $S's$ to be $\mathcal{S}$. Then by evaluating the corresponding residues Equation \ref{mellin-barnes-transform} can be transformed to
 \begin{equation}
-\mu_k = \sum_{S \in \mathcal{S}} k_q! (1-q)^k \prod_{j=1}^{m_1+m_2+\dots} Res_{w=b_j} f(w) f(qb_j) \dots f(q^{\lambda(b_j)} b_j) det\left[ \frac{1}{b_iq^{\lambda(b_i)} - b_j} \right]_{i,j=1}^{m_1+m_2+\dots}
+\gamma_k = \sum_{S \in \mathcal{S}} k_q! (1-q)^k \prod_{j=1}^{m_1+m_2+\dots} Res_{w=b_j} f(w) f(qb_j) \dots f(q^{\lambda(b_j)} b_j) det\left[ \frac{1}{b_iq^{\lambda(b_i)} - b_j} \right]_{i,j=1}^{m_1+m_2+\dots}
 \end{equation}
-The proof is by induction on $k$. For $k=1$, by definition, 
-$$\mu_1 = - \frac{1}{2 \pi i} \int f(z_1) \frac{dz_1}{z_1}.$$ Moreover, $\lambda = (1,0)$ and Equation \ref{new_mu_k} reduces to $$\frac{1-q}{2 \pi i} \int \frac{1}{q w_1 - w_1 } f(w_1) dw_1 = - \frac{1}{2 \pi i} \int f(w_1) \frac{dw_1}{w_1}.$$ Comparing the two expression, we get that $LHS = RHS$ for $k = 1$.
 
-For the induction step, let $k \in \mathbb{Z}_+$ and assume that Proposition \ref{mellin-barnes-transform} holds for $k-1$. Let $\mathit{J}$ denote an index set of $\mathbb{A}$ $(\mathit{J} = \{1,\dots,|\mathbb{A}|\})$ and recall the definition of $\mu_k$ in Definition \ref{mu_k_def} that $$\mu_k = \frac{(-1)^k q^{k(k-1)/2}}{(2 \pi i)^k} \int \dots \int \prod_{1 \le A < B \le k} \frac{z_A - z_B} {z_A - qz_B} \prod_{i=1}^k f(z_i) \frac{dz_i}{z_i},$$ we evaluate the integral over $z_k$ using residue calculus to get
+To illustrate what has been discussed above, we take $k = 4$ for an example. In this case, all possible $\lambda 's$ are $(4,0), (3,1), (2,2), (2,1,1), (1,1,1,1)$. Take $\lambda = (2,1,1')$ (In $1'$ the superscript is to differentiate it from the previous $1$) and we get $m_1 = 2$, $m_2 = 1$, $m_i = 0$ for $i \ge 3$ and $l(\lambda) = 3$. Therefore, $|S_1| = m_1 = 2$ and $|S_2| = m_2 = 1$. One possible collection of such $S_i's$ is $S_1 = \{1,1'\}$ and $S_2 = \{2\}$ and hence $S = (\{1,1'\},  \{2\})$. Therefore, for this particular $k = 3$ and $\lambda$, all possible collections of such $S's$ are 
+\begin{align}
+\mathcal{S}_{\lambda} = \{ &(\{1,1'\},\{2\}), (\{1,2\},\{1'\}), \\ 
+													 &(\{1',1\},\{2\}), (\{1', 2\},\{1\}),\\
+													 &(\{2,1\},\{1'\}), (\{2,1'\},\{1\})\}
+\end{align}
+Notice that the sets $S's$ are ordered sets since they corresponds to poles of different $w_j's$. Also, notice that interchanging $1$ and $1'$ results in equal contributions. Therefore, the prefactor $\frac{1}{m_1! m_2! \dots} = \frac{1}{2}$ is needed to account for this effect.
+
+\begin{proof}[Proof of Proposition \ref{mellin-barnes-transform}]
+The proof is by induction on $k$. For $k=1$, by definition, 
+$$\mu_1 = - \frac{1}{2 \pi i} \int f(z_1) \frac{dz_1}{z_1}.$$ Moreover, the only $\lambda$ is $\lambda = (1,0)$ and $\gamma_k$ reduces to $$\frac{1-q}{2 \pi i} \int \frac{1}{q w_1 - w_1 } f(w_1) dw_1 = - \frac{1}{2 \pi i} \int f(w_1) \frac{dw_1}{w_1}.$$ Comparing the two expression, we get that $\mu_1 = \gamma_1$.
+
+For the induction step, let $k \in \mathbb{Z}_+$ and assume that $\mu_{k-1} = \gamma_{k-1}$. Let $\mathit{J}$ denote an index set of $\mathbb{A}$ $(\mathit{J} = \{1,\dots,|\mathbb{A}|\})$ and recall the definition of $\mu_k$ in Definition \ref{mu_k_def} that $$\mu_k = \frac{(-1)^k q^{k(k-1)/2}}{(2 \pi i)^k} \int \dots \int \prod_{1 \le A < B \le k} \frac{z_A - z_B} {z_A - qz_B} \prod_{i=1}^k f(z_i) \frac{dz_i}{z_i},$$ we evaluate the integral over $z_k$ using residue calculus to get
 \begin{align*}
 \mu_k &= (-q^{k-1}) \sum_{j \in \mathit{J}} \frac{Res_{z = a_j} f(z)}{a_j} (-1)^{k-1} \frac{q^{(k-1)(k-2)/2}}{(2 \pi i)^{k-1}} \\
 & \quad \times \int \dots \int \prod_{1 \le A < B \le k-1} \frac{z_A - z_B}{z_A - qz_B} \prod_{i=1}^{k-1} \frac{z_i - a_j}{z_i - qa_j} \frac{f(z_i)}{z_i} dz_i. \numberthis \label{induction-mu}
 \end{align*}
-Notice that the integral on the right hand side of Equation \ref{induction-mu} is an $k-1$ fold nested contour integral, to which we can apply our induction assumption with $\tilde{f}_j(z) = f(z) \frac{z-a_j}{z-qa_j}$ and the new sets of poles $\tilde{\mathbb{A}}_j = (\mathbb{A} \setminus \{a_j\}) \cup \{qa_j\}$. The resulting form is 
+Notice that the integral on the right hand side of Equation \ref{induction-mu} is an $k-1$ fold nested contour integral, to which we can apply, for each $j$, our induction assumption with $\tilde{f}_j(z) = f(z) \frac{z-a_j}{z-qa_j}$ and the new sets of poles $\tilde{\mathbb{A}}_j = (\mathbb{A} \setminus \{a_j\}) \cup \{qa_j\}$. The resulting form is 
 \begin{align*}
-\mu_k &= (-q^{k-1}) \sum_{j \in \mathit{J}} \frac{Res_{z = a_j} f(z)}{a_j} \times (k-1)_q! \sum_{\substack{{\lambda \vdash k-1}\\ {\lambda = 1^{m_1} 2^{m_2} \dots}}} \frac{1}{m_1! m_2! \dots} \frac{(1-q)^{k-1}}{(2 \pi i)^{l(\lambda)}} \\
+\mu_k &= (-q^{k-1}) \sum_{j \in \mathit{J}} \frac{Res_{z = a_j} f(z)}{a_j} \times (k-1)_q! \sum_{\substack{{\lambda \vdash k-1}\\ {\lambda = 1^{\tilde{m}_1} 2^{\tilde{m}_2} \dots}}} \frac{1}{\tilde{m}_1! \tilde{m}_2! \dots} \frac{(1-q)^{k-1}}{(2 \pi i)^{l(\lambda)}} \\
 			& \quad \times \int \dots \int det\left[ \frac{1}{w_iq^{\lambda_i} - w_j} \right]_{i,j=1}^{l(\lambda)} \times \prod_{t=1}^{l(\lambda)} \tilde{f}_j(w_t) \tilde{f}_j(qw_t) \dots \tilde{f}_j(q^{\lambda_t-1} w_t) dw_t \numberthis \label{mu-form-2}
 \end{align*}
 
-From the transformation at the beginning of the proof, we can see that the form above can be transformed to 
+From the transformation discussed just before the proof, we can see that (\ref{mu-form-2}) can be transformed to 
 \begin{align*}
-\mu_k &= (-q^{k-1}) (k-1)_q! (1-q)^{k-1} \sum_{j \in \mathit{J}} \sum_{\tilde{S} \in \tilde{\mathcal{S}}_j} \frac{1}{a_j}  det\left[ \frac{1}{ \tilde{b}_i q^{\tilde{\lambda}(\tilde{b}_i)} - \tilde{b}_l } \right]_{\tilde{b}_i, \tilde{b}_l \in \tilde{\mathcal{S}}}\\
-& \quad \times \prod_{\tilde{b} \in \tilde{S} \setminus \{qa_j\}} Res_{w = \tilde{b}} \tilde{f}_j(w) \tilde{f}_j(q\tilde{b}) \dots \tilde{f}_j(q^{\tilde{\lambda}(\tilde{b}) - 1} \tilde{b}) \\
-& \quad \times Res_{w = a_j} f(w) \times Res_{w = qa_j} \tilde{f}_j(w) \tilde{f}_j(q^2 a_j) \dots \tilde{f}_j(q^{\tilde{\lambda}(qa_j)} a_j) \numberthis \label{mu_form-3}
+%\mu_k &= (-q^{k-1}) (k-1)_q! (1-q)^{k-1} \sum_{j \in \mathit{J}} \sum_{\tilde{S} \in \tilde{\mathcal{S}}_j} \frac{1}{a_j}  det\left[ \frac{1}{ \tilde{b}_i q^{\tilde{\lambda}(\tilde{b}_i)} - \tilde{b}_l } \right]_{\tilde{b}_i, \tilde{b}_l \in \tilde{S}}\\
+%& \quad \times \prod_{\tilde{b} \in \tilde{S} \setminus \{qa_j\}} Res_{w = \tilde{b}} \tilde{f}_j(w) \tilde{f}_j(q\tilde{b}) \dots \tilde{f}_j(q^{\tilde{\lambda}(\tilde{b}) - 1} \tilde{b}) \\
+%& \quad \times Res_{w = a_j} f(w) \times Res_{w = qa_j} \tilde{f}_j(w) \tilde{f}_j(q^2 a_j) \dots \tilde{f}_j(q^{\tilde{\lambda}(qa_j)} a_j) \numberthis \label{mu-form-3}
+\mu_k &= (-q^{k-1}) (k-1)_q! (1-q)^{k-1} \sum_{j \in \mathit{J}} \sum_{\tilde{S} \in \tilde{\mathcal{S}}_j} \frac{1}{a_j}  det\left[ \frac{1}{ \tilde{b}_i q^{\tilde{\lambda}(\tilde{b}_i)} - \tilde{b}_l } \right]_{\tilde{b}_i, \tilde{b}_l \in \tilde{S}}\\
+& \quad \times Res(\tilde{S}) \times Res_{w = a_j} f(w), \numberthis \label{mu-form-3}
 \end{align*}
-where $\tilde{\mathcal{S}}_j$ denotes the set of all collections $\tilde{S}$ of subsets $\tilde{S}_{j,1}, \tilde{S}_{j,2}, \dots$ of $\tilde{\mathbb{A}}_j$, where $\tilde{S}_{j,k}$ is of size $\tilde{m}_k$ and $\tilde{m}_1 + 2\tilde{m}_2 + \dots = k-1$. Also, we reorder the elements in $\tilde{S}$ to be $\tilde{S} = (\tilde{b}_1, \tilde{b}_2, \dots, \tilde{b}_{\tilde{m}_1}, \dots$ so that the first $\tilde{m}_1$ elements belong to $\tilde{S}_{j,1}$ etc.\\ \\
-Note that for $t \neq j$, 
+where for $\tilde{S}$ such that $qa_j \in \tilde{S}$,
 \begin{align*}
-\tilde{f}_j(a_t) \tilde{f}_j(qa_t) \dots \tilde{f}_j(q^{\lambda_t-1} a_t) &= \frac{a_t - a_j}{a_t - qa_j} \frac{qa_t - a_j}{qa_t - qa_j} \dots \frac{q^{\lambda_t-1} a_t - a_j}{q^{\lambda_t-1} a_t - qa_j} f(a_t) \dots f(q^{\lambda_t-1}a_t) \\
-&= \frac{q^{\lambda_t - 1} a_t - a_j}{a_t - qa_j} q^{1 - \lambda_t} f(a_t) \dots f(q^{\lambda_t-1}a_t) \numberthis \label{equality-mu-1}
+Res(\tilde{S}) &= \prod_{\tilde{b} \in \tilde{S} \setminus \{qa_j\}} Res_{w = \tilde{b}} \tilde{f}_j(w) \tilde{f}_j(q\tilde{b}) \dots \tilde{f}_j(q^{\tilde{\lambda}(\tilde{b}) - 1} \tilde{b}) \\
+& \quad \times Res_{w = qa_j} \tilde{f}_j(w) \tilde{f}_j(q^2 a_j) \dots \tilde{f}_j(q^{\tilde{\lambda}(qa_j)} a_j) \numberthis \label{mu-form-sub-3}
+\end{align*}
+and otherwise
+$$Res(\tilde{S}) = \prod_{\tilde{b} \in \tilde{S}} Res_{w = \tilde{b}} \tilde{f}_j(w) \tilde{f}_j(q\tilde{b}) \dots \tilde{f}_j(q^{\tilde{\lambda}(\tilde{b}) - 1} \tilde{b}),
+$$
+where $\tilde{\mathcal{S}}_j$ denotes the set of all collections $\tilde{S}$ of subsets $\tilde{S}_{j,1}, \tilde{S}_{j,2}, \dots$ of $\tilde{\mathbb{A}}_j$, where $\tilde{S}_{j,k}$ is of size $\tilde{m}_k$ and $\tilde{m}_1 + 2\tilde{m}_2 + \dots = k-1$. Also, we reorder the elements in $\tilde{S}$ to be $\tilde{S} = (\tilde{b}_1, \tilde{b}_2, \dots, \tilde{b}_{\tilde{m}_1}, \dots)$ so that the first $\tilde{m}_1$ elements belong to $\tilde{S}_{j,1}$ etc.\\ \\
+Note that for $\tilde{b} \neq a_j$ such that $\tilde{\lambda}(\tilde{b}) = \lambda$, 
+\begin{align*}
+&Res_{w=\tilde{b}} \tilde{f}_j(w) \tilde{f}_j(q\tilde{b}) \dots \tilde{f}_j(q^{\lambda-1} \tilde{b}) \\
+& \quad= \frac{\tilde{b} - a_j}{\tilde{b} - qa_j} \frac{q\tilde{b} - a_j}{q\tilde{b} - qa_j} \dots \frac{q^{\lambda-1} \tilde{b} - a_j}{q^{\lambda-1} \tilde{b} - qa_j} Res_{w=\tilde{b}} f(w) f(q \tilde{b}) \dots f(q^{\lambda-1}\tilde{b}) \\
+& \quad=  \frac{q^{\lambda - 1} \tilde{b} - a_j}{\tilde{b} - qa_j} q^{1 - \lambda} Res_{w = \tilde{b}} f(w) f(q\tilde{b}) \dots f(q^{\lambda-1} \tilde{b}) \numberthis \label{equality-mu-1}
 \end{align*}
 and 
 \begin{align*}
 & Res_{w = qa_j} \tilde{f}_j(w) \tilde{f}_j(q^2 a_j) \dots \tilde{f}_j(q^{\tilde{\lambda}(qa_j)} a_j)\\
 & \quad = (q-1)a_j \frac{q^2a_j - a_j}{q^2 a_j - qa_j} \dots \frac{q^{\tilde{\lambda}(qa_j)}a_j - a_j}{q^{\tilde{\lambda}(qa_j)} a_j - qa_j} f(qa_j) \dots f(q^{\tilde{\lambda}(qa_j)} a_j) \\
-& \quad = (q^{\tilde{\lambda}(qa_j)}a_j - a_j) q^{2 - \tilde{\lambda}(qa_j)} f(qa_j) \dots f(q^{\tilde{\lambda}(qa_j)} a_j) \numberthis \label{equality-mu-1}
+& \quad = a_j (q^{\tilde{\lambda}(qa_j)} - 1) q^{2 - \tilde{\lambda}(qa_j)} f(qa_j) \dots f(q^{\tilde{\lambda}(qa_j)} a_j) \numberthis \label{equality-mu-2}
 \end{align*}
-Applying \ref{equality-mu-1} 
+Applying (\ref{equality-mu-1})  and (\ref{equality-mu-2}) to (\ref{mu-form-sub-3}), we get for $\tilde{b} \neq a_j$ such that $\tilde{\lambda}(\tilde{b}) = \lambda$,
+\begin{align*}
+Res(\tilde{S}) &= \prod_{\tilde{b} \in \tilde{S} \setminus \{qa_j\}} \frac{q^{\tilde{\lambda}(\tilde{b}) - 1} \tilde{b} - a_j}{\tilde{b} - qa_j} q^{1 - \tilde{\lambda}(\tilde{b})} Res_{w = \tilde{b}} f(w) f(q\tilde{b}) \dots f(q^{\tilde{\lambda}(\tilde{b})-1} \tilde{b}) \\
+& \quad \times a_j (q^{\tilde{\lambda}(qa_j)} - 1) q^{2 - \tilde{\lambda}(qa_j)} f(qa_j) \dots f(q^{\tilde{\lambda}(qa_j)} a_j) \\
+&= \prod_{l \neq j} \frac{q^{\tilde{\lambda}(b_l) - 1} b_l - a_j}{b_l - qa_j} q^{1 - \tilde{\lambda}(b_l)} Res_{w = b_l} f(w) f(qb_l) \dots f(q^{\tilde{\lambda}(b_l)-1} b_l) \\
+& \quad \times a_j (q^{\tilde{\lambda}(qa_j)} - 1) q^{2 - \tilde{\lambda}(qa_j)} f(qa_j) \dots f(q^{\tilde{\lambda}(qa_j)} a_j)
+\numberthis \label{mu-form-4}
+\end{align*}
+For convenience purpose, for each $\tilde{S} = (\tilde{S}_{j,1}, \tilde{S}_{j,2}, \dots) \in \tilde{\mathcal{S}}_j$, we map it to a new set $S_j = (S_{j,1}, S_{j,2}, \dots)$ in the following manner:\\
+If $qa_j \in \tilde{S}_{j,l}$  for some $l$, then $$S_{j,l} = \tilde{S}_{j,l} \setminus \{qa_j\}, S_{j,l+1} = \tilde{S}_{j,l+1} \cup \{a_j\}, S_{j,m} = \tilde{S}_{j,m} \text{ for all } m \neq l, l+1,$$
+Otherwise, $$S_{j,1} = \tilde{S}_{j,1} \cup \{a_j\}, S_m = \tilde{S}_m \text{ for all } m > 1.$$
+With the new set $S_j$, we can then write $Res_{w=a_j} f(w) Res(\tilde{S})$ in the following form
+\begin{align*}
+Res_{w=a_j} f(w) Res(\tilde{S}) &= a_j (q^{\tilde{\lambda}(qa_j)} - 1) q^{2 - \tilde{\lambda}(qa_j)} \prod_{l \neq j}  \frac{q^{\tilde{\lambda}(b_l) - 1} b_l - a_j}{b_l - qa_j} q^{1 - \tilde{\lambda}(b_l)} \\
+& \quad \times \prod_{b \in S_{j,1} \cup S_{j,2} \dots} Res_{w = b} f(w) f(qb) \dots f(q^{\tilde{\lambda}(b) - 1}b) \numberthis \label{always-true-set-transform}
+\end{align*}
+Notice that (\ref{always-true-set-transform}) always holds regardless of whether $qa_j$ is in $\tilde{S}$, and that the union of all such $S_j$ for each $j$ is just $\mathcal{S}$ for $\gamma_k$. Therefore, $\mu_k$ in (\ref{mu-form-3}) can be re-written as
+\begin{align*}
+\mu_k &= \sum_{S \in \mathcal{S}} (k-1)_q! (1-q)^{k-1} (-q^{k-1})  \prod_{j = 1}^{m_1 + m_2 + \dots} Res_{w = b_j} f(w) f(qb_j) \dots f(q^{\lambda(b_j) - 1} b_j) \\
+& \quad \times \sum_{j=1}^{m_1 + m_2 + \dots} (q^{\lambda(b_j) - 1} - 1) q^{2 -\lambda(b_j)} \prod_{l \neq j}  \frac{q^{\lambda(b_l) - 1} b_l - b_j}{b_l - qb_j} q^{1 - \lambda(b_l)} det \left[ \frac{1}{b_i q^{\lambda(b_i)} - b_l q^{\delta_{l,j}}} \right]_{i,l = 1}^{m_1 + m_2 + \dots},
+\end{align*}
+where $\delta_{l,j} = 1$ if $l = j$ and $0$ otherwise. \\
+Hence, in order to complete the proof, what we need to show is $\mu_k = \gamma_k$. After tidying up the expressions, we are only left to show that for each $S \in \mathcal{S}$,
+\begin{align*}
+& \quad \sum_{j=1}^{m_1 + m_2 + \dots} (q - q^{\lambda_j}) \prod_{l \neq j} \frac{qb_j - q^{\lambda_l} b_l}{qb_j - b_l} det \left[ \frac{1}{b_i q^{\lambda_i} - b_l q^{\delta_{l,j}}} \right]_{i,l = 1}^{m_1 + m_2 + \dots} \\
+&= (1-q^{ \sum \lambda_i }) det \left[ \frac{1}{b_i q^{\lambda_i} - b_l} \right]_{i,l = 1}^{m_1 + m_2 + \dots}, \numberthis \label{equality-to-shown-mellin}
+\end{align*}
+where $\lambda_i = \lambda(b_i)$. Recall the Cauchy determinant 
+$$det\left[ \frac{1}{x_i + y_i} \right] = \frac{V(x_i) V(x_j)}{\prod_{i,j} (x_i + x_j)},$$ where $V(x_i) = \prod_{i<j} (x_i - x_j)$ is the Vandermonde determinant. Using the Cauchy determinant we obtain that Equation (\ref{equality-to-shown-mellin}) is equivalent to
+$$ \sum_{j=1}^{m_1 + m_2 + \dots} (q - q^{\lambda_j}) \prod_{l \neq j} \frac{qb_j - q^{\lambda_l} b_l}{qb_j - b_l} \frac{V(b_i q^{\lambda_i}) V(b_l q^{\delta_{l,j}})}{\prod_{i,l} (b_l q^{\delta_{l,j}} - b_i q^{\lambda_i})} = (1-q^{ \sum \lambda_i }) \frac{V(b_i q^{\lambda_i}) V(b_l)}{\prod_{i,l} (b_l - b_i q^{\lambda_i})}$$
+After cancelling out some terms, we are left with 
+\begin{equation}
+\label{final-equality-to-prove}
+\sum_{j \ge 1} \frac{\prod_{l \ge 1} (b_j - b_l q^{\lambda_l})}{\prod_{l \neq j} (b_j - b_l)} \frac{1}{b_j} = 1 - q^{\sum \lambda_i}
+\end{equation}
+Take $$g(z) = \prod_{l \ge 1} \frac{z - b_l q^{\lambda_l}}{z - b_l} \frac{1}{z}.$$ Then the LHS of (\ref{final-equality-to-prove}) is just the sum of the residues of the function $g(z)$ at the points $z = b_l$ for $l \ge 1$. Moreover, notice that $Res_{z = 0} g(z) = q^{\sum \lambda_l}$ and $Res_{z = \infty} g(z) = 1$ so the RHS is just the difference of the residues of the function $g(z)$ at the point $z = \infty$ and $z = 0$. Recalling the fact that for $f$ holomorphic in $\mathbb{C}$ except for isolated singularities $a_1, \dots, a_n$, then $$Res_{z = \infty} f(z) = \sum_{k = 1}^{n} Res_{z = a_k} f(z),$$ we complete the proof.
 \end{proof}
 
-With Proposition \ref{mellin-barnes-transform}, we have successfully transformed the nested contours so that they can coincide with each other. That is, while the pervious contour for $z_A$ contains poles at $\mathbb{A}$ and $\{z_B\}_{B>A}$, current contour for $w_A$ only contain poles at $\mathbb{A}$. Therefore, the contours for $w_i$, $i = 1, \dots, k$ can now be chosen to be the same contour, denoted as $C_{\mathbb{A}}$ that contains poles only at $\mathbb{A}$ and no other poles. With this, we are able to write a generating function of the contour integrals in Fredhold determinants form using the following proposition:
+With Proposition \ref{mellin-barnes-transform}, we have successfully transformed the nested contours so that they can coincide with each other. That is, while the pervious contour for $z_A$ contains poles at $\mathbb{A}$ and $\{qz_B\}_{B>A}$, current contour for $w_A$ only contain poles at $\mathbb{A}$. Therefore, the contours for $w_i$, $i = 1, \dots, k$ can now be chosen to be the same contour, denoted as $C_{\mathbb{A}}$ that contains poles only at $\mathbb{A}$ and no other poles. With this, we are able to write a generating function of the contour integrals in Fredhold determinants form using the following proposition:
 
 \begin{proposition}
 \label{step-1-mellin-barnes}
@@ -91,7 +147,7 @@ Consider $\mu_k$ as in Equation \ref{new_mu_k} with closed contours $C_{\mathbb{
 $$\sum_{k \ge 0} \mu_k \frac{\zeta^k}{k_q!} = det(I+K_{\zeta}^{1}),$$ where $K_{\zeta}^1:L^2(\mathbb{Z}_{>0} \times C_{\mathbb{A}}) \rightarrow L^2(\mathbb{Z}_{>0} \times C_{\mathbb{A}})$ is defined by its integral kernel $$K_{\zeta}^1(n_1, w_1; n_2, w_2)= \frac{(1-q)^{n_1} \zeta^{n_1} f(w_1) f(qw_1) \dots f(q^{n_1-1}w_1)}{q_{n_1}w_1 - w_2}.$$
 \end{proposition}
 
-We defer the proof of the proposition and state the final result of the Mellin-Barnes type determinants continuing from Proposition \ref{step-1-mellin-barnes}. 
+We defer the proof of the proposition and state the main result of the Mellin-Barnes type determinants continuing from Proposition \ref{step-1-mellin-barnes}. 
 
 \begin{proposition}
 \label{step-2-mellin-barnes}
