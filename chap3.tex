@@ -35,7 +35,7 @@ Define
 \gamma_k &= k_q! \sum_{\substack{{\lambda \vdash k}\\ {\lambda = 1^{m_1} 2^{m_2} \dots}}} \frac{1}{m_1! m_2! \dots} \frac{(1-q)^k}{(2 \pi i)^{l(\lambda)}} \\
 			& \quad \times \int \dots \int det\left[ \frac{1}{w_iq^{\lambda_i} - w_j} \right]_{i,j=1}^{l(\lambda)} \times \prod_{j=1}^{l(\lambda)} f(w_j) f(qw_j) \dots f(q^{\lambda_j-1} w_j) dw_j \numberthis \label{new_mu_k}
 \end{align*}
-where the $w_j$ contours contain the same fixed set of singularities $\mathbb{A}$ of $f(z)$ but no other poles and $k_q! = \prod_{i=1}^{k} \frac{1-q^i}{1-q}$. Then for all $k \in \mathbb{Z} = \frac{(q;q)_k}{(1-q)^k}$,
+where the $w_j$ contours contain the same fixed set of singularities $\mathbb{A}$ of $f(z)$ but no other poles and $k_q! = \prod_{i=1}^{k} \frac{1-q^i}{1-q} = \frac{(q;q)_k}{(1-q)^k}$. Then for all $k \in \mathbb{Z} $,
 $$\gamma_k = \mu_k$$
 \end{proposition}
 
@@ -213,6 +213,7 @@ where $B_1, B_2$ is such that $\left| \frac{g(w)}{g(q^nw)} \right| \le B_1$ and 
 \end{proof}
 
 \subsection{Application to q-TASEP}
+\label{mb-application-to-qtasep}
 In Section \ref{m-b-type-transformation} and \ref{transformation-to-fd}, we discussed a general manipulation of nested contour integrals of the form $\mu_k$ using the Mellin-Barnes type philosophy. Recall the result from Corollary \ref{nested-contour-corollary} that for step initial data q-TASEP and $\vec{n} \in W^k_{>0}$, 
 \begin{align*}
 & \mathbb{E} \left[ \prod_{j=1}^k q^{x_{n_j}+n_j} \right] = \\
@@ -256,3 +257,111 @@ Therefore, Equation (\ref{m-b-application-to-qtasep-raw}) now becomes $$\mathbb{
 Absorbing the $(1-q)$ factor into $\zeta$, we get the formal identity that $$\mathbb{E} \left[ \frac{1}{(\zeta q^{x_n(t)+n}; q)_{\infty}} \right] = det(I+K_{\zeta}^{q-TASEP}),$$ where the integral kernel of $K^{q-TASE}_{\zeta} (w,w')$ is defined by the integral kernel of $K^2_{\zeta}(w,w')$ with $\zeta$ replaced by $(1-q)\zeta$. That is, $$K_{\zeta}^{q-TASEP} (w, w') = \frac{1}{2 \pi i} \int_{C_{1,2, \dots}} \Gamma(-s) \Gamma(1+s) (-\zeta)^s \frac{g(w)}{g(q^s w)} \frac{1}{q^s w - w'}ds.$$
 Numerical identity follows from the proof of Proposition \ref{step-1-mellin-barnes} and \ref{step-2-mellin-barnes}.
 \end{proof}
+
+\section{Cauchy type Fredholm determinants}
+In Mellin-Barnes type Fredholm determinants, we deform the contours so that the poles at $z_A = qz_B$ for $B > A$ are encountered. In Cauchy type Fredholm determinants, however, we do the opposite, which is to deform the contours so that poles at $z_A = 0$ are encountered for all $k \in \mathbb{Z}_{>0}$. This is done in the following manner:
+
+We first deform the contour for $z_1$ so that it passes through a pole at $z_1 = 0$. Then we deform the contour for $z_2$ so that it also passes through the pole at $z_2 = 0$ and that $qz_2$ is contained in the contour for $z_1$. After this, the contour for $z_3$ is deformed so that $z_3 = 0$ is encountered and that $qz_3$ is contained in both the contour for $z_1$ and $z_2$. The same procedure is repeated for all the rest of the contours.
+
+\subsection{Cauchy type transformation}
+We identify the form after the deformation as in the following definition.
+
+\begin{definition}
+\label{cauchy-mu}
+For a meromorphic function $f(z)$ and $k \ge 1$ set $\mathbb{A}$ to be a fixed set of poles of $f$ (not including $0$) and assume that $q^m \mathbb{A}$ is disjoint from $\mathbb{A}$ for all $m \ge 1$. Define 
+$$\tilde{\mu}_k = \frac{(-1)^k q^{k(k-1)/2}}{(2 \pi i)^k} \int \dots \int \prod_{1 \le A < B \le k} \frac{z_A - z_B} {z_A - qz_B} \prod_{i=1}^k f(z_i) \frac{dz_i}{z_i},$$ where the integration contour for $z_A$ contains $\{qz_B\}_{B>A}$, the fixed set of poles $\mathbb{A}$ of $f(z)$ and $0$ but no other poles.
+\end{definition}
+
+\begin{remark}
+Note that the definitions of $\mu_k$ and $\tilde{\mu}_k$ only differ by the inclusion of poles at $z_k=0$ for $\tilde{\mu}_k$.
+\end{remark}
+
+We provide the relationship between $\mu_k$ and $\tilde{\mu}_k$ in the following proposition.
+
+\begin{proposition}
+\label{relationship-between-mb-and-cauchy}
+Assume $f(0) = 1$. Then
+$$\tilde{\mu}_k = (-1)^k q^{k(k-1)/2} \sum_{j=0}^k {k \choose j}_{q^{-1}} (-1)^j q^{-j(j-1)/2} \mu_j,$$
+where ${n \choose k}_q = \frac{n_q!}{k_q! (n-k)_q!}$.
+\end{proposition}
+
+\begin{proof}
+Define a triangular array of integrals $\nu_{j,k}$ by $$\nu_{j,k} = \frac{1}{(2 \pi i)^{k+j}} \int \dots \int \prod_{1 \le A < B \le k+j} \frac{z_A - z_B}{z_A - qz_B} \prod_{m=1}^{k+j} f(z_m) \frac{dz_m}{z_m},$$ where the contours for $z_1, \dots, z_k$ contains $0$ and those for $z_{k+1}, \dots, z_{k+j}$ do not contain $0$. Then we can recover $\mu_k$ and $\tilde{\mu}_k$ by the relationship $$\mu_j = (-1)^j q^{j(j+1)/2} \nu_{j,0}, \quad \tilde{\mu}_k = (-1)^{k} q^{k(k-1)/2} \nu_{0,k}.$$
+If we try to deform the contour of $z_k$ to encounter only the pole at $z_k = 0$ so that it does not contain $0$, we get that 
+\begin{align*}
+\nu_{j,k} &= \nu_{j+1,k-1} + Res_{z_k = 0} \left( \prod_{k < B \le k+j} \frac{z_k - z_B}{z_k - qz_B} \frac{f(z_k)}{z_k} \right) \nu_{j,k-1}\\
+&= \nu_{j+1,k-1} + q^{-j} \nu_{j,k-1}
+\end{align*}
+The recursion can be solved to find that $$\nu_{0,k} = \sum_{j=0}^{k} {k \choose j}_{q^{-1}} \nu_{j,0}.$$ Therefore, $$\tilde{\mu}_k = (-1)^k q^{k(k-1)/2} \sum_{j=0}^k {k \choose j}_{q^{-1}} (-1)^j q^{-j(j-1)/2} \mu_j.$$
+\end{proof}
+
+If after the Cauchy type deformation the new contours can be further deformed to coincide at the contour $\tilde{C}_{\mathbb{A}}$ without passing through any poles, then we have the following result:
+
+\begin{proposition}
+\label{cauchy-mu-form}
+If the contours for $z_k, k \ge 1$ in the definition of $\tilde{\mu}_k$ can be deformed to coincide at a contour $\tilde{C}_{\mathbb{A}}$ without passing through any poles, then $$\tilde{\mu}_k = \frac{k_q!}{k!} \frac{(1-q^{-1})^k}{(2 \pi i)^k} \int_{\tilde{C}_{\mathbb{A}}} \dots \int_{\tilde{C}_{\mathbb{A}}} det\left[ \frac{1}{w_i q^{-1} - w_j} \right]_{i,j=1}^k \prod_{j=1}^k f(w_j) dw_j.$$
+\end{proposition}
+
+\begin{proof}
+For the proof we quote a result from \cite{symmetrization}, \textit{III, (1.4)} that $$\sum_{\sigma \in S_k} \prod_{1 \le A < B \le k} \frac{z_{\sigma(A)} - z_{\sigma(B)}}{z_{\sigma(A)} - qz_{\sigma(B)}} = c_{q,k} z_1 \dots z_k det\left[ \frac{1}{z_i q^{-1} - z_j} \right]_{i,j=1}^k,$$ where $c_{q,k} = (q^{-1} - 1) (q^{-2} - 1) \dots (q^{-k} - 1)$. Observe now that the $z_k's$ are on the same contour, and hence interchanging $z_i$ and $z_j$ for any $i, j$ will not change the value of $\tilde{\mu}_k$. With this and applying the symmetrization equality to $\tilde{\mu}_k$ we get 
+\begin{align*}
+\tilde{\mu}_k &= \frac{1}{k!} \sum_{\sigma \in S_k} \frac{(-1)^k q^{k(k-1)/2}}{(2 \pi i)^k} \int_{\tilde{C}_{\mathbb{A}}} \dots \int_{\tilde{C}_{\mathbb{A}}} \prod_{1 \le A < B \le k} \frac{z_{\sigma(A)} - z_{\sigma(B)}} {z_{\sigma(A)} - qz_{\sigma(B)}} \prod_{i=1}^k f(z_i) \frac{dz_i}{z_i} \\
+&= \frac{1}{k!} \frac{(-1)^k q^{k(k-1)/2}}{(2 \pi i)^k} \int_{\tilde{C}_{\mathbb{A}}} \dots \int_{\tilde{C}_{\mathbb{A}}} c_{q,k} det\left[ \frac{1}{w_i q^{-1} - w_j} \right]_{i,j=1}^k \prod_{j=1}^k f(w_j) dw_j.
+\end{align*}
+Therefore, it suffices to show that $$k_q! (1-q^{-1})^k = (-1)^k q^{k(k-1)/2}  c_{q,k} = (-1)^k q^{k(k-1)/2} (q^{-1} - 1) (q^{-2} - 1) \dots (q^{-k} - 1).$$ This follows by
+\begin{align*}
+k_q! (1-q^{-1})^k &= \frac{(1-q)(1-q^2) \dots (1-q^k)}{(1-q)^k} (1-q^{-1})^k\\
+&= (1-q)(1-q^2) \dots (1-q^k) \frac{(1-q^{-1})^k}{(1-q)^k} \\ 
+&= q^{k(k+1)/2} (q^{-1} - 1) (q^{-2} - 1) \dots (q^{-k} - 1) q^{-k} (-1)^k\\
+&= (-1)^k q^{k(k-1)/2} (q^{-1} - 1) (q^{-2} - 1) \dots (q^{-k} - 1) 
+\end{align*}
+\end{proof}
+
+\subsection{Transformation to Fredholm determinants}
+In this section we are going to take the form of $\tilde{\mu}_k$ as given in Proposition \ref{cauchy-mu-form} and write a generating function of the $\tilde{\mu}_k$ into the form of a Fredholm determinants, similar to that in Proposition \ref{step-2-mellin-barnes}. We state the key results in the following two propositions.
+
+\begin{proposition}
+\label{step-1-cauchy}
+If the contours for $z_k, k \ge 1$ in the definition of $\tilde{\mu}_k$ can be deformed to coincide at a contour $\tilde{C}_{\mathbb{A}}$ without passing through any poles, then using the form of $tilde{\mu}_k$ as given in Proposition \ref{cauchy-mu-form}, we have the following formal identity that 
+$$\sum_{k \ge 0} \tilde{\mu}_k \frac{\zeta^k}{k_q!} = det(I+\zeta \tilde{K}^1),$$ where $det(I+\tilde{K}^1)$ is the formal Fredholm determinant expansion of $\tilde{K}^1: L^2(\tilde{C}_{\mathbb{A}}) \rightarrow L^2(\tilde{C}_{\mathbb{A}})$ defined in terms of its integral kernel $$\tilde{K}^1(w,w') = (1-q) \frac{f(w)}{qw' - w}.$$ The identity also holds numerically given that the left-hand side converges absolutely and the right-hand side operator $\tilde{K}^1$ is trace-class.
+\end{proposition}
+
+\begin{proposition}
+\label{step-2-cauchy}
+Let $det(I+\tilde{K}^1)$ be defined as in Proposition \ref{step-1-cauchy} and $det(I+\tilde{K}^2)$ be defined by its Fredholm determinant expansion with $\tilde{K}^2: L^2(\tilde{C}_{\mathbb{A}}) \rightarrow L^2(\tilde{C}_{\mathbb{A}})$ defined by its integral kernel $$\tilde{K}^2(w,w') = (1-q) \frac{f(w)}{qw - w'}.$$ Then we have the following formal equality: $$det(I+\tilde{K}^1) = det(I+\tilde{K}^2).$$ Numerical identity also holds if $\tilde{K}^1$ and $\tilde{K}^2$ are both trace-class.
+\end{proposition}
+
+\begin{proof}[Proof of Proposition \ref{step-1-cauchy}]
+\begin{align*}
+ \sum_{k \ge 0} \tilde{\mu}_k \frac{\zeta^k}{k_q!} &= \sum_{k \ge 0} \frac{\zeta^k}{k!} \frac{(1-q^{-1})^k}{(2 \pi i)^k} \int_{\tilde{C}_{\mathbb{A}}} \dots \int_{\tilde{C}_{\mathbb{A}}} det\left[ \frac{1}{w_i q^{-1} - w_j} \right]_{i,j=1}^k \prod_{j=1}^k f(w_j) dw_j \\
+ &= \sum_{k \ge 0} \frac{1}{k!} \frac{1}{(2 \pi i)^k} \int_{\tilde{C}_{\mathbb{A}}} \dots \int_{\tilde{C}_{\mathbb{A}}} det\left[ \frac{1}{w_i q^{-1} - w_j} \right]_{i,j=1}^k \prod_{j=1}^k \left(\zeta (1-q^{-1}) f(w_j) \right) dw_j \\
+ &= \sum_{k \ge 0} \frac{1}{k!} \frac{1}{(2 \pi i)^k} \int_{\tilde{C}_{\mathbb{A}}} \dots \int_{\tilde{C}_{\mathbb{A}}} det\left[ \zeta (1-q^{-1}) \frac{f(w_i)}{w_i q^{-1} - w_j} \right]_{i,j=1}^k \prod_{j=1}^k dw_j\\
+ &= \sum_{k \ge 0} \frac{1}{k!} \frac{1}{(2 \pi i)^k} \int_{\tilde{C}_{\mathbb{A}}} \dots \int_{\tilde{C}_{\mathbb{A}}} det\left[ \zeta (1-q) \frac{f(w_i)}{qw_j - w_i} \right]_{i,j=1}^k \prod_{j=1}^k dw_j\\
+ &= det(I+\zeta \tilde{K}^1).
+\end{align*}
+Numerical identity follows from the fact that if $\tilde{K}^1$ is trace class then $det(I+\zeta \tilde{K}^1)$ is absolutely convergent. 
+\end{proof}
+
+\begin{proof}[Proof of Proposition \ref{step-2-cauchy}]
+By definition of Fredholm determinant expansion, we have that 
+\begin{align*}
+det(I+\zeta \tilde{K}^1) &= \sum_{k \ge 0} \frac{1}{k!} \frac{1}{(2 \pi i)^k} \int_{\tilde{C}_{\mathbb{A}}} \dots \int_{\tilde{C}_{\mathbb{A}}} det\left[ \zeta (1-q) \frac{f(w_i)}{qw_j - w_i} \right]_{i,j=1}^k \prod_{j=1}^k dw_j \\
+&= \sum_{k \ge 0} \frac{1}{k!} \frac{1}{(2 \pi i)^k} \int_{\tilde{C}_{\mathbb{A}}} \dots \int_{\tilde{C}_{\mathbb{A}}} det\left[ \zeta (1-q) \frac{f(w_j)}{qw_j - w_i} \right]_{i,j=1}^k \prod_{j=1}^k dw_j \\
+&= det(I+\zeta \tilde{K}^2).
+\end{align*}
+Numerical identity follows from the fact that if $\tilde{K}^1$ and $\tilde{K}^2$ are trace class then $det(I+\zeta \tilde{K}^1)$ and $det(I+\zeta \tilde{K}^2)$ are absolutely convergent. 
+\end{proof}
+We call Fredholm determinants of the form $det(I+\tilde{K}^2)$ Cauchy type.
+
+\subsection{Application to q-TASEP}
+By the same observation as in Section \ref{mb-application-to-qtasep} that for q-TASEP with step initial data, we identify that if we take $$f(z) = \left( \prod_{m=1}^{n} \frac{a_m}{a_m - z} \right) e^{(q-1)tz},$$ then $\mathbb{E} \left[ q^{kx_{n}(t)+kn} \right] = \mu_k$. Therefore, by Propositionn \ref{relationship-between-mb-and-cauchy},
+\begin{align*}
+\tilde{\mu}_k &= (-1)^k q^{k(k-1)/2} \sum_{j=0}^k {k \choose j}_{q^{-1}} (-1)^j q^{-j(j-1)/2} \mu_j\\
+&= (-1)^k q^{k(k-1)/2} \sum_{j=0}^k {k \choose j}_{q^{-1}} (-1)^j q^{-j(j-1)/2} \mathbb{E} \left[ q^{jx_{n}(t)+jn} \right]\\
+&= (-1)^k q^{k(k-1)/2} \mathbb{E} \left[ \sum_{j=0}^k {k \choose j}_{q^{-1}} (-1)^j q^{-j(j-1)/2} q^{jx_{n}(t)+jn} \right]
+\end{align*}
+From \cite{} Corollary 10.2.2.c, we have that for any $x$ and $q$, $$\sum_{k=0}^{n} {n \choose k}_q (-1)^k q^{k(k-1)/2} x^k = (x;q)_n.$$ Then $$\tilde{\mu}_k = (-1)^k q^{k(k-1)/2} \mathbb{E} \left[ (q^{x_n(t)+n}; q^{-1})_k \right] = \mathbb{E} \left[ q^{kx_n(t)} (q^{-x_n(t)}; q)_k \right].$$
+Therefore,
+\begin{align*}
+
+\end{align*}
