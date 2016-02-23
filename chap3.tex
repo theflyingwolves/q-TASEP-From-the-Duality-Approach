@@ -35,7 +35,7 @@ Define
 \gamma_k &= k_q! \sum_{\substack{{\lambda \vdash k}\\ {\lambda = 1^{m_1} 2^{m_2} \dots}}} \frac{1}{m_1! m_2! \dots} \frac{(1-q)^k}{(2 \pi i)^{l(\lambda)}} \\
 			& \quad \times \int \dots \int det\left[ \frac{1}{w_iq^{\lambda_i} - w_j} \right]_{i,j=1}^{l(\lambda)} \times \prod_{j=1}^{l(\lambda)} f(w_j) f(qw_j) \dots f(q^{\lambda_j-1} w_j) dw_j \numberthis \label{new_mu_k}
 \end{align*}
-where the $w_j$ contours contain the same fixed set of singularities $\mathbb{A}$ of $f(z)$ but no other poles and $k_q! = \prod_{i=1}^{k} \frac{1-q^i}{1-q}$. Then for all $k \in \mathbb{Z}$,
+where the $w_j$ contours contain the same fixed set of singularities $\mathbb{A}$ of $f(z)$ but no other poles and $k_q! = \prod_{i=1}^{k} \frac{1-q^i}{1-q}$. Then for all $k \in \mathbb{Z} = \frac{(q;q)_k}{(1-q)^k}$,
 $$\gamma_k = \mu_k$$
 \end{proposition}
 
@@ -156,7 +156,7 @@ Consider $\mu_k$ as in Equation \ref{new_mu_k} with closed contours $C_{\mathbb{
 $$\sum_{k \ge 0} \mu_k \frac{\zeta^k}{k_q!} = det(I+K_{\zeta}^{1}),$$ where $K_{\zeta}^1:L^2(\mathbb{Z}_{>0} \times C_{\mathbb{A}}) \rightarrow L^2(\mathbb{Z}_{>0} \times C_{\mathbb{A}})$ is defined by its integral kernel $$K_{\zeta}^1(n_1, w_1; n_2, w_2)= \frac{(1-q)^{n_1} \zeta^{n_1} f(w_1) f(qw_1) \dots f(q^{n_1-1}w_1)}{q_{n_1}w_1 - w_2},$$
 where the identity is formal. It also holds numerically with the following condition that
 \begin{enumerate}
-\item[(1)] for all $w, w' \in C_{\mathbb{A}}$ and $n \ge 1$, $|q^n w - w'|^{-1}$ is uniformly bounded;
+\item[(1)] for all $w, w' \in C_{\mathbb{A}}$ and $n \ge 1$, $|q^n w - w'|^{-1}$ is uniformly bounded above;
 \item[(2)] $\exists M > 0$ constant such that for all $w \in C_{\mathbb{A}}$ and all $n \ge 0$, $|f(q^n w)| \le M$ and $|(1-q) \zeta| < M^{-1}$.
 \end{enumerate}
 \end{proposition}
@@ -218,18 +218,41 @@ In Section \ref{m-b-type-transformation} and \ref{transformation-to-fd}, we disc
 & \mathbb{E} \left[ \prod_{j=1}^k q^{x_{n_j}+n_j} \right] = \\
 & \quad \frac{(-1)^k q^{k(k-1)/2}}{(2 \pi i)^k} \times \int \dots \int \prod_{1 \le A < B \le k} \frac{z_A - z_B}{z_A - qz_B} \prod_{j=1}^k \left( \prod_{m=1}^{n_j} \frac{a_m}{a_m - z_j}\right) e^{(q-1)tz_j} \frac{dz_j}{z_j},
 \end{align*}
-where the integration contour for $z_A$ contains $\{qz_B\}_{B > A}$ and all $a_m's$ but not $0$. As remarked, if we were to take $$f(z) = \left( \prod_{m=1}^{n} \frac{a_m}{a_m - z} \right) e^{(q-1)tz},$$ then $\mathbb{E} \left[ \prod_{j=1}^k q^{x_{n_j}+n_j} \right] = \mu_k$. Further more, in order to apply Proposition \ref{step-2-mellin-barnes}, we need a function $g(w)$ such that $f(w) = \frac{g(w)}{g(qw)}$. In this case, we can choose $$g(w) = \prod_{m=1}^{n} \frac{1}{(w/a_m; q)_{\infty}} e^{-tw}.$$ It's easy to verify that the choice of $g(w)$ is valid. Therefore, applying the two propositions, i.e. Proposition \ref{step-1-mellin-barnes} and Proposition \ref{step-2-mellin-barnes} to $\mu_k = \mathbb{E} \left[ \prod_{j=1}^k q^{x_{n_j}+n_j} \right]$, we get that for $\vec{n} \in W^k_{>0}$,
+where the integration contour for $z_A$ contains $\{qz_B\}_{B > A}$ and all $a_m's$ but not $0$. As remarked, if we were to take $$f(z) = \left( \prod_{m=1}^{n} \frac{a_m}{a_m - z} \right) e^{(q-1)tz},$$ then $\mathbb{E} \left[ \prod_{j=1}^k q^{x_{n_j}+n_j} \right] = \mu_k$. Further more, in order to apply Proposition \ref{step-2-mellin-barnes}, we need a function $g(w)$ such that $f(w) = \frac{g(w)}{g(qw)}$. In this case, we can choose $$g(w) = \prod_{m=1}^{n} \frac{1}{(w/a_m; q)_{\infty}} e^{-tw}.$$ It's easy to verify that the choice of $g(w)$ is valid. Therefore, applying the two propositions, i.e. Proposition \ref{step-1-mellin-barnes} and then Proposition \ref{step-2-mellin-barnes} to $\mu_k = \mathbb{E} \left[ \prod_{j=1}^k q^{x_{n_j}+n_j} \right]$, we get that for $\vec{n} \in W^k_{>0}$ and for all $t \ge 0$,
 \begin{equation}
 \label{m-b-application-to-qtasep-raw}
-\sum_{k \ge 0} \mathbb{E} \left[ \prod_{j=1}^k q^{x_{n_j}+n_j} \right] \frac{\zeta^k}{k_q!} = det(I+K^2_{\zeta})
+\sum_{k \ge 0} \mathbb{E} \left[ \prod_{j=1}^k q^{x_{n_j}(t)+n_j} \right] \frac{\zeta^k}{k_q!} = det(I+K^2_{\zeta})
 \end{equation}
 We state the result as a theorem. 
 \begin{theorem}
-Fix $0 < q < 1$ and $n \ge 1$. Consider q-TASEP with step initial data and jump rate parameters $a_i$. Denote the set of all $a_i$, $i = 1, \dots, n$ to be $\mathbb{A}$. Then for all $t \ge 0$ and $\zeta \in \mathbb{C} \setminus \mathbb{R}_+$, the following characterize the distribution of $x_n(t)$:
+Fix $0 < q < 1$ and $n \ge 1$. Consider q-TASEP with step initial data and jump rate parameters $a_i > 0$. Denote $\mathbb{A}$ to be the set of all $a_i$, $i = 1, \dots, n$, namely, $\mathbb{A} = \{a_i: i = 1, \dots, n\}$ and define $C_{\mathbb{A}}$ to be a closed contour which contains $\mathbb{A}$ and not $0$ such that $w \neq q^n w'$ for any $n \ge 1$ for all $w, w' \in C_{\mathbb{A}}$. Then for all $t \ge 0$ and $\zeta \in \mathbb{C} \setminus \mathbb{R}_+$, the following characterizes the distribution of $x_n(t)$:
 \begin{equation}
 \label{m-b-application-to-qtasep}
 \mathbb{E} \left[ \frac{1}{(\zeta q^{x_n(t)+n}; q)_{\infty}} \right] = det(I+K_{\zeta}^{q-TASEP}),
 \end{equation}
-where $det(I+K_{\zeta}^{q-TASEP})$ is the Fredholm determinant of $K_{\zeta}: L^2(C_{\mathbb{A}}) \rightarrow L^2(\mathbb{A})$. The operator $K_{\zeta}^{q-TASE}$ is defined in terms of its integral kernel
-$$K_{\zeta}^{q-TASE}(w,w') = \frac{1}{2 \pi i} \int_{D_{R,d}} \Gamma(-s) \Gamma(1+s) (-(1-q)\zeta)^s \frac{g(w)}{g(q^sw)} \frac{1}{q^sw - w'} ds$$
+where $det(I+K_{\zeta}^{q-TASEP})$ is the Fredholm determinant of $K_{\zeta}^{q-TASEP}: L^2(C_{\mathbb{A}}) \rightarrow L^2(\mathbb{A})$. The operator $K_{\zeta}^{q-TASEP}$ is defined in terms of its integral kernel
+$$K_{\zeta}^{q-TASEP}(w,w') = \frac{1}{2 \pi i} \int_{C_{1,2,\dots}} \Gamma(-s) \Gamma(1+s) (-\zeta)^s \frac{g(w)}{g(q^sw)} \frac{1}{q^sw - w'} ds.$$
+With the additional conditions that
+\begin{enumerate}
+\item[(1)] for all $w, w' \in C_{\mathbb{A}}$ and $n \ge 1$, $|q^n w - w'|^{-1}$ is uniformly bounded above;
+\item[(2)] $\exists M > 0$ constant such that for all $w \in C_{\mathbb{A}}$ and all $n \ge 0$, $|f(q^n w)| \le M$ and $|(1-q) \zeta| < M^{-1}$.
+\item[(3)] $C_{1,2,\dots}$ is chosen as $D_{R,d}$ with $d > 0$ and $R > 0$ such that $$ inf_{\substack{ {w, w' \in C_{\mathbb{A}}} \\ {k \in \mathbb{Z}_{>0}, s \in D_{R, d;k}} }} |q^sw - w'| > 0 \text{ and } sup_{\substack{ {w,w' \in C_{\mathbb{A}}} \\ {k \in \mathbb{Z}_{>0}, s \in D_{R,d;k}} }} \left| \frac{g(w)}{g(q^s w)} \right| < \infty.$$
+\end{enumerate}
+Equation (\ref{m-b-application-to-qtasep}) also holds numerically.
 \end{theorem}
+
+\begin{remark}
+It's remarked that from the results above, the probability that $\mathbb{P}(x_n(t) = k)$ can be uniquely determined.
+\end{remark}
+
+\begin{proof}
+We continue from the result as stated in Equation (\ref{m-b-application-to-qtasep-raw}). If we take $\vec{n} = (n,n,\dots,n)$, then 
+\begin{align*}
+\sum_{k \ge 0} \mathbb{E} \left[ \prod_{j=1}^k q^{x_{n_j}(t)+n_j} \right] \frac{\zeta^k}{k_q!} &= \mathbb{E} \left[ \sum_{k \ge 0} (\zeta q^{x_n(t) + n})^k \frac{1}{k_q!} \right]\\
+&= \mathbb{E} \left[ \sum_{k \ge 0} \frac{[(1-q) \zeta q^{x_n(t) + n}]^k}{(q;q)_k} \right]\\
+&= \mathbb{E} \left[ \frac{1}{( (1-q) \zeta q^{x_n(t) + n} ;q)_{\infty}} \right] \text{ (by the q-Binomial theorem) }
+\end{align*}
+Therefore, Equation (\ref{m-b-application-to-qtasep-raw}) now becomes $$\mathbb{E} \left[ \frac{1}{( (1-q) \zeta q^{x_n(t) + n} ;q)_{\infty}} \right] = det(I+K^2_{\zeta}).$$
+Absorbing the $(1-q)$ factor into $\zeta$, we get the formal identity that $$\mathbb{E} \left[ \frac{1}{(\zeta q^{x_n(t)+n}; q)_{\infty}} \right] = det(I+K_{\zeta}^{q-TASEP}),$$ where the integral kernel of $K^{q-TASE}_{\zeta} (w,w')$ is defined by the integral kernel of $K^2_{\zeta}(w,w')$ with $\zeta$ replaced by $(1-q)\zeta$. That is, $$K_{\zeta}^{q-TASEP} (w, w') = \frac{1}{2 \pi i} \int_{C_{1,2, \dots}} \Gamma(-s) \Gamma(1+s) (-\zeta)^s \frac{g(w)}{g(q^s w)} \frac{1}{q^s w - w'}ds.$$
+Numerical identity follows from the proof of Proposition \ref{step-1-mellin-barnes} and \ref{step-2-mellin-barnes}.
+\end{proof}
