@@ -23,8 +23,10 @@ $$\mu_k = \frac{(-1)^k q^{k(k-1)/2}}{(2 \pi i)^k} \int \dots \int \prod_{1 \le A
 Notice that when we take $f(z) = \left( \prod_{m=1}^{n} \frac{a_m}{a_m - z} \right) e^{(q-1)tz}$, $u(t;\vec{n})$ for step initial data in Theorem \ref{thm:nested-contour-integration} is recovered.
 
 \section{Mellin-Barnes type determinants}
-First, we introduce some notations used.\\
-For $\lambda = (\lambda_1 \ge \lambda_2 \ge \dots \ge 0)$, we write $\lambda \vdash k$ if $\sum_i \lambda_i = k$ and $\lambda = 1^{m_1} 2^{m_2} \dots$ if $i$ appears $m_i$ times in $\lambda$. Let $l(\lambda) = \sum_i m_i$ denote the number of non-zero elements of $\lambda$.\\
+
+\subsection{Mellin-Barnes type transformation}
+\label{m-b-type-transformation}
+First, we introduce some notations used. For $\lambda = (\lambda_1 \ge \lambda_2 \ge \dots \ge 0)$, we write $\lambda \vdash k$ if $\sum_i \lambda_i = k$ and $\lambda = 1^{m_1} 2^{m_2} \dots$ if $i$ appears $m_i$ times in $\lambda$. Let $l(\lambda) = \sum_i m_i$ denote the number of non-zero elements of $\lambda$.\\
 In Mellin-Barnes type determinants, the nested contours are deformed to coincide so that the only poles encountered are at $z_A = qz_B$ for $A < B$. With this philosophy, we transform the $\mu_k$ as defined in Definition \ref{mu_k_def} into the following form with the contours shrinked to coincide. The result is given in the following proposition.
 \begin{proposition}
 \label{mellin-barnes-transform}
@@ -139,21 +141,95 @@ After cancelling out some terms, we are left with
 Take $$g(z) = \prod_{l \ge 1} \frac{z - b_l q^{\lambda_l}}{z - b_l} \frac{1}{z}.$$ Then the LHS of (\ref{final-equality-to-prove}) is just the sum of the residues of the function $g(z)$ at the points $z = b_l$ for $l \ge 1$. Moreover, notice that $Res_{z = 0} g(z) = q^{\sum \lambda_l}$ and $Res_{z = \infty} g(z) = 1$ so the RHS is just the difference of the residues of the function $g(z)$ at the point $z = \infty$ and $z = 0$. Recalling the fact that for $f$ holomorphic in $\mathbb{C}$ except for isolated singularities $a_1, \dots, a_n$, then $$Res_{z = \infty} f(z) = \sum_{k = 1}^{n} Res_{z = a_k} f(z),$$ we complete the proof.
 \end{proof}
 
-With Proposition \ref{mellin-barnes-transform}, we have successfully transformed the nested contours so that they can coincide with each other. That is, while the pervious contour for $z_A$ contains poles at $\mathbb{A}$ and $\{qz_B\}_{B>A}$, current contour for $w_A$ only contain poles at $\mathbb{A}$. Therefore, the contours for $w_i$, $i = 1, \dots, k$ can now be chosen to be the same contour, denoted as $C_{\mathbb{A}}$ that contains poles only at $\mathbb{A}$ and no other poles. With this, we are able to write a generating function of the contour integrals in Fredhold determinants form using the following proposition:
+With Proposition \ref{mellin-barnes-transform}, we have successfully transformed the nested contours so that they can coincide with each other. That is, while the pervious contour for $z_A$ contains poles at $\mathbb{A}$ and $\{qz_B\}_{B>A}$, current contour for $w_A$ only contain poles at $\mathbb{A}$. Therefore, the contours for $w_i$, $i = 1, \dots, k$ can now be chosen to be the same contour, denoted as $C_{\mathbb{A}}$ that contains poles only at $\mathbb{A}$ and no other poles. 
 
+\subsection{Transformation to Fredholm determinants}
+\label{transformation-to-fd}
+We introduce some contours that will be used in later propositions. First we define the contour $C_{1,2,\dots}$ to be an infinite contour negatively oriented that encloses $1,2,\dots$ and no poles of $f(q^sw)$ for all $s \in \mathbb{Z}$. One possible such contour is $\frac{1}{2} + i\mathbb{R}$ oriented from $\frac{1}{2} - i\infty$ to $\frac{1}{2} + i\infty$. 
+
+Moreover, for any $R > 0, d > 0$, we define the contour $D_{R,d}$ to be such that it goes by straight lines from $R - i\infty$ to $R - i d$, to $1/2 - i d$, to $1/2 + id$, to $R + id$ and lastly to $R+i\infty$. With $D_{R,d}$, for any $k \in \mathbb{Z}_{>0}$, we further define the contour $D_{R,d;k}$ to be as follows: let $p, \bar{p}$ (let $Im(p) > 0$) be the two points at which the contour $D_{R,d}$ and the circle centered at 0 with radius $k+1/2$ intersect. Then $D_{R,d;k}$ is the union of the portion of $D_{R,d}$ inside the circle with reversed orientation, with the arc from $\bar{p}$ to $p$ (oriented counterclockwise). \\
+
+The following proposition writes a generating function of $\mu_k$ into the Fredholm determinants form.
 \begin{proposition}
 \label{step-1-mellin-barnes}
 Consider $\mu_k$ as in Equation \ref{new_mu_k} with closed contours $C_{\mathbb{A}}$ for $k = 1,2,\dots$. Then the following formal equality holds:
-$$\sum_{k \ge 0} \mu_k \frac{\zeta^k}{k_q!} = det(I+K_{\zeta}^{1}),$$ where $K_{\zeta}^1:L^2(\mathbb{Z}_{>0} \times C_{\mathbb{A}}) \rightarrow L^2(\mathbb{Z}_{>0} \times C_{\mathbb{A}})$ is defined by its integral kernel $$K_{\zeta}^1(n_1, w_1; n_2, w_2)= \frac{(1-q)^{n_1} \zeta^{n_1} f(w_1) f(qw_1) \dots f(q^{n_1-1}w_1)}{q_{n_1}w_1 - w_2}.$$
+$$\sum_{k \ge 0} \mu_k \frac{\zeta^k}{k_q!} = det(I+K_{\zeta}^{1}),$$ where $K_{\zeta}^1:L^2(\mathbb{Z}_{>0} \times C_{\mathbb{A}}) \rightarrow L^2(\mathbb{Z}_{>0} \times C_{\mathbb{A}})$ is defined by its integral kernel $$K_{\zeta}^1(n_1, w_1; n_2, w_2)= \frac{(1-q)^{n_1} \zeta^{n_1} f(w_1) f(qw_1) \dots f(q^{n_1-1}w_1)}{q_{n_1}w_1 - w_2},$$
+where the identity is formal. It also holds numerically with the following condition that
+\begin{enumerate}
+\item[(1)] for all $w, w' \in C_{\mathbb{A}}$ and $n \ge 1$, $|q^n w - w'|^{-1}$ is uniformly bounded;
+\item[(2)] $\exists M > 0$ constant such that for all $w \in C_{\mathbb{A}}$ and all $n \ge 0$, $|f(q^n w)| \le M$ and $|(1-q) \zeta| < M^{-1}$.
+\end{enumerate}
 \end{proposition}
 
-We defer the proof of the proposition and state the main result of the Mellin-Barnes type determinants continuing from Proposition \ref{step-1-mellin-barnes}. 
+We defer the proof of the proposition and state the immediate result continuing from Proposition \ref{step-1-mellin-barnes}.
 
 \begin{proposition}
 \label{step-2-mellin-barnes}
 Assume $f(w) = g(w) / g(qw)$ for some function $g$. Then the following formal identity holds:
-$$det(I+K_{\zeta}^1) = det(I+K_{\zeta}^2),$$ where $det(I+K_{\zeta}^1)$ is given in Proposition \ref{step-1-mellin-barnes} and $K_{\zeta}^2:L^2(C_{\mathbb{A}}) \rightarrow L^2(C_{\mathbb{A}})$ is given by its integration kernel $$K_{\zeta}^2(w,w') = \frac{1}{2 \pi i} \int_{C_{1,2,\dots}} \Gamma(-s) \Gamma(1+s) (-(1-q)\zeta)^s \frac{g(w)}{g(q^sw)} \frac{1}{q^sw - w'} ds.$$ The integration contour $C_{1,2,\dots}$ is an infinite contour negatively oriented that encloses $1,2,\dots$ and no poles of $f(q^s)$.
+$$det(I+K_{\zeta}^1) = det(I+K_{\zeta}^2),$$ where $det(I+K_{\zeta}^1)$ is given in Proposition \ref{step-1-mellin-barnes} and $K_{\zeta}^2:L^2(C_{\mathbb{A}}) \rightarrow L^2(C_{\mathbb{A}})$ is given by its integration kernel $$K_{\zeta}^2(w,w') = \frac{1}{2 \pi i} \int_{C_{1,2,\dots}} \Gamma(-s) \Gamma(1+s) (-(1-q)\zeta)^s \frac{g(w)}{g(q^sw)} \frac{1}{q^sw - w'} ds.$$
+The above identity also holds numerically given the condition that $det(I+K_{\zeta}^1)$ is convergent and that $C_{1,2,\dots}$ is chosen as $D_{R,d}$ with $d > 0$ and $R > 0$ such that $$ inf_{\substack{ {w, w' \in C_{\mathbb{A}}} \\ {k \in \mathbb{Z}_{>0}, s \in D_{R, d;k}} }} |q^sw - w'| > 0 \text{ and } sup_{\substack{ {w,w' \in C_{\mathbb{A}}} \\ {k \in \mathbb{Z}_{>0}, s \in D_{R,d;k}} }} \left| \frac{g(w)}{g(q^s w)} \right| < \infty.$$
 \end{proposition}
-\begin{remark}
-One possible contour for $C_{1,2,\dots}$ is $\frac{1}{2} + i\mathbb{R}$ oriented from $\frac{1}{2} - i\infty$ to $\frac{1}{2} + i\infty$.
-\end{remark}
+
+\begin{proof}[Proof of Proposition \ref{step-1-mellin-barnes}]
+Write $$I_{l(\lambda)}(\lambda; w; \zeta) = \frac{1}{(2 \pi i)^{l(\lambda)}} det\left[ \frac{1}{w_i q^{\lambda_i} - w_j} \right]_{i,j=1}^{l(\lambda)} \prod_{j=1}^{l(\lambda)} (1-q)^{\lambda_j} \zeta^{\lambda_j} f(w_j) f(qw_j) \dots f(q^{\lambda_j - 1} w_j).$$
+Then for the $\mu_k$ given in Proposition \ref{mellin-barnes-transform}, we have
+\begin{align*}
+\mu_k \frac{\zeta^k}{k_q!} &= \sum_{\substack{ {\lambda \vdash k} \\ {\lambda = 1^{m_1} 2^{m_2} \dots} }} \frac{1}{m_1! m_2! \dots} \int \dots \int \prod_{j=1}^{l(\lambda)} I_{l(\lambda)}(\lambda; w; \zeta) dw_j \\
+&= \sum_{\substack{ {\lambda \vdash k} \\ {\lambda = 1^{m_1} 2^{m_2} \dots} }} \frac{1}{(m_1 + m_2 + \dots)!} \frac{(m_1 + m_2 + \dots)!}{m_1! m_2! \dots} \int \dots \int \prod_{j=1}^{l(\lambda)} I_{l(\lambda)}(\lambda; w; \zeta) dw_j \\
+&= \sum_{l(\lambda) \ge 0} \frac{1}{l(\lambda)!} \sum_{\substack{{\sum m_i = l(\lambda)} \\ {\sum im_i = k}}} \frac{(m_1 + m_2 + \dots)!}{m_1! m_2! \dots} \int \dots \int \prod_{j=1}^{l(\lambda)} I_{l(\lambda)}(\lambda; w; \zeta) dw_j,
+\end{align*}
+where all the contour integrals are with respect to the contour $C_{\mathbb{A}}$. 
+
+Notice that the coefficient $\frac{(m_1+m_2+\dots)!}{m_1! m_2! \dots}$ is a multinomial coefficient. Therefore, the inner summation can be replaced by $$\sum_{\substack{{n = (n_1, \dots, n_{l(\lambda)})} \\ {\sum n_i = k}}} \int \dots \int \prod_{j=1}^{l(\lambda)} I_{l(\lambda)}(n; w; \zeta) dw_j.$$
+We can replace $l(\lambda)$ simply by $L$ since we have got rid of the dependence on $\lambda$ which is now on $n$. Also, summing over all $k \ge 0$ will remove the restriction on $\sum n_i = k$. This gives us the following form
+\begin{align*}
+\sum_{k \ge 0} \mu_k \frac{\zeta^k}{k_q!} = &\sum_{L \ge 0} \frac{1}{L!} \sum_{n_1, \dots, n_L \in \mathbb{Z}_{>0}} \frac{1}{(2 \pi i)^{L}} \int \dots \int det\left[ \frac{1}{q^{n_i} w_i - w_j} \right]_{i,j=1}^{L} \\
+&\times \prod_{j=1}^{L} (1-q)^{n_j} \zeta^{n_j} f(w_j) \dots f(q^{n_j-1} w_j) dw_j \numberthis \label{absolute-convergent-1}
+\end{align*}
+This is exactly the definition of $det(I+K_{1}^{\zeta})_{L(\mathbb{Z}_{>0} \times C_{\mathbb{A}})}$. This proves the formal equality of the two sides.
+
+Next, we show the numerical equality also holds under the conditions given. For this, we only need to show that under the conditions, (\ref{absolute-convergent-1}) is absolutely convergent. By condition $(1)$, there exists a constant $B > 0$ such that $\frac{1}{q^{n_i} w_i - w_j} \le B$ for all $w_i, w_j \in C_{\mathbb{A}}$ and all $n_i \in \mathbb{Z}_{>0}$. Therefore, by Hadamard's bound, $$\left| det\left[ \frac{1}{q^{n_i} w_i - w_j} \right]_{i,j=1}^{L} \right| \le B^L L^{L/2}.$$
+Moreover, by condition $(2)$, $$\left| \prod_{j=1}^{L} (1-q)^{n_j} \zeta^{n_j} f(w_j) \dots f(q^{n_j-1} w_j) \right| \le 1.$$ Therefore, we have the following inequality that 
+$$\left| \int \dots \int  det\left[ \frac{1}{q^{n_i} w_i - w_j} \right]_{i,j=1}^{L} \prod_{j=1}^{L} (1-q)^{n_j} \zeta^{n_j} f(w_j) \dots f(q^{n_j-1} w_j) \frac{dw_j}{2 \pi i} \right| \le (BC)^L L^{L/2},$$
+where $C$ is the length of the fixed contour $C_{\mathbb{A}}$. Summing over $L \ge 0$, we get that (\ref{absolute-convergent-1}) is uniformly bounded above by $$\sum_{L \ge 0} \frac{1}{L!}(BC)^L L^{L/2},$$ which converges finitely due to the $L!$ in the denominator. As a result, we have the numerical identity.
+\end{proof}
+\begin{proof}[Proof of Proposition \ref{step-2-mellin-barnes}]
+We first show the formal identity. Recall a result that for $k \in \mathbb{Z}_{> 0}$, $$Res_{z = k} \Gamma(-z) \Gamma(1+z) = (-1)^{k+1}.$$ Therefore, we have that
+\begin{align*}
+K_{\zeta}^2(w,w') &= \frac{1}{2 \pi i} \int_{C_{1,2,\dots}} \Gamma(-s) \Gamma(1+s) (-(1-q)\zeta)^s \frac{g(w)}{g(q^sw)} \frac{1}{q^sw - w'} ds\\
+&= \sum_{n \in \mathbb{Z}_{>0}} ((1-q) \zeta)^n \frac{g(w)}{g(q^nw)} \frac{1}{q^n w - w'}.
+\end{align*}
+and hence, by definition, the Fredholm determinants $det(I+K_{\zeta}^2)$ can be expanded as
+$$1 + \sum_{L=1}^{\infty} \frac{1}{L!} \sum_{n_1, \dots, n_L \ge 1} det\left[ \frac{1}{q^{n_i} w_i - w_j} \right]_{i,j = 1}^{L} \prod_{j=1}^{L} ((1-q)\zeta)^{n_j} \frac{g(w)}{g(q^{n_j} w)} \frac{dw_j}{2 \pi i}.$$
+This is exactly the same as (\ref{absolute-convergent-1}). We have thus proven the formal identity.
+
+Next we show the numerical identity under the conditions given. This follows from the fact that the additional conditions ensure that the kernel $K_{\zeta}^2(w,w')$ absolutely converges so that $det(I+K_{\zeta}^2)$ is well defined numerically. This can bee seen from the fact that 
+\begin{align*}
+K_{\zeta}^2(w,w') &= \sum_{n \in \mathbb{Z}_{>0}} ((1-q) \zeta)^n \frac{g(w)}{g(q^nw)} \frac{1}{q^n w - w'}\\
+&\le \sum_{n \in \mathbb{Z}_{>0}} M^{-n} B_1 B_2\\
+&= B_1 B_2 \frac{1}{1-M},
+\end{align*}
+where $B_1, B_2$ is such that $\left| \frac{g(w)}{g(q^nw)} \right| \le B_1$ and $\left| \frac{1}{q^n w - w'} \right| \le B_2$ for all $n \ge 0$ and $w, w' \in C_{\mathbb{A}}$.
+\end{proof}
+
+\subsection{Application to q-TASEP}
+In Section \ref{m-b-type-transformation} and \ref{transformation-to-fd}, we discussed a general manipulation of nested contour integrals of the form $\mu_k$ using the Mellin-Barnes type philosophy. Recall the result from Corollary \ref{nested-contour-corollary} that for step initial data q-TASEP and $\vec{n} \in W^k_{>0}$, 
+\begin{align*}
+& \mathbb{E} \left[ \prod_{j=1}^k q^{x_{n_j}+n_j} \right] = \\
+& \quad \frac{(-1)^k q^{k(k-1)/2}}{(2 \pi i)^k} \times \int \dots \int \prod_{1 \le A < B \le k} \frac{z_A - z_B}{z_A - qz_B} \prod_{j=1}^k \left( \prod_{m=1}^{n_j} \frac{a_m}{a_m - z_j}\right) e^{(q-1)tz_j} \frac{dz_j}{z_j},
+\end{align*}
+where the integration contour for $z_A$ contains $\{qz_B\}_{B > A}$ and all $a_m's$ but not $0$. As remarked, if we were to take $$f(z) = \left( \prod_{m=1}^{n} \frac{a_m}{a_m - z} \right) e^{(q-1)tz},$$ then $\mathbb{E} \left[ \prod_{j=1}^k q^{x_{n_j}+n_j} \right] = \mu_k$. Further more, in order to apply Proposition \ref{step-2-mellin-barnes}, we need a function $g(w)$ such that $f(w) = \frac{g(w)}{g(qw)}$. In this case, we can choose $$g(w) = \prod_{m=1}^{n} \frac{1}{(w/a_m; q)_{\infty}} e^{-tw}.$$ It's easy to verify that the choice of $g(w)$ is valid. Therefore, applying the two propositions, i.e. Proposition \ref{step-1-mellin-barnes} and Proposition \ref{step-2-mellin-barnes} to $\mu_k = \mathbb{E} \left[ \prod_{j=1}^k q^{x_{n_j}+n_j} \right]$, we get that for $\vec{n} \in W^k_{>0}$,
+\begin{equation}
+\label{m-b-application-to-qtasep-raw}
+\sum_{k \ge 0} \mathbb{E} \left[ \prod_{j=1}^k q^{x_{n_j}+n_j} \right] \frac{\zeta^k}{k_q!} = det(I+K^2_{\zeta})
+\end{equation}
+We state the result as a theorem. 
+\begin{theorem}
+Fix $0 < q < 1$ and $n \ge 1$. Consider q-TASEP with step initial data and jump rate parameters $a_i$. Denote the set of all $a_i$, $i = 1, \dots, n$ to be $\mathbb{A}$. Then for all $t \ge 0$ and $\zeta \in \mathbb{C} \setminus \mathbb{R}_+$, the following characterize the distribution of $x_n(t)$:
+\begin{equation}
+\label{m-b-application-to-qtasep}
+\mathbb{E} \left[ \frac{1}{(\zeta q^{x_n(t)+n}; q)_{\infty}} \right] = det(I+K_{\zeta}^{q-TASEP}),
+\end{equation}
+where $det(I+K_{\zeta}^{q-TASEP})$ is the Fredholm determinant of $K_{\zeta}: L^2(C_{\mathbb{A}}) \rightarrow L^2(\mathbb{A})$. The operator $K_{\zeta}^{q-TASE}$ is defined in terms of its integral kernel
+$$K_{\zeta}^{q-TASE}(w,w') = \frac{1}{2 \pi i} \int_{D_{R,d}} \Gamma(-s) \Gamma(1+s) (-(1-q)\zeta)^s \frac{g(w)}{g(q^sw)} \frac{1}{q^sw - w'} ds$$
+\end{theorem}
