@@ -230,6 +230,7 @@ where the integration contour for $z_A$ contains $\{qz_B\}_{B > A}$ and all $a_m
 \end{equation}
 We state the result as a theorem. 
 \begin{theorem}
+\label{mbmb-application-to-qtasep}
 Fix $0 < q < 1$ and $n \ge 1$. Consider q-TASEP with step initial data and jump rate parameters $a_i > 0$. Denote $\mathbb{A}$ to be the set of all $a_i$, $i = 1, \dots, n$, namely, $\mathbb{A} = \{a_i: i = 1, \dots, n\}$ and define $C_{\mathbb{A}}$ to be a closed contour which contains $\mathbb{A}$ and not $0$ such that $w \neq q^n w'$ for any $n \ge 1$ for all $w, w' \in C_{\mathbb{A}}$. Then for all $t \ge 0$ and $\zeta \in \{\zeta: |\zeta| < 1, \zeta \notin \mathbb{R}_+\}$, the following characterizes the distribution of $x_n(t)$:
 \begin{equation}
 \label{m-b-application-to-qtasep}
@@ -398,4 +399,45 @@ Applying Proposition \ref{step-1-cauchy} and then Proposition \ref{step-2-cauchy
 \end{equation}
 where $det(I+\tilde{K}^{q-TASEP})$ is exactly as desired.\\
 Comparing (\ref{left-hand-side-cauchy}) and (\ref{right-hand-side-cauchy}), we have the formal identity that $$\mathbb{E} \left[ \frac{1}{(\zeta q^{x_n(t)}; q)_{\infty}} \right] = \frac{det(I+\tilde{K}^{q-TASEP})}{(\zeta;q)_{\infty}}.$$
+For the numerical identity, we quote the following lemma from \cite{functional-analysis} \textit{ Page 345}:
+\begin{lemma}
+\label{trace-class-lemma}
+An operator $K$ acting on $L^2(\Gamma)$ for a simple smooth contour $\Gamma$ in $\mathbb{C}$ with integral kernel $K(x,y)$ is \emph{trace-class} if $K(x,y): \Gamma^2 \rightarrow \mathbb{R}$ is continuous as well as $K_y(x,y)$ is continuous in $y$. Here $K_y(x,y)$ is the partial derivative with respect to $y$ along the contour $\Gamma$.
+\end{lemma}
+For the star-shaped contour as chosen, we have that $\tilde{K}^{q-TASEP}$ is trace-class by Lemma \ref{trace-class-lemma}, and therefore $det(I+\tilde{K}^{q-TASEP})$ is absolutely convergent. Moreover, since 
+\begin{align*}
+\mathbb{E} \left[ \frac{(\zeta;q)_{\infty}}{(\zeta q^{x_n(t)}; q)_{\infty}} \right] &= \mathbb{E} \left[ (\zeta; q)_{x_n(t)} \right] \\
+&= \sum_{i=1}^{\infty} \mathbb{P}(x_n(t) = i) (1-\zeta) (1-\zeta q) \dots (1-\zeta q^{i-1}),
+\end{align*}
+and the summands are uniformly converging to non-trivial limits in any fixed neighborhood of $\zeta$, we have that $\mathbb{E} \left[ \frac{(\zeta;q)_{\infty}}{(\zeta q^{x_n(t)}; q)_{\infty}} \right]$ is uniformly convergent. Therefore, the numerical identity also holds for the star-shaped contour chosen.
 \end{proof}
+
+\section{q Laplace Transform and Inversion Formula}
+In the last two sections, we have successfully identify the exact forms in terms of Fredholm determinants for $\mathbb{E}\left[ \frac{1}{(\zeta q^{x_n(t) + n}; q)_{\infty}} \right]$. In fact, this is called the q-Laplace transform of the function $f(m) = \mathbb{P}(x_n(t) = m)$. We quote the following definition from \cite{macdonald2014} \textit{Section 3.1.1}.
+
+\begin{definition}
+For a function $f(n) \in \ell(\{0,1,2,\dots \})$, the q-Laplace transform of $f(n)$ is defined to be $$\hat{f}^q(z) = \sum_{n \ge 0} \frac{f(n)}{(zq^n;q)_{\infty}}.$$
+\end{definition}
+
+From \cite{macdonald2014} \textit{ Proposition 3.1.1 } we can also recover the function $f(n)$ from its q-Laplace transform with the following inversion formula:
+
+\begin{proposition}
+\label{inversion-formula}
+One may recover a function $f(n) \in \ell(\{0,1,2,\dots \})$ from its q-Laplace transform $\hat{f}^q(z)$ with $z \in \mathbb{C} \setminus \{q^{-k}\}_{k \ge 0}$ via
+$$f(n) = -q^n \frac{1}{2 \pi i} \int_{C_n} (q^{n+1}z; q)_{\infty} \hat{f}^q(z) dz,$$ 
+where $C_n$ is any positively oriented contour which encircles poles at $z = q^{-M}$ for $0 \le M \le n$.
+\end{proposition}
+
+Using the inversion formula given in the above proposition, we are able to recover $\mathbb{P}(x_n(t) = m)$ from $$\mathbb{E}\left[ \frac{1}{(\zeta q^{x_n(t) + n}; q)_{\infty}} \right].$$ However, since $f(m) = \mathbb{P}(x_n(t) = m)$ is supported on $m = -n, -(n-1), \dots$, in order to apply Proposition \ref{inversion-formula}, we need to consider $f(m)$ shifted to the right by $n$ and the contours $C_N$ will also have to be chosen so that instead of encircling poles at $z = q^{-M}$ for $0 \le M \le N$ it has to now encircle poles at $z = q^{-M}$ for $-n \le M \le N-n$. With these modification, we have the following results after directly applying the results of Theorem \ref{mbmb-application-to-qtasep} and Theorem \ref{cauchy-type-application-to-qtasep} to Proposition \ref{inversion-formula}:
+
+For Mellin-Barnes type Fredholm determinants, 
+\begin{proposition}
+Under the assumptions of Theorem \ref{mbmb-application-to-qtasep}, we have $$\mathbb{P}(x_n(t) = m) = \frac{-q^n}{2 \pi i} \int_{C_m} (\zeta q^{n+1}; q)_{\infty} det(I+K_{\zeta}^{q-TASEP}) d\zeta,$$ where the contour $C_m$ is any positively oriented contour that encircles poles at $z = q^{-M}$, for $-n \le M \le m-n$.
+\end{proposition}
+
+For Cauchy type Fredholm determinants, 
+\begin{proposition}
+Under the assumptions of Theorem \ref{cauchy-type-application-to-qtasep}, we have $$\mathbb{P}(x_n(t) = m) = \frac{-q^n}{2 \pi i} \int_{C_m} \frac{det(I+K_{\zeta}^{q-TASEP})}{(\zeta;q)_{n+1}} d\zeta,$$ where the contour $C_m$ is any positively oriented contour that encircles poles at $z = q^{-M}$, for $-n \le M \le m-n$.
+\end{proposition}
+\section{q-TASEP with half stationary initial data}
+We do not have similar results for the case of half stationary initial data, because for any $\alpha > 0$ fixed, when $k$ gets so large that $\alpha > q^k$, the expectation of $\mathbb{E} \left[ q^{kx_n(y)} \right]$ tends to infinity. Therefore, when forming a generating function of this, we will not be able to get a converging series. 
