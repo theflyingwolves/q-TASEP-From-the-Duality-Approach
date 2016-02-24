@@ -27,6 +27,7 @@ Notice that when we take $f(z) = \left( \prod_{m=1}^{n} \frac{a_m}{a_m - z} \rig
 \subsection{Mellin-Barnes type transformation}
 \label{m-b-type-transformation}
 First, we introduce some notations used. For $\lambda = (\lambda_1 \ge \lambda_2 \ge \dots \ge 0)$, we write $\lambda \vdash k$ if $\sum_i \lambda_i = k$ and $\lambda = 1^{m_1} 2^{m_2} \dots$ if $i$ appears $m_i$ times in $\lambda$. Let $l(\lambda) = \sum_i m_i$ denote the number of non-zero elements of $\lambda$.\\
+
 In Mellin-Barnes type determinants, the nested contours are deformed to coincide so that the only poles encountered are at $z_A = qz_B$ for $A < B$. With this philosophy, we transform the $\mu_k$ as defined in Definition \ref{mu_k_def} into the following form with the contours shrinked to coincide. The result is given in the following proposition.
 \begin{proposition}
 \label{mellin-barnes-transform}
@@ -145,6 +146,8 @@ With Proposition \ref{mellin-barnes-transform}, we have successfully transformed
 
 \subsection{Transformation to Fredholm determinants}
 \label{transformation-to-fd}
+Through out the chapter, the complex power function $z^k$ is defined with respect to a branch cut along $z \in \mathbb{R}^-$.
+
 We introduce some contours that will be used in later propositions. First we define the contour $C_{1,2,\dots}$ to be an infinite contour negatively oriented that encloses $1,2,\dots$ and no poles of $f(q^sw)$ for all $s \in \mathbb{Z}$. One possible such contour is $\frac{1}{2} + i\mathbb{R}$ oriented from $\frac{1}{2} - i\infty$ to $\frac{1}{2} + i\infty$. 
 
 Moreover, for any $R > 0, d > 0$, we define the contour $D_{R,d}$ to be such that it goes by straight lines from $R - i\infty$ to $R - i d$, to $1/2 - i d$, to $1/2 + id$, to $R + id$ and lastly to $R+i\infty$. With $D_{R,d}$, for any $k \in \mathbb{Z}_{>0}$, we further define the contour $D_{R,d;k}$ to be as follows: let $p, \bar{p}$ (let $Im(p) > 0$) be the two points at which the contour $D_{R,d}$ and the circle centered at 0 with radius $k+1/2$ intersect. Then $D_{R,d;k}$ is the union of the portion of $D_{R,d}$ inside the circle with reversed orientation, with the arc from $\bar{p}$ to $p$ (oriented counterclockwise). \\
@@ -168,6 +171,7 @@ We defer the proof of the proposition and state the immediate result continuing 
 Assume $f(w) = g(w) / g(qw)$ for some function $g$. Then the following formal identity holds:
 $$det(I+K_{\zeta}^1) = det(I+K_{\zeta}^2),$$ where $det(I+K_{\zeta}^1)$ is given in Proposition \ref{step-1-mellin-barnes} and $K_{\zeta}^2:L^2(C_{\mathbb{A}}) \rightarrow L^2(C_{\mathbb{A}})$ is given by its integration kernel $$K_{\zeta}^2(w,w') = \frac{1}{2 \pi i} \int_{C_{1,2,\dots}} \Gamma(-s) \Gamma(1+s) (-(1-q)\zeta)^s \frac{g(w)}{g(q^sw)} \frac{1}{q^sw - w'} ds.$$
 The above identity also holds numerically given the condition that $det(I+K_{\zeta}^1)$ is convergent and that $C_{1,2,\dots}$ is chosen as $D_{R,d}$ with $d > 0$ and $R > 0$ such that $$ inf_{\substack{ {w, w' \in C_{\mathbb{A}}} \\ {k \in \mathbb{Z}_{>0}, s \in D_{R, d;k}} }} |q^sw - w'| > 0 \text{ and } sup_{\substack{ {w,w' \in C_{\mathbb{A}}} \\ {k \in \mathbb{Z}_{>0}, s \in D_{R,d;k}} }} \left| \frac{g(w)}{g(q^s w)} \right| < \infty.$$
+In this case the function $det(I+K^2_{\zeta})$ of $\zeta$ is analytic for all $\zeta \notin \mathbb{R}_+$.
 \end{proposition}
 
 \begin{proof}[Proof of Proposition \ref{step-1-mellin-barnes}]
@@ -200,7 +204,7 @@ K_{\zeta}^2(w,w') &= \frac{1}{2 \pi i} \int_{C_{1,2,\dots}} \Gamma(-s) \Gamma(1+
 &= \sum_{n \in \mathbb{Z}_{>0}} ((1-q) \zeta)^n \frac{g(w)}{g(q^nw)} \frac{1}{q^n w - w'}.
 \end{align*}
 and hence, by definition, the Fredholm determinants $det(I+K_{\zeta}^2)$ can be expanded as
-$$1 + \sum_{L=1}^{\infty} \frac{1}{L!} \sum_{n_1, \dots, n_L \ge 1} det\left[ \frac{1}{q^{n_i} w_i - w_j} \right]_{i,j = 1}^{L} \prod_{j=1}^{L} ((1-q)\zeta)^{n_j} \frac{g(w)}{g(q^{n_j} w)} \frac{dw_j}{2 \pi i}.$$
+$$1 + \sum_{L=1}^{\infty} \frac{1}{L!} \int \dots \int \sum_{n_1, \dots, n_L \ge 1} det\left[ \frac{1}{q^{n_i} w_i - w_j} \right]_{i,j = 1}^{L} \prod_{j=1}^{L} ((1-q)\zeta)^{n_j} \frac{g(w)}{g(q^{n_j} w)} \frac{dw_j}{2 \pi i}.$$
 This is exactly the same as (\ref{absolute-convergent-1}). We have thus proven the formal identity.
 
 Next we show the numerical identity under the conditions given. This follows from the fact that the additional conditions ensure that the kernel $K_{\zeta}^2(w,w')$ absolutely converges so that $det(I+K_{\zeta}^2)$ is well defined numerically. This can bee seen from the fact that 
@@ -226,7 +230,7 @@ where the integration contour for $z_A$ contains $\{qz_B\}_{B > A}$ and all $a_m
 \end{equation}
 We state the result as a theorem. 
 \begin{theorem}
-Fix $0 < q < 1$ and $n \ge 1$. Consider q-TASEP with step initial data and jump rate parameters $a_i > 0$. Denote $\mathbb{A}$ to be the set of all $a_i$, $i = 1, \dots, n$, namely, $\mathbb{A} = \{a_i: i = 1, \dots, n\}$ and define $C_{\mathbb{A}}$ to be a closed contour which contains $\mathbb{A}$ and not $0$ such that $w \neq q^n w'$ for any $n \ge 1$ for all $w, w' \in C_{\mathbb{A}}$. Then for all $t \ge 0$ and $\zeta \in \mathbb{C} \setminus \mathbb{R}_+$, the following characterizes the distribution of $x_n(t)$:
+Fix $0 < q < 1$ and $n \ge 1$. Consider q-TASEP with step initial data and jump rate parameters $a_i > 0$. Denote $\mathbb{A}$ to be the set of all $a_i$, $i = 1, \dots, n$, namely, $\mathbb{A} = \{a_i: i = 1, \dots, n\}$ and define $C_{\mathbb{A}}$ to be a closed contour which contains $\mathbb{A}$ and not $0$ such that $w \neq q^n w'$ for any $n \ge 1$ for all $w, w' \in C_{\mathbb{A}}$. Then for all $t \ge 0$ and $\zeta \in \{\zeta: |\zeta| < 1, \zeta \notin \mathbb{R}_+\}$, the following characterizes the distribution of $x_n(t)$:
 \begin{equation}
 \label{m-b-application-to-qtasep}
 \mathbb{E} \left[ \frac{1}{(\zeta q^{x_n(t)+n}; q)_{\infty}} \right] = det(I+K_{\zeta}^{q-TASEP}),
@@ -247,7 +251,7 @@ It's remarked that from the results above, the probability that $\mathbb{P}(x_n(
 \end{remark}
 
 \begin{proof}
-We continue from the result as stated in Equation (\ref{m-b-application-to-qtasep-raw}). If we take $\vec{n} = (n,n,\dots,n)$, then 
+We continue from the result as stated in Equation (\ref{m-b-application-to-qtasep-raw}). If we take $\vec{n} = (n,n,\dots,n)$, then for $|\zeta| < 1$,
 \begin{align*}
 \sum_{k \ge 0} \mathbb{E} \left[ \prod_{j=1}^k q^{x_{n_j}(t)+n_j} \right] \frac{\zeta^k}{k_q!} &= \mathbb{E} \left[ \sum_{k \ge 0} (\zeta q^{x_n(t) + n})^k \frac{1}{k_q!} \right]\\
 &= \mathbb{E} \left[ \sum_{k \ge 0} \frac{[(1-q) \zeta q^{x_n(t) + n}]^k}{(q;q)_k} \right]\\
@@ -257,6 +261,10 @@ Therefore, Equation (\ref{m-b-application-to-qtasep-raw}) now becomes $$\mathbb{
 Absorbing the $(1-q)$ factor into $\zeta$, we get the formal identity that $$\mathbb{E} \left[ \frac{1}{(\zeta q^{x_n(t)+n}; q)_{\infty}} \right] = det(I+K_{\zeta}^{q-TASEP}),$$ where the integral kernel of $K^{q-TASE}_{\zeta} (w,w')$ is defined by the integral kernel of $K^2_{\zeta}(w,w')$ with $\zeta$ replaced by $(1-q)\zeta$. That is, $$K_{\zeta}^{q-TASEP} (w, w') = \frac{1}{2 \pi i} \int_{C_{1,2, \dots}} \Gamma(-s) \Gamma(1+s) (-\zeta)^s \frac{g(w)}{g(q^s w)} \frac{1}{q^s w - w'}ds.$$
 Numerical identity follows from the proof of Proposition \ref{step-1-mellin-barnes} and \ref{step-2-mellin-barnes}.
 \end{proof}
+
+\begin{remark}
+It is remarked that the domain for $\zeta$ can actually be enlarged to be $\mathbb{C} \setminus \mathbb{R}_+$. Please refer to \cite{macdonald2014} \textit{Theorem 3.2.11} for details. 
+\end{remark}
 
 \section{Cauchy type Fredholm determinants}
 In Mellin-Barnes type Fredholm determinants, we deform the contours so that the poles at $z_A = qz_B$ for $B > A$ are encountered. In Cauchy type Fredholm determinants, however, we do the opposite, which is to deform the contours so that poles at $z_A = 0$ are encountered for all $k \in \mathbb{Z}_{>0}$. This is done in the following manner:
@@ -354,14 +362,40 @@ Numerical identity follows from the fact that if $\tilde{K}^1$ and $\tilde{K}^2$
 We call Fredholm determinants of the form $det(I+\tilde{K}^2)$ Cauchy type.
 
 \subsection{Application to q-TASEP}
-By the same observation as in Section \ref{mb-application-to-qtasep} that for q-TASEP with step initial data, we identify that if we take $$f(z) = \left( \prod_{m=1}^{n} \frac{a_m}{a_m - z} \right) e^{(q-1)tz},$$ then $\mathbb{E} \left[ q^{kx_{n}(t)+kn} \right] = \mu_k$. Therefore, by Propositionn \ref{relationship-between-mb-and-cauchy},
+In this section, we apply what we have discussed so far for the Cauchy type Fredholm determinant to q-TASEP with step initial data. We state the result as a theorem.
+
+\begin{theorem}
+\label{cauchy-type-application-to-qtasep}
+Fix $0 < q<1$, $n \ge 1$ and $a_1, \dots, a_n$ such that for all $i$, $a_i > 0$. Denote $\mathbb{A}$ to be the set defined as $\mathbb{A} = \{a_i: i = 1, \dots, n\}$. Consider q-TASEP with step initial data and jump rate parameters $a_i$. Let $x_n(t)$ be the location of particle $n$ at time $t$. Then for all $\zeta \in \{ \zeta \in \mathbb{C}: |\zeta| < 1 \},$ $$\mathbb{E} \left[ \frac{1}{(\zeta q^{x_n(t) + n}; q)_{\infty}} \right] = \frac{1}{(\zeta; q)_{\infty}} det(I + \zeta \tilde{K}^{q-TASEP}),$$ where $det(I + \zeta \tilde{K}^{q-TASEP})$ is the Fredholm determinant of $\tilde{K}^{q-TASEP}: L^2(\tilde{C}_{\mathbb{A}}) \rightarrow  L^2(\tilde{C}_{\mathbb{A}})$ defined in terms of its integral kernel $$\tilde{K}^{q-TASEP}(w,w') = \frac{f(w)}{qw' - w},$$ with $$f(z) = \left( \prod_{m=1}^{n} \frac{a_m}{a_m - z} \right) e^{(q-1)tz}.$$ 
+The equality holds numerically if the contour $\tilde{C}_{\mathbb{A}}$ is chosen to be a simple close contour such that it strictly contains $0$ and every ray from $0$ crosses $\tilde{C}_{\mathbb{A}}$ exactly once, and such that it contains $\mathbb{A}$, the fixed set of singularities of $f(w)$.
+\end{theorem}
+
+\begin{remark}
+Such a contour $\tilde{C}_{\mathbb{A}}$ for numerical identity is called star-shaped with respect to the point $0$.
+\end{remark}
+
+\begin{remark}
+It's remarked that the domain of $\zeta$ can be extended to $\mathbb{C} \setminus \{q^{-i}\}_{i \in \mathbb{Z}_+}$. Please refer to \cite{macdonald2014} \textit{Theorem 3.2.16} for further details.
+\end{remark}
+
+\begin{proof}
+We first show the formal identity. By the same observation as in Section \ref{mb-application-to-qtasep} that for q-TASEP with step initial data, we identify that if we take $$f(z) = \left( \prod_{m=1}^{n} \frac{a_m}{a_m - z} \right) e^{(q-1)tz},$$ then $\mathbb{E} \left[ q^{kx_{n}(t)+kn} \right] = \mu_k$. Therefore, by Propositionn \ref{relationship-between-mb-and-cauchy},
 \begin{align*}
 \tilde{\mu}_k &= (-1)^k q^{k(k-1)/2} \sum_{j=0}^k {k \choose j}_{q^{-1}} (-1)^j q^{-j(j-1)/2} \mu_j\\
 &= (-1)^k q^{k(k-1)/2} \sum_{j=0}^k {k \choose j}_{q^{-1}} (-1)^j q^{-j(j-1)/2} \mathbb{E} \left[ q^{jx_{n}(t)+jn} \right]\\
 &= (-1)^k q^{k(k-1)/2} \mathbb{E} \left[ \sum_{j=0}^k {k \choose j}_{q^{-1}} (-1)^j q^{-j(j-1)/2} q^{jx_{n}(t)+jn} \right]
 \end{align*}
-From \cite{} Corollary 10.2.2.c, we have that for any $x$ and $q$, $$\sum_{k=0}^{n} {n \choose k}_q (-1)^k q^{k(k-1)/2} x^k = (x;q)_n.$$ Then $$\tilde{\mu}_k = (-1)^k q^{k(k-1)/2} \mathbb{E} \left[ (q^{x_n(t)+n}; q^{-1})_k \right] = \mathbb{E} \left[ q^{kx_n(t)} (q^{-x_n(t)}; q)_k \right].$$
-Therefore,
+From \cite{special-functions} Corollary 10.2.2.c, we have that for any $x$ and $q$, $$\sum_{k=0}^{n} {n \choose k}_q (-1)^k q^{k(k-1)/2} x^k = (x;q)_n.$$ Then $$\tilde{\mu}_k = (-1)^k q^{k(k-1)/2} \mathbb{E} \left[ (q^{x_n(t)+n}; q^{-1})_k \right] = \mathbb{E} \left[ q^{kx_n(t)} (q^{-x_n(t)}; q)_k \right].$$
+Therefore, for $|\zeta| < 1$, $|\zeta q^{x_n(t)}| < 1$ and hence
 \begin{align*}
-
+\sum_{k \ge 0} \tilde{\mu}_k \frac{(\zeta / (1-q))^k}{k_q!} &= \mathbb{E} \left[ \sum_{k \ge 0} \frac{(q^{-x_n(t)}; q)_k}{(q;q)_k} (\zeta q^{x_n(t)})^k \right]\\
+&= \mathbb{E} \left[ \frac{(\zeta;q)_{\infty}}{(\zeta q^{x_n(t)}; q)_{\infty}} \right] \text{ by the q-Binomial theorem } \numberthis \label{left-hand-side-cauchy}
 \end{align*}
+Applying Proposition \ref{step-1-cauchy} and then Proposition \ref{step-2-cauchy} to $\sum_{k \ge 0} \tilde{\mu}_k \frac{(\zeta / (1-q))^k}{k_q!}$ with $\zeta$ replaced by $\zeta / (1-q)$, we have 
+\begin{equation}
+\label{right-hand-side-cauchy}
+\sum_{k \ge 0} \tilde{\mu}_k \frac{(\zeta / (1-q))^k}{k_q!} = det(I+\tilde{K}^{q-TASEP}),
+\end{equation}
+where $det(I+\tilde{K}^{q-TASEP})$ is exactly as desired.\\
+Comparing (\ref{left-hand-side-cauchy}) and (\ref{right-hand-side-cauchy}), we have the formal identity that $$\mathbb{E} \left[ \frac{1}{(\zeta q^{x_n(t)}; q)_{\infty}} \right] = \frac{det(I+\tilde{K}^{q-TASEP})}{(\zeta;q)_{\infty}}.$$
+\end{proof}
