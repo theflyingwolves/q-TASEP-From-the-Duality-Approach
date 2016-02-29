@@ -10,12 +10,19 @@ The GUE Tracy-Widom distribution is defined as $$F_{GUE}(r) = det(I-K_{Ai})_{L^2
 K_{Ai}(\eta, \eta') &= \frac{1}{(2 \pi i)^2} \int_{e^{-\frac{2 \pi i}{3}} \infty}^{e^{\frac{2 \pi i}{3}} \infty} dw \int_{e^{-\frac{\pi i}{3}} \infty}^{e^{\frac{\pi i}{3}} \infty} dz \frac{1}{z-w} \frac{e^{z^3 / 3 - z \eta}}{e^{z^3 / 3 - z \eta'}}\\
 &= \int_{\mathbb{R}_+} d \lambda Ai(\eta + \lambda) Ai(\eta' + \lambda),
 \end{align*}
-and $Ai(x)$ is the Airy function defined to be solutions to the ordinary differential equation $$\frac{d^2 y}{dx^2} - xy = 0.$$
+and $Ai(x)$ is the Airy function defined as
+$$Ai(\eta) = \frac{1}{2 \pi i} \int_{C} \exp (\frac{z^3}{3} - z \eta) dz,$$ where $C$ is any contour starting at the point at infinity with argument $-\frac{\pi}{2}$ and ending at the point at infinity with argument $\frac{\pi}{2}$.
 \end{definition}
+Notice that our contour $D_{R,d}$ as defined in \textit{Section \ref{transformation-to-fd}} satisfies the condition that it starts at infinity with argument $-\frac{\pi}{2}$ and ends at int with argument $\frac{\pi}{2}$. Therefore, $$Ai(\eta) = \frac{1}{2 \pi i} \int_{D_{R,d}} \exp (\frac{z^3}{3} - z \eta) dz.$$
 
-\section{Reformulation of Mellin-Barnes type Fredholm determinant}
-From Theorem \ref{mbmb-application-to-qtasep} and recalling the definition of the function $g(w)$, we have that $$\mathbb{E} \left[ \frac{1}{(\zeta q^{X_N(t)+N}; q)_{\infty}} \right] = det(I+K_{\zeta}^{q-TASEP}),$$where $det(I+K_{\zeta}^{q-TASEP})$ is the Fredholm determinant of $K_{\zeta}^{q-TASEP}: L^2(C_{\mathbb{A}}) \rightarrow L^2(\mathbb{A})$ and the operator $K_{\zeta}^{q-TASEP}$ is defined in terms of its integral kernel
-$$K_{\zeta}^{q-TASEP}(w,w') = \frac{1}{2 \pi i} \int_{D_{R,d}} \Gamma(-s) \Gamma(1+s) (-\zeta)^s \left(\frac{(q^s w; q)_{\infty}}{(w;q)_{\infty}}\right)^N \frac{e^{tw(q^s-1)}}{q^sw - w'} ds.$$
+\section{Reformulation of Mellin-Barnes type kernel}
+From Theorem \ref{mbmb-application-to-qtasep} and recalling the definition of the function $g(w)$, we have that 
+\begin{equation}
+\label{continuation-equation}
+\mathbb{E} \left[ \frac{1}{(\zeta q^{X_N(t)+N}; q)_{\infty}} \right] = det(I+K_{\zeta}^{q-TASEP}),
+\end{equation}
+where $det(I+K_{\zeta}^{q-TASEP})$ is the Fredholm determinant of $K_{\zeta}^{q-TASEP}: L^2(C_{\mathbb{A}}) \rightarrow L^2(\mathbb{A})$ and the operator $K_{\zeta}^{q-TASEP}$ is defined in terms of its integral kernel
+$$K_{\zeta}^{q-TASEP}(w,w') = \frac{1}{2 \pi i} \int_{C_{1,2,\dots}} \Gamma(-s) \Gamma(1+s) (-\zeta)^s \left(\frac{(q^s w; q)_{\infty}}{(w;q)_{\infty}}\right)^N \frac{e^{tw(q^s-1)}}{q^sw - w'} ds.$$
 For the right-hand side, we introduce the following change of variables $w = q^W, w' = q^{W'}, s+W = Z,$ and notice the Euler's Reflection formula that $\Gamma(-s) \Gamma(1+s) = \frac{\pi}{sin(-\pi s)}$, the kernel can be transformed to be 
 \begin{align*}
 & \quad \hat{K}_{\zeta}^{q-TASEP}(w,w') \\
@@ -50,9 +57,10 @@ Lastly, we define the rescaled fluctuations of the $Nth$ particle at time $\tau(
 \end{definition}
 
 With definitions of the parameters given above, we choose the $\zeta$ in $\mathbb{E} \left[ \frac{1}{(\zeta q^{X_N(t)+N}; q)_{\infty}} \right]$ to be 
-\begin{equation*}
+\begin{equation}
+\label{zeta-choice}
 \zeta = -q^{-fN - cN^{2/3} + \beta_x \frac{N^{1/3}}{\log q}} \in \mathbb{C} \setminus \mathbb{R}_+,
-\end{equation*}
+\end{equation}
 \begin{equation*}
 \beta_x = c^2 \frac{(\log q)^4}{4 \chi} - \chi^{1/3} x.
 \end{equation*}
@@ -63,11 +71,62 @@ Then we can transform the left-hand side via the following equality
 That is, we have arrived from the Mellin-Barnes type Fredholm determinants to the following equality that 
 \begin{equation}
 \label{new-equality-mb-type}
-\mathbb{E} \left[ \frac{1}{\left( -q^{ \frac{\chi^{1/3}}{\log q} N^{1/3} (\xi_N - x) }; q \right)_{\infty}} \right] = det(I+\hat{K}_{\zeta}^{q-TASEP}(w,w')),
+\mathbb{E} \left[ \frac{1}{( -q^{ \frac{\chi^{1/3}}{\log q} N^{1/3} (\xi_N - x) }; q )_{\infty}} \right] = det(I+\hat{K}_{\zeta}^{q-TASEP}),
 \end{equation}
 where 
 \begin{align*}
-& \quad \hat{K}_{\zeta}^{q-TASEP}(w,w') \\
+& \quad \hat{K}_{\zeta}^{q-TASEP}(W,W') \\
 & = \frac{q^W \log q}{2 \pi i} \int_{D^W_{R,d}} \frac{\pi}{sin(\pi (W-Z))} \frac{(-\zeta)^Z}{(-\zeta)^W} \frac{\exp(tq^Z+N\log(q^Z;q)_{\infty})}{\exp(tq^W+N\log(q^W;q)_{\infty})} \frac{dZ}{q^Z - q^{W'}},
 \end{align*}
-given that both side converges absolutely.
+given that both sides converge absolutely.
+
+\section{Integration Contours}
+In this section, we give some concrete contours of $C_{\mathbb{A}}$ and $D_{R,d}$ that will ensure the convergence of the Fredholm determinants given in last section. We choose these contours also to facilitate our analysis later. We begin by defining some of the contours and then justify the convergence. 
+
+\begin{definition}
+\label{contours-definition}
+\begin{enumerate}
+\item[(1)] Fix $q \in (0,1)$ and $\theta > 0$. For arbitrary but fix $\varphi \in (0, \pi / 4]$, we define the contour $\tilde{C}_{\varphi}$ to be $$\tilde{C}_{\varphi} = \{q^{\theta} + e^{i\varphi sgn(y)} |y|: y \in \mathbb{R}\}.$$ 
+\item[(2)] Let $C_{\varphi}$ be the image of $\tilde{C}_{\varphi}$ under the mapping of $x \rightarrow \log_q(x)$. That is, $$C_{\varphi} = \{\log_q (q^{\theta} + e^{i\varphi sgn(y)} |y|) : y \in \mathbb{R}\}.$$
+\item[(3)] For every $w \in \tilde{C}_{\varphi}$, define the contour $\tilde{D}_{w}$ to be $D_{R,d}$ as given in \textit{Section \ref{transformation-to-fd}} that it goes by straight lines from $R - i\infty$ to $R - id$, to $1/2 - id$, to $1/2 + id$, to $R + id$, and lastly to $R+i\infty$, with $R, d>0$ chosen such that the following holds:
+\begin{enumerate}
+\item[(a)] $arg(w(q^s-1)) \in (\pi / 2+b, 3\pi / 2 - b)$ for $b = \pi / 4 - \varphi / 2$;
+\item[(b)] $q^sw$ stays to the left of $\tilde{C}_{\varphi}$ for every $s \in \tilde{D}_{w}$.
+\end{enumerate}
+\item[(4)] Lastly, for every $W \in C_{\varphi}$, we define the contour $D_W$ to be such that it is the contour $\tilde{D}_{q^W}$ shifted by $W$. If we let $R,d > 0$ be chosen for the contour $\tilde{D}_{q^W}$ such that the two conditions above are satisfied, then $D_W$ is defined by the straight lines going from $R+Re(W)-i \infty$ to $R+Re(W) + i(Im(W) - d)$, to $1/2+Re(W) + i(Im(W) - d)$, to $1/2 + Re(W) + i(Im(W) + d)$, to $R+Re(W) + i(Im(W) + d)$ and to $R+Re(W) + i \infty$.
+\end{enumerate}
+\end{definition}
+
+\begin{proposition}
+Fix $q \in (0,1)$, $\theta > 0$ and $\varphi \in (0, \pi / 4]$. Let $C_{\varphi}$ be defined as given in \textit{Definition \ref{contours-definition} (1)}. For every $W \in C_{\varphi}$ and the choice of $R, d$ such that the two conditions in \textit{Definition \ref{contours-definition} (3)} are satisfied with $w = q^W$. Then $$Re(W) + R > \theta.$$
+\end{proposition}
+\begin{remark}
+An immediate result from the proposition is that there exists a $\sigma > 0$ such that $\theta + \sigma = R + Re(W)$. Moreover, the parameter $d > 0$ can be chosen to be so small such that $D_W$ and $C_{\varphi}$ do no intersect.
+\end{remark}
+\begin{proof}
+This follows from \textit{Condition (b)} in \textit{Definition \ref{contours-definition} (3)}.
+\end{proof}
+
+We claim that with the choice of $C_{\mathbb{A}}$ to be $\tilde{C}_{\varphi}$ for any $\varphi \in (0, \pi / 4]$, and the choice of $C_{1, 2, \dots}$ to be $\tilde{D}_{w}$ for $w \in \tilde{C}_{\varphi}$, we have the convergence for the right-hand side of \textit{(\ref{continuation-equation})} as desired. To justify this, we only need to justify the three conditions in \textit{Theorem \ref{mbmb-application-to-qtasep}}, labeled as (1), (2), (3) respectively. Further details are omitted. 
+
+By the change of variables that we have discussed in last section, we have that the contour for $W$ can then be chosen as $C_{\varphi}$ and that for the integral kernel $\hat{K}_{\zeta}^{q-TASEP}(W,W')$ can be chosen as $D_W$. Further more, by re-writing the kernel $\hat{K}_{\zeta}^{q-TASEP}(W,W')$ and substituting in our choice of $\zeta$ as in \textit{(\ref{zeta-choice})}, we have the following result that for $x \in \mathbb{R}$ fixed, 
+\begin{equation}
+\label{new-equality-mb-type-2}
+\mathbb{E} \left[ \frac{1}{( -q^{ \frac{\chi^{1/3}}{\log q} N^{1/3} (\xi_N - x) }; q )_{\infty}} \right] = det(I+K_x)_{L^2(C_{\varphi})},
+\end{equation}
+where 
+\begin{align*}
+& \quad K_x(W,W') \\
+& = \frac{q^W \log q}{2 \pi i} \int_{D_W} \frac{dZ}{q^Z - q^{W'}} \frac{\pi}{sin(\pi (W-Z))} \frac{\exp(Nf_0(Z) + N^{2/3} f_1(Z) + N^{1/3} f_2(Z))}{\exp(Nf_0(W) + N^{2/3} f_1(W) + N^{1/3} f_2(W))},
+\end{align*}
+where
+\begin{equation*}
+f_0(Z) = -f (\log q) Z + \kappa q^Z + \log(q^Z; q)_{\infty}
+\end{equation*}
+\begin{equation*}
+f_1(Z) = -c (\log q) Z + cq^{Z - \theta}
+\end{equation*}
+\begin{equation*}
+f_2(Z) = \beta_x Z.
+\end{equation*}
+\section{Distribution of the rescaled fluctuation}
