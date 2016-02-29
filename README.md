@@ -1,2 +1,4 @@
 # q-TASEP-From-the-Duality-Approach
-The project contains tex source code for my undergraduate mathematics final year project on the topic of q-deformed totally asymmetric simple exclusion process. 
+The project contains tex source code for my undergraduate mathematics final year project on the topic of q-deformed totally asymmetric simple exclusion process (q-TASEP), which is an interacting particle system. 
+The project studies the stochastic process model from the duality approach with main reference to the paper `From Duality to Determinants for q-TASEP and ASEP` from A. Borodin, I. Corwin and T. Sasamoto and `Tracy-Widom asymptotics for q-TASEP` from P. L. Ferrari and B. Veto. 
+It concludes with an explicit formula for the distribution of the nth particle and further concludes that it's distributed with Tracy-Widom distribution in asymptotics. 

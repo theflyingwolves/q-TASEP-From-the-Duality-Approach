@@ -1,0 +1,73 @@
+\chapter{Tracy-Widom Asymptotics}
+In the last chapter we've determined explicitly the formula for $\mathbb{E}\left[ \frac{1}{(\zeta q^{X_n(t)}; q)_{\infty}} \right]$. This chapter will continue from this and perform asymptotic analysis for q-TASEP. The final result is that the fluctuation of the position of $X_N(t)$ will be following the GUE Tracy-Widom distribution. For simplicity, we assume through out the chapter that the jump rate parameters we are considering are $a_i = 1$ for all $i$, and that $q \in (0,1)$, $\theta > 0$ is fixed. 
+
+\section{Tracy-Widom distribution}
+We begin by providing a basic introduction to the GUE Tracy-Widom distribution. First the definition of the GUE Tracy-Widom distribution is quoted from \cite{tracy-widom-def} \textit{Definition 1.6}.
+
+\begin{definition}
+The GUE Tracy-Widom distribution is defined as $$F_{GUE}(r) = det(I-K_{Ai})_{L^2(r, \infty)},$$ where $K_{Ai}$ is the Airy kernel that has integral representations 
+\begin{align*}
+K_{Ai}(\eta, \eta') &= \frac{1}{(2 \pi i)^2} \int_{e^{-\frac{2 \pi i}{3}} \infty}^{e^{\frac{2 \pi i}{3}} \infty} dw \int_{e^{-\frac{\pi i}{3}} \infty}^{e^{\frac{\pi i}{3}} \infty} dz \frac{1}{z-w} \frac{e^{z^3 / 3 - z \eta}}{e^{z^3 / 3 - z \eta'}}\\
+&= \int_{\mathbb{R}_+} d \lambda Ai(\eta + \lambda) Ai(\eta' + \lambda),
+\end{align*}
+and $Ai(x)$ is the Airy function defined to be solutions to the ordinary differential equation $$\frac{d^2 y}{dx^2} - xy = 0.$$
+\end{definition}
+
+\section{Reformulation of Mellin-Barnes type Fredholm determinant}
+From Theorem \ref{mbmb-application-to-qtasep} and recalling the definition of the function $g(w)$, we have that $$\mathbb{E} \left[ \frac{1}{(\zeta q^{X_N(t)+N}; q)_{\infty}} \right] = det(I+K_{\zeta}^{q-TASEP}),$$where $det(I+K_{\zeta}^{q-TASEP})$ is the Fredholm determinant of $K_{\zeta}^{q-TASEP}: L^2(C_{\mathbb{A}}) \rightarrow L^2(\mathbb{A})$ and the operator $K_{\zeta}^{q-TASEP}$ is defined in terms of its integral kernel
+$$K_{\zeta}^{q-TASEP}(w,w') = \frac{1}{2 \pi i} \int_{D_{R,d}} \Gamma(-s) \Gamma(1+s) (-\zeta)^s \left(\frac{(q^s w; q)_{\infty}}{(w;q)_{\infty}}\right)^N \frac{e^{tw(q^s-1)}}{q^sw - w'} ds.$$
+For the right-hand side, we introduce the following change of variables $w = q^W, w' = q^{W'}, s+W = Z,$ and notice the Euler's Reflection formula that $\Gamma(-s) \Gamma(1+s) = \frac{\pi}{sin(-\pi s)}$, the kernel can be transformed to be 
+\begin{align*}
+& \quad \hat{K}_{\zeta}^{q-TASEP}(w,w') \\
+& = \frac{q^W \log q}{2 \pi i} \int_{D^W_{R,d}} \frac{\pi}{sin(\pi (W-Z))} \frac{(-\zeta)^Z}{(-\zeta)^W} \frac{\exp(tq^Z+N\log(q^Z;q)_{\infty})}{\exp(tq^W+N\log(q^W;q)_{\infty})} \frac{dZ}{q^Z - q^{W'}},
+\end{align*}
+where $D^W_{R,d}$ is the contour $D_{R,d}$ shifted by $W$.\\
+
+For the left-hand side, we define some functions and parameters as below.
+\begin{definition}
+For fix $q \in (0,1)$ and $\theta > 0$, let the q-gamma function be defined as $$\Gamma_q(z) = (1-q)^{1-z} \frac{(q;q)_{\infty}}{(q^z;q)_{\infty}}$$ and the q-digamma function be defined as $$\Psi_q(z) = \frac{\partial}{\partial z} \log \Gamma_q(z) = -\log(1-q) + \log_q \sum_{n=1}^{\infty} \frac{q^{n+z}}{1 - q^{n+z}}.$$
+Furthermore, we introduce the following parameters
+\begin{equation*}
+\kappa = \kappa(q,\theta) = \frac{\Psi'_q(\theta)}{(\log q)^2 q^{\theta}} = \sum_{n=0}^{\infty} \frac{q^n}{(1-q^{n+\theta})^2}
+\end{equation*}
+\begin{equation*}
+f = f(q,\theta) = \frac{\Psi'_q(\theta)}{(\log q)^2} - \frac{\Psi'_q(\theta)}{\log q} - \frac{\log(1-q)}{\log q}
+\end{equation*}
+\begin{equation*}
+\chi = \chi(q,\theta) = \frac{\Psi'_q(\theta) \log q - \Psi''_q(\theta)}{2}
+\end{equation*}
+\end{definition}
+
+\begin{definition}
+For any $c,x \in \mathbb{R}$, we define the following parameters
+\begin{equation*}
+\tau(N,c) = \kappa N + cq^{-\theta}N^{2/3}
+\end{equation*}
+\begin{equation*}
+p(N,c) = (f-1)N + cN^{2/3} - c^2 \frac{(\log q)^3}{4 \chi} N^{1/3}
+\end{equation*}
+Lastly, we define the rescaled fluctuations of the $Nth$ particle at time $\tau(N,c)$, $\xi_N(c)$, to be $$\xi_N(c) = \frac{X_N(\tau(N,c)) - p(N,c)}{\chi^{1/3} (\log q)^{-1} N^{1/3}}.$$
+\end{definition}
+
+With definitions of the parameters given above, we choose the $\zeta$ in $\mathbb{E} \left[ \frac{1}{(\zeta q^{X_N(t)+N}; q)_{\infty}} \right]$ to be 
+\begin{equation*}
+\zeta = -q^{-fN - cN^{2/3} + \beta_x \frac{N^{1/3}}{\log q}} \in \mathbb{C} \setminus \mathbb{R}_+,
+\end{equation*}
+\begin{equation*}
+\beta_x = c^2 \frac{(\log q)^4}{4 \chi} - \chi^{1/3} x.
+\end{equation*}
+Then we can transform the left-hand side via the following equality
+\begin{align*}
+\mathbb{E} \left[ \frac{1}{(\zeta q^{X_N(t)+N}; q)_{\infty}} \right] = \mathbb{E} \left[ \frac{1}{\left( -q^{ \frac{\chi^{1/3}}{\log q} N^{1/3} (\xi_N - x) }; q \right)_{\infty}} \right]
+\end{align*}
+That is, we have arrived from the Mellin-Barnes type Fredholm determinants to the following equality that 
+\begin{equation}
+\label{new-equality-mb-type}
+\mathbb{E} \left[ \frac{1}{\left( -q^{ \frac{\chi^{1/3}}{\log q} N^{1/3} (\xi_N - x) }; q \right)_{\infty}} \right] = det(I+\hat{K}_{\zeta}^{q-TASEP}(w,w')),
+\end{equation}
+where 
+\begin{align*}
+& \quad \hat{K}_{\zeta}^{q-TASEP}(w,w') \\
+& = \frac{q^W \log q}{2 \pi i} \int_{D^W_{R,d}} \frac{\pi}{sin(\pi (W-Z))} \frac{(-\zeta)^Z}{(-\zeta)^W} \frac{\exp(tq^Z+N\log(q^Z;q)_{\infty})}{\exp(tq^W+N\log(q^W;q)_{\infty})} \frac{dZ}{q^Z - q^{W'}},
+\end{align*}
+given that both side converges absolutely.
