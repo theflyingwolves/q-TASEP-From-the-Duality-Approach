@@ -2,20 +2,23 @@
 In the last chapter we've determined explicitly the formula for $\mathbb{E}\left[ \frac{1}{(\zeta q^{X_n(t)}; q)_{\infty}} \right]$. This chapter will continue from this and perform asymptotic analysis for q-TASEP. The final result is that the fluctuation of the position of $X_N(t)$ will be following the GUE Tracy-Widom distribution. For simplicity, we assume through out the chapter that the jump rate parameters we are considering are $a_i = 1$ for all $i$, and that $q \in (0,1)$, $\theta > 0$ is fixed. 
 
 \section{Tracy-Widom distribution}
-We begin by providing a basic introduction to the GUE Tracy-Widom distribution. First the definition of the GUE Tracy-Widom distribution is quoted from \cite{tracy-widom-def} \textit{Definition 1.6}.
+We begin by providing a basic introduction to the GUE Tracy-Widom distribution. First the definition of the GUE Tracy-Widom distribution is quoted from \cite{phase2015} \textit{Definition 3 (1)}.
 
 \begin{definition}
 The GUE Tracy-Widom distribution is defined as $$F_{GUE}(r) = det(I-K_{Ai})_{L^2(r, \infty)},$$ where $K_{Ai}$ is the Airy kernel that has integral representations 
 \begin{align*}
-K_{Ai}(\eta, \eta') &= \frac{1}{(2 \pi i)^2} \int_{e^{-\frac{2 \pi i}{3}} \infty}^{e^{\frac{2 \pi i}{3}} \infty} dw \int_{e^{-\frac{\pi i}{3}} \infty}^{e^{\frac{\pi i}{3}} \infty} dz \frac{1}{z-w} \frac{e^{z^3 / 3 - z \eta}}{e^{z^3 / 3 - z \eta'}}\\
-&= \int_{\mathbb{R}_+} d \lambda Ai(\eta + \lambda) Ai(\eta' + \lambda),
+K_{Ai}(\eta, \eta') &= \frac{1}{(2 \pi i)^2} \int_{e^{-\frac{2 \pi i}{3}} \infty}^{e^{\frac{2 \pi i}{3}} \infty} dw \int_{e^{-\frac{\pi i}{3}} \infty}^{e^{\frac{\pi i}{3}} \infty} dz \frac{e^{z^3 / 3 - z \eta}}{e^{w^3 / 3 - w \eta'}} \frac{1}{z-w},
 \end{align*}
-and $Ai(x)$ is the Airy function defined as
-$$Ai(\eta) = \frac{1}{2 \pi i} \int_{C} \exp (\frac{z^3}{3} - z \eta) dz,$$ where $C$ is any contour starting at the point at infinity with argument $-\frac{\pi}{2}$ and ending at the point at infinity with argument $\frac{\pi}{2}$.
+where the contours for $z$ and $w$ do not intersect. 
 \end{definition}
-Notice that our contour $D_{R,d}$ as defined in \textit{Section \ref{transformation-to-fd}} satisfies the condition that it starts at infinity with argument $-\frac{\pi}{2}$ and ends at int with argument $\frac{\pi}{2}$. Therefore, $$Ai(\eta) = \frac{1}{2 \pi i} \int_{D_{R,d}} \exp (\frac{z^3}{3} - z \eta) dz.$$
+\begin{remark}
+It's remarked that the Airy kernel defined above ie equivalent to $$K_{Ai}(\eta, \eta') = \int_{\mathbb{R}_+} d\lambda Ai(\eta+\lambda) Ai(\eta' + \lambda),$$
+where $Ai(x)$ is the Airy function defined as
+$$Ai(\eta) = \frac{1}{2 \pi i} \int_{C} \exp (\frac{z^3}{3} - z \eta) dz,$$ where $C$ is any contour starting at the point at infinity with argument $-\frac{\pi}{2}$ and ending at the point at infinity with argument $\frac{\pi}{2}$. Please refer to \cite{airy-kernel} for more details on the equality
+\end{remark}
 
 \section{Reformulation of Mellin-Barnes type kernel}
+\label{sec:reformulation-kernel}
 From Theorem \ref{mbmb-application-to-qtasep} and recalling the definition of the function $g(w)$, we have that 
 \begin{equation}
 \label{continuation-equation}
@@ -66,7 +69,7 @@ With definitions of the parameters given above, we choose the $\zeta$ in $\mathb
 \end{equation*}
 Then we can transform the left-hand side via the following equality
 \begin{align*}
-\mathbb{E} \left[ \frac{1}{(\zeta q^{X_N(t)+N}; q)_{\infty}} \right] = \mathbb{E} \left[ \frac{1}{\left( -q^{ \frac{\chi^{1/3}}{\log q} N^{1/3} (\xi_N - x) }; q \right)_{\infty}} \right]
+\mathbb{E} \left[ \frac{1}{(\zeta q^{X_N(t)+N}; q)_{\infty}} \right] = \mathbb{E} \left[ \frac{1}{( -q^{ \frac{\chi^{1/3}}{\log q} N^{1/3} (\xi_N - x) }; q )_{\infty}} \right]
 \end{align*}
 That is, we have arrived from the Mellin-Barnes type Fredholm determinants to the following equality that 
 \begin{equation}
@@ -81,6 +84,7 @@ where
 given that both sides converge absolutely.
 
 \section{Integration Contours}
+\label{sec:integration-contours}
 In this section, we give some concrete contours of $C_{\mathbb{A}}$ and $D_{R,d}$ that will ensure the convergence of the Fredholm determinants given in last section. We choose these contours also to facilitate our analysis later. We begin by defining some of the contours and then justify the convergence. 
 
 \begin{definition}
@@ -107,9 +111,9 @@ An immediate result from the proposition is that there exists a $\sigma > 0$ suc
 This follows from \textit{Condition (b)} in \textit{Definition \ref{contours-definition} (3)}.
 \end{proof}
 
-We claim that with the choice of $C_{\mathbb{A}}$ to be $\tilde{C}_{\varphi}$ for any $\varphi \in (0, \pi / 4]$, and the choice of $C_{1, 2, \dots}$ to be $\tilde{D}_{w}$ for $w \in \tilde{C}_{\varphi}$, we have the convergence for the right-hand side of \textit{(\ref{continuation-equation})} as desired. To justify this, we only need to justify the three conditions in \textit{Theorem \ref{mbmb-application-to-qtasep}}, labeled as (1), (2), (3) respectively. Further details are omitted. 
+We claim that with the choice of $C_{\mathbb{A}}$ to be $\tilde{C}_{\varphi}$ for any $\varphi \in (0, \pi / 4]$, and the choice of $C_{1, 2, \dots}$ to be $\tilde{D}_{w}$ for $w \in \tilde{C}_{\varphi}$, we have the convergence for the right-hand side of \textit{(\ref{continuation-equation})} as desired. To justify this, we only need to justify the three conditions in \textit{Theorem \ref{mbmb-application-to-qtasep}}, labeled as (1), (2), (3) respectively. For further details of the justification, please refer to \textit{\cite{asymptotics2013} Theorem (4.2)}.
 
-By the change of variables that we have discussed in last section, we have that the contour for $W$ can then be chosen as $C_{\varphi}$ and that for the integral kernel $\hat{K}_{\zeta}^{q-TASEP}(W,W')$ can be chosen as $D_W$. Further more, by re-writing the kernel $\hat{K}_{\zeta}^{q-TASEP}(W,W')$ and substituting in our choice of $\zeta$ as in \textit{(\ref{zeta-choice})}, we have the following result that for $x \in \mathbb{R}$ fixed, 
+By the change of variables that we have discussed in \textit{Section \ref{sec:reformulation-kernel}}, we have that the contour for $W$ can then be chosen as $C_{\varphi}$ and that for the integral kernel $\hat{K}_{\zeta}^{q-TASEP}(W,W')$ can be chosen as $D_W$. Further more, by re-writing the kernel $\hat{K}_{\zeta}^{q-TASEP}(W,W')$ and substituting in our choice of $\zeta$ as in \textit{(\ref{zeta-choice})}, we have the following result that for $x \in \mathbb{R}$, 
 \begin{equation}
 \label{new-equality-mb-type-2}
 \mathbb{E} \left[ \frac{1}{( -q^{ \frac{\chi^{1/3}}{\log q} N^{1/3} (\xi_N - x) }; q )_{\infty}} \right] = det(I+K_x)_{L^2(C_{\varphi})},
@@ -129,4 +133,99 @@ f_1(Z) = -c (\log q) Z + cq^{Z - \theta}
 \begin{equation*}
 f_2(Z) = \beta_x Z.
 \end{equation*}
+
+\section{Asymptotics of the Fredholm determinants}
+In this section we focus on the asymptotic behaviour of the Fredholm determinant $det(I+K_x)_{L^2(C_{\varphi})}$, where $K_x: L^2(C_{\varphi}) \rightarrow L^2(C_{\varphi})$ is defined by the integration kernel as given in $(\ref{new-equality-mb-type-2})$ that
+\begin{align*}
+& \quad K_x(W,W') \\
+& = \frac{q^W \log q}{2 \pi i} \int_{D_W} \frac{dZ}{q^Z - q^{W'}} \frac{\pi}{sin(\pi (W-Z))} \frac{\exp(Nf_0(Z) + N^{2/3} f_1(Z) + N^{1/3} f_2(Z))}{\exp(Nf_0(W) + N^{2/3} f_1(W) + N^{1/3} f_2(W))}.
+\end{align*}
+
+\begin{remark}
+\label{circle-deformation}
+It's remarked that the contour $D_W$ in the definition of $K_x$ can be replaced by the straight line from $R + Re(W) - i\infty$ to $R + Re(W) + i \infty$, where $R$ is the same as in the definition of $D_W$ in Section \ref{sec:integration-contours}, and some small circles surrounding the poles coming from the term $\frac{1}{sin(\pi (W - Z))}$, which are $W+1, W+2, \dots, W+k_W$ and $k_W$ denotes the total number of residues. The new contour will also be referred to as $D_W$.
+\end{remark}
+
+The main result is given in the following theorem.
+\begin{theorem}
+\label{asymptotic-theorem}
+Let $x \in \mathbb{R}$ be fixed and choose $\zeta$ as in \textit{(\ref{zeta-choice})}. Then $$det(I+K_x)_{L^2(C_{\varphi})} \rightarrow F_{GUE}(x) \text{ as } N \rightarrow \infty,$$ where $F_{GUE}$ is the GUE Tracy-Widom distribution function. 
+\end{theorem}
+
+The intuition for the proof is that for $N$ large we show that the Fredholm determinants $det(I+K_x)_{L^2(C_{\varphi})}$ and $det(I+K_{Ai})_{L^2(x,\infty)}$ are arbitrarily close. To demonstrate how to achieve this, we quote the following series of propositions from \cite{asymptotics2013} without proof and briefly explain the ideas behind. For more precise treatment, pleass refer to the original paper \cite{asymptotics2013} or \cite{phase2015}.
+
+\begin{proposition} [\textit{\cite{asymptotics2013} Proposition (6.3)}]
+\label{restriction-contour}
+For any fixed $\delta > 0$ and $\epsilon > 0$ small enough, there is an $N_0$ such that $$\left| det(I+K_x)_{L^2(C_{\varphi})} - det(I+K_{x,\delta})_{L^2(C_{\varphi}^{\delta})} \right| < \epsilon$$ for all $N > N_0$ where
+\begin{align*}
+& \quad K_{x,\delta}(W,W') \\
+& = \frac{q^W \log q}{2 \pi i} \int_{D_W^{\delta}} \frac{dZ}{q^Z - q^{W'}} \frac{\pi}{sin(\pi (W-Z))} \frac{\exp(Nf_0(Z) + N^{2/3} f_1(Z) + N^{1/3} f_2(Z))}{\exp(Nf_0(W) + N^{2/3} f_1(W) + N^{1/3} f_2(W))}
+\end{align*}
+and $C_{\varphi}^{\delta} = C_{\varphi} \cap \{w: |w - \theta| \le \epsilon \}$, $D_W^{\delta} = D_W \cap \{z: |z - \theta| \le \delta\}$.
+\end{proposition}
+
+This proposition essentially says that the asymptotically contribution to the Fredholm determinant outside any neighbourhood of $\theta$ can be ignored. Therefore, we only need to deal with the behavior of the Fredholm determinant around a small neighborhood of $\theta$. 
+
+We can perform the following deformation of the contour $C_{\varphi}^{\delta}$ and $D_W^{\delta}$. Using Cauchy theorem, we are able to deform the contour $C_{\varphi}^{\delta}$ to $\{\theta + |y|e^{i(\pi - \tilde{\varphi}) sgn(y)}: y \in [-\delta, \delta]\}$ with some $\tilde{\varphi} \in (0, \pi / 2)$ chosen such that the two contours have the same endpoint. Similarly, we deform the straignt line part in the contour $D_W^{\delta}$ to be $D_{\varphi}^{\delta} = \{\theta + |t| e^{i \varphi sgn(t)}: t \in [-\delta, \delta] \}$ if the $R$ in the definition of $D_W$ is chosen such that the two endpoints of the two contours coincide. 
+
+After the above deformation, we introduce the following change of variables to $W, W'$ and $Z$: $$W = \theta + wN^{-1/3}, W' = \theta + w' N^{-1/3}, Z = \theta + zN^{-1/3}.$$ From the relationship, we get the corresponding contours for $w, w'$ and $z$ to be $C_{\varphi,\delta N^{1/3}}$ and $D_{\phi, \delta N^{1/3}}$, where
+$$C_{\varphi,L} = \{|y|e^{i(\pi - \varphi) sgn(y)}: y \in [-L, L]\}, D_{\varphi, L} = \{|t| e^{i \varphi sgn(t)}: t \in [-L, L]\}$$ for $L \in (0, \infty].$ To be explicit, we have the following: $$det(I+K_{x, \delta})_{L^2(C_{\varphi}^{\delta})} = det(I +K_{x, \delta}^N )_{L^2(C_{\varphi, \delta N^{1/3}})},$$ where 
+\begin{equation}
+\label{rescaled-kernel}
+K_{x, \delta}^N(w,w') = N^{-1/3} K_{x, \delta N^{1/3}} (\theta + wN^{-1/3}, \theta + w'N^{-1/3}).
+\end{equation}
+
+Moreover, from the definition of $f_0(Z), f_1(Z), f_2(Z)$, we have the following Taylor expansion of each of them around a neighborhood of $\theta$:
+\begin{itemize}
+\item $f_0(Z) = f_0(\theta) + \frac{\chi}{3} (Z - \theta)^3 + \mathcal{O}((Z - \theta)^4)$
+\item $f_1(Z) = f_1(\theta) + \frac{c(\log q)^2}{2} (Z - \theta)^2 + \mathcal{O}((Z - \theta)^3)$
+\item $f_2(Z) = f_2(\theta) + \beta_x (Z - \theta)$
+\end{itemize}
+Substituting these into (\ref{rescaled-kernel}), we can transform the kernel into the following explicit form as stated in the following proposition.
+
+\begin{proposition} [\textit{\cite{asymptotics2013} Proposition (6.4)}]
+Let $\varphi \in (0, \pi / 2)$ be sufficiently closed to $\pi / 2$ and let $\epsilon > 0$ be fixed. There is a small $\delta > 0$ and an $N_0$ such that for any $N > N_0$, $$|det(I +K_{x, \delta}^N )_{L^2(C_{\varphi, \delta N^{1/3}})} - det(I + K'_{x, \delta N^{1/3}})_{L^2(C_{\varphi, \delta N^{1/3}})}| < \epsilon,$$ where $$K'_{x,\delta N^{1/3}}(w,w') = \frac{1}{2 \pi i} \int_{D_{\varphi, \delta N^{1/3}}} \frac{dz}{(z-w')(w-z)} \frac{e^{\chi z^3 / 3 + c (\log q)^2 z^2 / 2 + \beta_x z}}{e^{\chi w^3 / 3 + c (\log q)^2 w^2 / 2 + \beta_x w}}.$$
+\end{proposition}
+
+The reason why we can choose $\varphi$ that is originally in $(0, \pi / 4]$ to be close to $\pi / 2$ is because of the following proposition.
+\begin{proposition} [\textit{\cite{asymptotics2013} Proposition (6.2)}]
+For fixed $q \in (0,1), \theta > 0$ and $N$ large enough, the contour $C_{\varphi}$ with $\varphi \in (0, \pi / 4)$ for the kernel $K_x$ can be extended to any $\varphi \in (0, \pi / 2)$ without affecting the Fredholm determinant $det(I+K_x)_{L^2(C_{\varphi})}$.
+\end{proposition}
+
+The following proposition asserts that we can expand the bound on the contour $D_{\varphi, \delta N^{1/3}}$ to $D_{\varphi, \infty}$. Similar to \textit{Proposition \ref{restriction-contour} }, we are essentially saying that asymptotically the only part of the contour that contributes to the Fredholm determinant is the part around some neighborhood of $0$. It is made precise by the following:
+
+\begin{proposition} [\textit{\cite{asymptotics2013} Proposition (6.5)}]
+As $N \rightarrow \infty$, we have $$det(I+K'_{x, \delta N^{1/3}})_{L^2(C_{\varphi, \delta N^{1/3}})} \rightarrow det(I+K'_{x, \infty})_{L^2(C_{\varphi, \infty})}.$$
+\end{proposition}
+
+And lastly, the kernel $K'_{x, \infty}$ can be reformulated to the Airy kernel via the following proposition.
+\begin{proposition} [\textit{\cite{asymptotics2013} Proposition (6.6)}]
+
+$$det(I+K'_{x,\infty})_{L^2(C_{\varphi, \infty})} = det(I - K_{Ai, x})_{L^2(\mathbb{R}_+)}.$$
+\end{proposition}
+
+By the definition of the GUE Tracy-Widom distribution introduced at the beginning of the chapter, we therefore conclude \textit{Theorem \ref{asymptotic-theorem}}.
+
 \section{Distribution of the rescaled fluctuation}
+In the last section, we concluded with \textit{Theorem \ref{asymptotic-theorem}} that for $N$ large, $det(I+K_x)_{L^2(C_{\varphi})} \rightarrow F_{GUE}(x)$. Therefore, 
+\begin{equation}
+\label{finale-equality}
+\mathbb{E} \left[ \frac{1}{( -q^{ \frac{\chi^{1/3}}{\log q} N^{1/3} (\xi_N - x) }; q )_{\infty}} \right] \rightarrow F_{GUE}(x) \text{ as } N \rightarrow \infty.
+\end{equation}
+Define $f_N(y) = (-q^{\frac{\chi^{1/3}}{\log q} N^{1/3} y};q)_{\infty}^{-1}.$ Then we have that $$\mathbb{E} \left[ \frac{1}{( -q^{ \frac{\chi^{1/3}}{\log q} N^{1/3} (\xi_N - x) }; q )_{\infty}} \right] = \mathbb{E} \left[ f_N(\xi_N - x) \right].$$ We observe the following facts about $f_N(y)$:
+\begin{itemize}
+\item $f_N(y)$ is a mapping from $\mathbb{R}$ to $[0,1]$.
+\item For each $N$, $f_N(y)$ is strictly decreasing on $y$. This is because $\log q < 0$ for $q \in (0,1)$. Moreover, $\lim_{y \rightarrow \infty} f_N(y) = 1$ and $\lim_{y \rightarrow -\infty} f_N(y) = 0$.
+\item For each $\delta > 0$, on $\mathbb{R} \setminus [-\delta, \delta]$, the sequence of functions $f_N$ converges uniformly to $\mathbbm{1}(y < 0)$.
+\end{itemize}
+The last observation follows from the fact that $\frac{1}{1+q^{\frac{\chi^{1/3}}{\log q} N^{1/3} y + k}}$ is uniformly close to $1$ if $y \in (\delta, \infty)$ and $0$ if $y \in (-\infty, -\delta)$.
+
+To continue our discussion, we quote the following lemma from \textit{\cite{macdonald2014} Lemma 4.1.39 }. 
+\begin{lemma}
+Consider a sequence of functions $(f_n)_{n \ge 1}$ mapping $\mathbb{R} \rightarrow [0,1]$ such that for eaach $n$, $f_n(y)$ is strictly decreasing in $y$ with a limit of $1$ at $y = -\infty$ and $0$ at $y = \infty$, and for each $\delta > 0$, on $\mathbb{R} \setminus [-\delta, \delta]$, $f_n$ converges uniformly to $\mathbbm{1}(y < 0)$. Consider a sequence of random variables $X_n(t)$ such that for each $r \in \mathbb{R}$, $$\mathbb{E} [f_n(X_n - r)] \rightarrow p(r)$$ and assume that $p(r)$ is a continuous probability distribution function. Then $X_n$ converges weakly in distribution to a random variable $X$ which is distributed according to $\mathbb{P}(X < r) = p(r)$.
+\end{lemma}
+
+Combining the lemma above, the observations about $f_N(y)$ and (\ref{finale-equality}), we conclude the following theorem.
+\begin{theorem}
+Let $q \in (0,1)$ and $\theta > 0$ be fixed. For any $c, x \in \mathbb{R}$, we have that $$\lim_{N \rightarrow \infty} \mathbb{P}(\xi_N < x) = F_{GUE}(x),$$ where $$\xi_N = \frac{X_N(\tau(N,c)) - p(N,c)}{\chi^{1/3} (\log q)^{-1} N^{1/3}}.$$
+\end{theorem}
