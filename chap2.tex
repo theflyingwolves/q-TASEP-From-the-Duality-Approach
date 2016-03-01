@@ -67,7 +67,7 @@ That $\mathbb{E}^{\vec{y}}[H(\vec{x},\vec{y}(t))]$ is a solution to the \textbf{
 It then suffices to show that $\mathbb{E}^{\vec{x}}[H(\vec{x}(t),\vec{y})]$ is a solution to the \textbf{\emph{true evolution equation system}}. Since the initial and boundary conditions can be easily checked, we only need to show that $\frac{d}{dt} \mathbb{E}^{\vec{x}}[H(\vec{x}(t),\vec{y})] = L^{q-TAZRP} \mathbb{E}^{\vec{x}}[H(\vec{x}(t),\vec{y})]$ as below:
 \begin{align*}
 \frac{d}{dt} \mathbb{E}^{\vec{x}}[H(\vec{x}(t),\vec{y})] &= L^{q-TASEP} \mathbb{E}^{\vec{x}}[H(\vec{x}(t),\vec{y})] \quad (\text{by definition})\\
-																												 &= \tobeclarified{\mathbb{E}^{\vec{x}} [L^{q-TASEP} H(\vec{x}(t),\vec{y})]}\\
+																												 &= \mathbb{E}^{\vec{x}} [L^{q-TASEP} H(\vec{x}(t),\vec{y})] \quad (\text{by commutativity})\\
 																												 &= \mathbb{E}^{\vec{x}} [L^{q-TAZRP} H(\vec{x}(t),\vec{y})] \quad (\text{by Lemma }\ref{lem:duality}) \\
 																												 &= L^{q-TAZRP} \mathbb{E}^{\vec{x}} [H(\vec{x}(t),\vec{y})] \quad (\text{Since $L^{q-TAZRP}$ acts on $\vec{y}$})
 \end{align*}
@@ -75,7 +75,7 @@ It then suffices to show that $\mathbb{E}^{\vec{x}}[H(\vec{x}(t),\vec{y})]$ is a
 Using the duality, in order to find $\mathbb{E}^{\vec{x}}[H(\vec{x}(t),\vec{y})]$, it suffices to find $\mathbb{E}^{\vec{y}}[H(\vec{x},\vec{y}(t))]$. Note that the difference between the two expression is that the former is evaluating an expectation in the context of a q-TASEP, while the latter is evaluating the expectation in the context of a q-TAZRP. In what follows, we are going to show how to evaluate the expectation $\mathbb{E}^{\vec{y}}[H(\vec{x},\vec{y}(t))]$ in q-TAZRP using the \emph{free evolution equation system}. With this, we then are able to get an explicit formula for $\mathbb{E}^{\vec{x}}[H(\vec{x}(t),\vec{y})]$.
 \section{Evolution Equation Systems}
 \label{evolution-equation-system}
-In this section, we are going to define another evolution equation systems, namely, the \emph{free evolution equation system} and show that a solution to the \emph{free evolution equation} also solves the \emph{true evolution equation system} with certain initial data. We then conclude that $\mathbb{E}[H(\vec{x}(t),\vec{y})]$ for all $\vec{y} \in Y^N$ solves the \emph{free evolution equation}.
+In this section, we are going to define another evolution equation systems, namely, the \emph{free evolution equation system} and show that a solution to the \emph{free evolution equation} also solves the \emph{true evolution equation system} with certain initial data.
 
 Before moving on to the definition of the \emph{free evolution equation system}, we introduce a notion $\nabla_i$ defined by $\nabla_i f(\vec{n}) = f(\vec{n}_i^-) - f(\vec{n})$ for $\vec{n} = (n_1, \dots, n_k)$, where $\vec{n}_i^- = (n_1,\dots,n_{i-1}, n_i - 1, n_{i+1}, \dots, n_k)$.
 
@@ -150,8 +150,7 @@ For q-TASEP with step initial data and $\vec{n} \in W^k_{>0}$, $$\mathbb{E} \lef
 \begin{proof}[Proof of Corollary \ref{nested-contour-corollary}]
 Noting that the right hand side is simply a restriction of Equation (\ref{step-nested-contour}), and that $u(t;\vec{n})$ is equal to $\mathbb{E}^{\vec{x}}[H(\vec{x}(t), \vec{y})]$, it then suffices to show that $\mathbb{E}[H(\vec{x}(t), \vec{y})] =\mathbb{E} \left[ \prod_{i=1}^N q^{(x_i(t) + i) y_i} \right]= \mathbb{E} \left[ \prod_{j=1}^k q^{x_{n_j}+n_j} \right]$, where the expectation is taken with the step initial data. Recall that $y_i = |\{n_j: n_j = i\}|$, therefore
 \begin{align*}
-\prod_{i=1}^N q^{(x_i + i) y_i} &= \prod_{i=1}^{N} \prod_{j=n_{i,1}}^{n_{i,1}+y_i-1} q^{x_{n_j} + n_j}\\
-																&= \prod_{j=1}^k q^{x_{n_j}+n_j},
+\prod_{i=1}^N q^{(x_i + i) y_i} = \prod_{i=1}^{N} \prod_{j=n_{i,1}}^{n_{i,1}+y_i-1} q^{x_{n_j} + n_j} = \prod_{j=1}^k q^{x_{n_j}+n_j},
 \end{align*}
 where $n_{i,1} = \min \{j : n_j = i\}$.
 \end{proof}
@@ -206,10 +205,8 @@ Fix $r \ge 1$. If $X$ is a q-Geometric random variable with parameter $\alpha \i
 Recall the q-Binomial theorem $$\sum_{n=0}^{\infty} \frac{(a;q)_n}{(q;q)_n} z^n = \frac{(az;q)_{\infty}}{(z;q)_{\infty}}$$
 Therefore, we have 
 \begin{align*}
-\mathbb{E} \left[ q^{-rX} \right] &= (\alpha; q)_{\infty} \sum_{k=0}^{\infty} \frac{(\alpha / q^r)^k}{(q;q)_k}\\
-																	&= (\alpha; q)_{\infty} \sum_{k=0}^{\infty} \frac{(0;q)_k}{(q;q)_k} (\alpha / q^r)^k\\
-																	&= \frac{(\alpha; q)_{\infty} }{(\alpha q^{-r}; q)_{\infty}}\\
-																	&= \prod_{i=1}^{r} \frac{1}{1- \alpha / q^i}
+\mathbb{E} \left[ q^{-rX} \right] &= (\alpha; q)_{\infty} \sum_{k=0}^{\infty} \frac{(\alpha / q^r)^k}{(q;q)_k} = (\alpha; q)_{\infty} \sum_{k=0}^{\infty} \frac{(0;q)_k}{(q;q)_k} (\alpha / q^r)^k\\
+																	&= \frac{(\alpha; q)_{\infty} }{(\alpha q^{-r}; q)_{\infty}} = \prod_{i=1}^{r} \frac{1}{1- \alpha / q^i}
 \end{align*}
 \end{proof}
 For half-stationary initial data, we have that $$\prod_{i=1}^{k} q^{x_{n_i}(0) + n_i} = \prod_{i=1}^{k} q^{-\sum_{m=1}^{n_i} X_m} = \prod_{i=1}^{k} \prod_{m=n_{i+1} +1}^{n_i} q^{-iX_m},$$ where $X_i$'s are independent q-Geometric random variables. By taking expectation and using the independence, we have that $$\mathbb{E} [H(\vec{x}; \vec{y}(\vec{n})] =  \prod_{i=1}^{k} \prod_{m=n_{i+1} +1}^{n_i} \mathbb{E}\left[ q^{-iX_m} \right] = \prod_{i=1}^{k} \prod_{m=n_{i+1} +1}^{n_i} \prod_{j=1}^{i} \frac{a_m}{a_m - \alpha / q^j}.$$

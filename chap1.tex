@@ -5,8 +5,9 @@
 %% \files=
 %% prompt when you run the file main.tex through LaTeX.
 \chapter{Introduction}
-Some general introduction goes here. They will be added only after the thesis is finished. 
-A brief description of what each chapter will be covering will also be covered in this section. 
+In this thesis I studied a 1-dimensional interacting particle system model called q-TASEP. It's one of the most recently yet classical particle model in this field that has important application in the physical world. For example, the model can be used to study mass transport, traffic flow and queuing behaviour etc. The article is concerned with the asymptotic behavior of the particles and is going to provide an explicit formulat describing the behavior. The approach starts from the duality between the q-TASEP model and another model called q-TAZRP. 
+
+We are going to define the two model, q-TASEP and q-TAZRP in this chapter, and show some calculations of the q-TASEP from elementary approach. After this prove their duality in \textit{Chapter 2}. Then we provide an ansatz explicit formula for the expectation of q-Laplace transform of the probability function describing the position of a particular particle at any time in the future in form of the nested contour integral. In the chapter that follows we work to transform a generating function of the nested contour integral we have obtained into the form of a Fredholm determinant, using two different approaches. Lastly in \textit{Chapter 4} we perform asymptotic analysis to the Fredholm determinant and conclude that the rescaled fluctuation of the particle around the macroscopic follows a GUE Tracy-Widom distribution.
 
 \section{Introduction to q-TASEP}
 \label{sec:intro-qtasep}
@@ -52,31 +53,80 @@ The main goal for the study of q-TASEP in this thesis is to identify an exact fo
 In this section we focus on the q-TASEP with only $1$ particle denoted by $x_1$ starting at position $x_1(0) = 0$. Let $T_i$, $i = 1,2,\dots$ be independent and identically distributed exponential random variables with parameter $1$ denoting the time between the $(i-1)th$ and the $ith$ jump. For $m \in \mathbb{Z}_{\ge 0}$, define $$a_m = \mathbb{P}(x_1(t) \le m) = \mathbb{P}(\sum_{i=1}^{m+1} T_i > t)$$ such that $\mathbb{P}(x_1(t) = m) = a_m - a_{m-1}$ for $m \ge 1$ and $\mathbb{P}(x_1(t) = 0) = a_0 = e^{-t}$. Since $T_i \sim exp(1)$, $\sum_{i=1}^{m} T_i \sim Erlang(m,1)$ and therfore, by the density function of Erlang distribution, $$1 - a_m = \int_0^t \frac{s^m}{m!} e^{-s} ds.$$ 
 
 \begin{proposition}
-For q-TASEP with one particle $x_1$ with step initial condition, i.e., $x_1(0) = -1$, then $\mathbb{E}[x_1(t)+1] = t$ and $\mathbb{E}[q^{x_1(t)+1}] = e^{(q-1)t}$.
+For q-TASEP with one particle $x_1$ with jump rate parameter $a_1 = 1$ and initial profile at $x_1(0) = -1$, we have that $\mathbb{E}[x_1(t)+1] = t$ and $\mathbb{E}[q^{x_1(t)+1}] = e^{(q-1)t}$.
 \end{proposition}
 
 \begin{proof}
-From the notations above, we have that $\mathbb{P}(x_1(t) = m) = a_m - a_{m-1}$, where $a_m$ is defined by $a_m = 1 - \int_0^t \frac{s^m}{m!} e^{-s} ds$. Therefore, we have
-\begin{align}
-\mathbb{E}[x_1(t)] &=  \lim_{n \to \infty} ((1-a_0) + (1-a_1) + ... + (1-a_{n-1}) - n ( 1-a_n))\\
+From the notations above, we have that $\mathbb{P}(x_1(t) = m) = c_m - c_{m-1}$, where $c_m$ is defined by $c_m = 1 - \int_0^t \frac{s^m}{m!} e^{-s} ds$. Therefore, we have
+\begin{align*}
+\mathbb{E}[x_1(t)] &=  \lim_{n \to \infty} ((1-c_0) + (1-c_1) + ... + (1-c_{n-1}) - n ( 1-c_n))\\
   						&= \lim_{n \to \infty} (\int_{0}^{t} e^{-s}  (\sum_{i=0}^{n-1} \frac{s^i}{i!}) ds) +\lim_{n \to \infty} (n \times \int_{0}^{t} \frac{s^n}{n!} e^{-s} ds)\\
 						&=  \int_{0}^{t} e^{-s} \lim_{n \to \infty} (\sum_{i=0}^{n-1} \frac{s^i}{i!}) ds + 0\\
 						&=  \int_{0}^{t} e^{-s} e^s dt\\
 						&= t
-\end{align}
+\end{align*}
 Moreover, $\mathbb{E}[q^{x_0(t)}]$ can be computed as below: 
-\begin{align}
-\mathbb{E}[q^{x_0(t)}] &= \lim_{n \to \infty} (q^0  a_0 + \sum_{i=1}^{n} q^i (a_i - a_{i-1}) )\\
-											 &= \lim_{n \to \infty} (-(1-q) (\sum_{i=0}^{n-1} q^i (1-a_i)) - q^n (1-a_n) + 1)\\
+\begin{align*}
+\mathbb{E}[q^{x_0(t)}] &= \lim_{n \to \infty} (q^0  c_0 + \sum_{i=1}^{n} q^i (c_i - c_{i-1}) )\\
+											 &= \lim_{n \to \infty} (-(1-q) (\sum_{i=0}^{n-1} q^i (1-a_i)) - q^n (1-c_n) + 1)\\
 											 &= - (1-q) \lim_{n \to \infty} ( \int_{0}^{t} e^{-s} \sum_{i=0}^{n-1} q^i \frac{s^i}{i!} ds) - \lim_{n \to \infty} \int_0^t q^n \frac{s^n}{n!} ds + 1\\
 											 &=  - (1-q) \int_0^t e^{-s }  \lim_{n \to \infty} \sum_{i=0}^{n-1} q^i \frac{s^i}{i!} ds- \lim_{n \to \infty} \int_0^t q^n \frac{s^n}{n!} ds + 1\\
 				     					 &=  - (1-q) \int_0^t e^{-s } e^{qs}  ds -\lim_{n \to \infty}  \int_0^t q^n \frac{s^n}{n!} ds + 1\\
 				     					 &= e^{(q-1)t}.
-\end{align}
+\end{align*}
 \end{proof}
 
 \subsection{q-TASEP with $2$ particles}
-Not yet ready. 
+Elementary methods similar to the one adopted for the one-particle system were applied for the $2$ particles system, and it was realized that the computation grew so complicated that nearly no conclusions was reached. Therefore, a different approach, namely the Komogorov Equation, was used to carry out the computation. Although no final conclusion was reached either at the end, some interesting results were found. 
+
+Let us consider the two particles labeled as $x_1$ and $x_2$ starting at the initial positions that $x_1(0) = 0$ and $x_2(0) = a << 0$. Let $\mathbb{P}_{k,j}(t) = \mathbb{P}(x_1(t) = k, x_2(t) = j)$. We begin by giving the Komogorov Equation for the problem:
+$$\frac{d}{dt} \mathbb{P}_{k,j}(t) = - \mathbb{P}_{k,j}(t) - (1-q^{k-j-1})\mathbb{P}_{k,j}(t) + (1-q^{k-j})\mathbb{P}_{k,j-1}(t) + \mathbb{P}_{k-1,j}(t)$$
+with base cases  $\mathbb{P}_{k,j}(t) = 0$ if $j < a$ or $k < 0$ or $j \ge k$.\\
+We will be applying induction on $k$ and $j$ separately, starting by iterating through $k = 0, 1, 2, \dots$. The result is stated as a proposition.
+\begin{proposition}
+With the notations and setting introduced above, for $m \ge 1$
+ $$ \mathbb{P}_{m,a}(t) =\frac{1}{2 \pi i} \oint_{all poles} \frac{e^{(-2+z)t}}{(z-q^{-a-1})(z-q^{-a})...(z-q^{-a+m-1})} dz.$$
+\end{proposition}
+\begin{proof}
+We will not be showing a complete proof here. Rather, we give some calculations for some base cases to check that the proposition is correct and provide some intuitions. \\
+\textbf{Case 1}: For $k=0,j=a<0$, we have $$\frac{d}{dt} \mathbb{P}_{0,a}(t) + (2-q^{-a-1}) \mathbb{P}_{0,a}(t) = 0$$
+ Solving this equation gives $$\mathbb{P}_{0,a}(t) = c e^{-(2-q^{-a-1})t}$$
+ Notice that $\mathbb{P}_{0,a}(0) = 1$, then $c=1$. Therefore $$\mathbb{P}_{0,a}(t) = e^{-(2-q^{-a-1})t} = \frac{1}{2 \pi i} \oint_{all poles} \frac{e^{(-2+z)t}}{z-q^{-a-1}} dz$$
+ \textbf{Case 2}: For $k=1, j=a<0$, we have $$\frac{d}{dt} \mathbb{P}_{1,a}(t) + (2-q^{-a}) \mathbb{P}_{1,a}(t) = e^{-(2-q^{-a-1})t}$$
+ Therefore, $$\frac{d}{dt} [e^{(2-q^{-a})t} \mathbb{P}_{1,a}(t)] = e^{(q^{-a-1} - q^{-a})t}$$
+ Solving this equation we have $$ \mathbb{P}_{1,a}(t) = \frac{e^{-(2-q^{-a-1})t}}{q^{-a-1} - q^{-a}} + c e^{-(2-q^{-a})t}$$
+ Note that $\mathbb{P}_{1,a}(0) = 0$, we have $c = -\frac{1}{q^{-a-1} - q^{-a}}$ and therefore $$\mathbb{P}_{1,a}(t) = \frac{1}{q^{-a-1} - q^{-a}} (e^{-(2-q^{-a-1})t} - e^{-(2-q^{-a})t})$$
+ In \textbf{contour integral} form, it can also be written as $$\mathbb{P}_{1,a}(t) =\frac{1}{2 \pi i} \oint_{all poles} \frac{e^{(-2+z)t}}{(z-q^{-a-1})(z-q^{-a})} dz$$
+ \textbf{Case 3}: For $k=2, j=a<0$, we have $$\frac{d}{dt} \mathbb{P}_{2,a}(t) + (2-q^{1-a}) \mathbb{P}_{2,a}(t) = \mathbb{P}_{1,a}(t)$$
+ Solving this equation gives 
+
+ \begin{align*}
+  \mathbb{P}_{2,a}(t) &= \frac{e^{(-2+q^{-a-1})t}}{ (q^{-a-1} - q^{-a})(q^{-a-1} - q^{1-a}) } - \frac{ e^{(-2+q^{-a})t} }{ (q^{-a-1} - q^{-a}) (q^{-a} - q^{1-a}) }\\
+  & \quad + \frac{e^{(-2+q^{-a+1})t}}{ (q^{-a-1} - q^{-a+1})(q^{-a} - q^{-a+1}) } \\
+  &=\frac{1}{2 \pi i} \oint_{all poles} \frac{e^{(-2+z)t}}{(z-q^{-a-1})(z-q^{-a})(z-q^{-a+1})} dz
+ \end{align*}
+\end{proof}
+Next, we investigate the cases $k = 0, j = a, (a+1), \dots, -1$. The result is stated as the following proposition.
+\begin{proposition}
+With the notations and setting introduced above, for $k = 0, j = a+n$, $0 \le n < a$, we have \\
+\begin{align*}
+\mathbb{P}_{0,a+n} (t) &= \frac{(1-q^{-a-1})(1-q^{-a-2})...(1-q^{-a-n})}{2 \pi i} \\
+& \quad \times \oint_{all poles} \frac{e^{(-2+z)t}}{(z-q^{-a-1})(z-q^{-a-2})...(z-q^{-a-n-1})} dz.
+\end{align*}
+\end{proposition}
+
+\begin{proof}
+Again, we will only be providing some intuitions regarding the equality. \\
+For $k=0, j=a+1$, we have $$\frac{d}{dt} \mathbb{P}_{0,a+1}(t) + (2-q^{-a-2}) \mathbb{P}_{0,a+1}(t) = (1-q^{-a-1}) \mathbb{P}_{0,a}(t)$$
+ Solving this equation gives 
+
+ \begin{align*}
+ \mathbb{P}_{0,a+1} (t) &= \frac{1-q^{-a-1}}{q^{-a-1} - q^{-a-2}} (e^{-(2-q^{-a-1})t} - e^{-(2-q^{-a-2})t})\\
+ &= (1-q^{-a-1}) \frac{1}{2 \pi i} \oint_{all poles} \frac{e^{(-2+z)t}}{(z-q^{-a-1})(z-q^{-a-2})} dz
+ \end{align*}
+\end{proof}
+
+More general application of induction on both $k$ and $j$ together was carried out and didn't reach any elegant results as the ones mentioned above. Therefore, the elementary calculation for the q-TASEP model was stopped and the focus was then turned to studying the duality approach. However, such calculations demonstrate how fast the complexity grows with the number of particles considered, and they were also important as they provided essential fundamental understanding of the model. 
 
 \section{Introduction to q-TAZRP}
 Next, we introduce another Markov process called q-TAZRP, short for q-deformed totally asymmetric zero range process. q-TAZRP on an interval $\{0,1,...,N\}$ is a continuous time, discrete space Markov process $\vec{y}(t)$ with state space $$Y^N = (\mathbb{Z}_{\ge 0})^{N+1}$$ subject to the condition of $\sum_{i=0}^{N} y_i(t) = \sum_{i=0}^{N} y_i(0)$ $\forall$ $t\in\mathbb{R}_{\ge 0}$. Dynamics of a q-TAZRP is defined as the following:
