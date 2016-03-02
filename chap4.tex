@@ -87,6 +87,14 @@ given that both sides converge absolutely.
 \label{sec:integration-contours}
 In this section, we give some concrete contours of $C_{\mathbb{A}}$ and $D_{R,d}$ that will ensure the convergence of the Fredholm determinants given in last section. We choose these contours also to facilitate our analysis later. We begin by defining some of the contours and then justify the convergence. 
 
+\begin{figure}
+	\centering
+	\includegraphics[width=\textwidth]{contour-cphi}
+	\caption[The contours $\tilde{C}_{\varphi}$(left) and $C_{\varphi}$(right)]
+	{An illustration of the two contours $\tilde{C}_{\varphi}$(left) and $C_{\varphi}$(right) for the parameter $q = 0.5$ and $\theta = 1.5$}
+	\label{fig:cphi-contour}
+\end{figure}
+
 \begin{definition}
 \label{contours-definition}
 \begin{enumerate}
@@ -222,6 +230,7 @@ The last observation follows from the fact that $\frac{1}{1+q^{\frac{\chi^{1/3}}
 
 To continue our discussion, we quote the following lemma from \textit{\cite{macdonald2014} Lemma 4.1.39 }. 
 \begin{lemma}
+\label{last-lemma}
 Consider a sequence of functions $(f_n)_{n \ge 1}$ mapping $\mathbb{R} \rightarrow [0,1]$ such that for eaach $n$, $f_n(y)$ is strictly decreasing in $y$ with a limit of $1$ at $y = -\infty$ and $0$ at $y = \infty$, and for each $\delta > 0$, on $\mathbb{R} \setminus [-\delta, \delta]$, $f_n$ converges uniformly to $\mathbbm{1}(y < 0)$. Consider a sequence of random variables $X_n(t)$ such that for each $r \in \mathbb{R}$, $$\mathbb{E} [f_n(X_n - r)] \rightarrow p(r)$$ and assume that $p(r)$ is a continuous probability distribution function. Then $X_n$ converges weakly in distribution to a random variable $X$ which is distributed according to $\mathbb{P}(X < r) = p(r)$.
 \end{lemma}
 
@@ -229,3 +238,6 @@ Combining the lemma above, the observations about $f_N(y)$ and (\ref{finale-equa
 \begin{theorem}
 Let $q \in (0,1)$ and $\theta > 0$ be fixed. For any $c, x \in \mathbb{R}$, we have that $$\lim_{N \rightarrow \infty} \mathbb{P}(\xi_N < x) = F_{GUE}(x),$$ where $$\xi_N = \frac{X_N(\tau(N,c)) - p(N,c)}{\chi^{1/3} (\log q)^{-1} N^{1/3}}.$$
 \end{theorem}
+\begin{proof}
+The proof is by applying Lemma \ref{last-lemma} directly with the sequence of functions $f_N(y)$.
+\end{proof}
