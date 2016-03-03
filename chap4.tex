@@ -19,47 +19,61 @@ $$Ai(\eta) = \frac{1}{2 \pi i} \int_{C} \exp (\frac{z^3}{3} - z \eta) dz,$$ wher
 
 \section{Reformulation of Mellin-Barnes type kernel}
 \label{sec:reformulation-kernel}
-From Theorem \ref{mbmb-application-to-qtasep} and recalling the definition of the function $g(w)$, we have that 
-\begin{equation}
-\label{continuation-equation}
-\mathbb{E} \left[ \frac{1}{(\zeta q^{X_N(t)+N}; q)_{\infty}} \right] = det(I+K_{\zeta}^{q-TASEP}),
-\end{equation}
-where $det(I+K_{\zeta}^{q-TASEP})$ is the Fredholm determinant of $K_{\zeta}^{q-TASEP}: L^2(C_{\mathbb{A}}) \rightarrow L^2(\mathbb{A})$ and the operator $K_{\zeta}^{q-TASEP}$ is defined in terms of its integral kernel
-$$K_{\zeta}^{q-TASEP}(w,w') = \frac{1}{2 \pi i} \int_{C_{1,2,\dots}} \Gamma(-s) \Gamma(1+s) (-\zeta)^s \left(\frac{(q^s w; q)_{\infty}}{(w;q)_{\infty}}\right)^N \frac{e^{tw(q^s-1)}}{q^sw - w'} ds.$$
-For the right-hand side, we introduce the following change of variables $w = q^W, w' = q^{W'}, s+W = Z,$ and notice the Euler's Reflection formula that $\Gamma(-s) \Gamma(1+s) = \frac{\pi}{sin(-\pi s)}$, the kernel can be transformed to be 
-\begin{align*}
-& \quad \hat{K}_{\zeta}^{q-TASEP}(w,w') \\
-& = \frac{q^W \log q}{2 \pi i} \int_{D^W_{R,d}} \frac{\pi}{sin(\pi (W-Z))} \frac{(-\zeta)^Z}{(-\zeta)^W} \frac{\exp(tq^Z+N\log(q^Z;q)_{\infty})}{\exp(tq^W+N\log(q^W;q)_{\infty})} \frac{dZ}{q^Z - q^{W'}},
-\end{align*}
-where $D^W_{R,d}$ is the contour $D_{R,d}$ shifted by $W$.\\
+We provide the definitions of some parameters used in this section.
 
-For the left-hand side, we define some functions and parameters as below.
 \begin{definition}
-For fix $q \in (0,1)$ and $\theta > 0$, let the q-gamma function be defined as $$\Gamma_q(z) = (1-q)^{1-z} \frac{(q;q)_{\infty}}{(q^z;q)_{\infty}}$$ and the q-digamma function be defined as $$\Psi_q(z) = \frac{\partial}{\partial z} \log \Gamma_q(z) = -\log(1-q) + \log_q \sum_{n=1}^{\infty} \frac{q^{n+z}}{1 - q^{n+z}}.$$
+For fix $q \in (0,1)$ and $\theta > 0$, let the q-gamma function be defined as $$\Gamma_q(z) = (1-q)^{1-z} \frac{(q;q)_{\infty}}{(q^z;q)_{\infty}}$$ and the q-digamma function be defined as $$\Psi_q(z) = \frac{d}{d z} \log \Gamma_q(z) = -\log(1-q) + \log_q \sum_{n=1}^{\infty} \frac{q^{n+z}}{1 - q^{n+z}}.$$
 Furthermore, we introduce the following parameters
-\begin{equation*}
-\kappa = \kappa(q,\theta) = \frac{\Psi'_q(\theta)}{(\log q)^2 q^{\theta}} = \sum_{n=0}^{\infty} \frac{q^n}{(1-q^{n+\theta})^2}
-\end{equation*}
-\begin{equation*}
-f = f(q,\theta) = \frac{\Psi'_q(\theta)}{(\log q)^2} - \frac{\Psi'_q(\theta)}{\log q} - \frac{\log(1-q)}{\log q}
-\end{equation*}
-\begin{equation*}
-\chi = \chi(q,\theta) = \frac{\Psi'_q(\theta) \log q - \Psi''_q(\theta)}{2}
-\end{equation*}
+\begin{equation}
+\label{def:kappa}
+\kappa = \kappa(q,\theta) = \frac{\Psi'_q(\theta)}{(\log q)^2 q^{\theta}} = \sum_{n=0}^{\infty} \frac{q^n}{(1-q^{n+\theta})^2};
+\end{equation}
+\begin{equation}
+\label{def:f}
+f = f(q,\theta) = \frac{\Psi'_q(\theta)}{(\log q)^2} - \frac{\Psi'_q(\theta)}{\log q} - \frac{\log(1-q)}{\log q};
+\end{equation}
+\begin{equation}
+\label{def:chi}
+\chi = \chi(q,\theta) = \frac{\Psi'_q(\theta) \log q - \Psi''_q(\theta)}{2}.
+\end{equation}
 \end{definition}
 
 \begin{definition}
 For any $c,x \in \mathbb{R}$, we define the following parameters
-\begin{equation*}
+\begin{equation}
+\label{def:tau}
 \tau(N,c) = \kappa N + cq^{-\theta}N^{2/3}
-\end{equation*}
-\begin{equation*}
+\end{equation}
+\begin{equation}
+\label{def:macroscopic}
 p(N,c) = (f-1)N + cN^{2/3} - c^2 \frac{(\log q)^3}{4 \chi} N^{1/3}
-\end{equation*}
-Lastly, we define the rescaled fluctuations of the $Nth$ particle at time $\tau(N,c)$, $\xi_N(c)$, to be $$\xi_N(c) = \frac{X_N(\tau(N,c)) - p(N,c)}{\chi^{1/3} (\log q)^{-1} N^{1/3}}.$$
+\end{equation}
+The rescaled fluctuations, $\xi_N(c)$, of the $N^{th}$ particle at time $\tau(N,c)$ around $p(N,c)$ is defined to be 
+\begin{equation}
+\label{def:fluctuation}
+\xi_N(c) = \frac{X_N(\tau(N,c)) - p(N,c)}{\chi^{1/3} (\log q)^{-1} N^{1/3}}. \\ \\
+\end{equation}
 \end{definition}
+From \thmref{mbmb-application-to-qtasep}, we have that
+\begin{equation}
+\label{continuation-equation}
+\mathbb{E} \left[ \frac{1}{(\zeta q^{X_N(t)+N}; q)_{\infty}} \right] = det(I+K_{\zeta}^{q-TASEP}),
+\end{equation}
+where $det(I+K_{\zeta}^{q-TASEP})$ is the Fredholm determinant of $K_{\zeta}^{q-TASEP}: L^2(C_{\mathbb{A}}) \rightarrow L^2(C_{\mathbb{A}})$ and the operator $K_{\zeta}^{q-TASEP}$ is defined in terms of its integral kernel
+$$K_{\zeta}^{q-TASEP}(w,w') = \frac{1}{2 \pi i} \int_{C_{1,2,\dots}} \Gamma(-s) \Gamma(1+s) (-\zeta)^s \left(\frac{(q^s w; q)_{\infty}}{(w;q)_{\infty}}\right)^N \frac{e^{tw(q^s-1)}}{q^sw - w'} ds.$$
+The main goal is this section is to perform some transformation for both sides of \eqref{continuation-equation}. For the right-hand side, we introduce the following change of variables 
+\begin{equation}
+\label{change-of-variables}
+w = q^W, w' = q^{W'}, s+W = Z.
+\end{equation}
+Notice the Euler's Reflection formula that $\Gamma(-s) \Gamma(1+s) = \frac{\pi}{sin(-\pi s)}$, the kernel can be transformed to be 
+\begin{align*}
+& \quad \hat{K}_{\zeta}^{q-TASEP}(w,w') \\
+& = \frac{q^W \log q}{2 \pi i} \int_{D^W_{R,d}} \frac{\pi}{sin(\pi (W-Z))} \frac{(-\zeta)^Z}{(-\zeta)^W} \frac{\exp(tq^Z+N\log(q^Z;q)_{\infty})}{\exp(tq^W+N\log(q^W;q)_{\infty})} \frac{dZ}{q^Z - q^{W'}}, \numberthis \label{eqn:rhs-mb}
+\end{align*}
+where $D^W_{R,d}$ is the contour $D_{R,d}$ shifted by $W$.\\
 
-With definitions of the parameters given above, we choose the $\zeta$ in $\mathbb{E} \left[ \frac{1}{(\zeta q^{X_N(t)+N}; q)_{\infty}} \right]$ to be 
+For the left-hand side, we first choose the parameter $\zeta$ in $\mathbb{E} \left[ \frac{1}{(\zeta q^{X_N(t)+N}; q)_{\infty}} \right]$ to be 
 \begin{equation}
 \label{zeta-choice}
 \zeta = -q^{-fN - cN^{2/3} + \beta_x \frac{N^{1/3}}{\log q}} \in \mathbb{C} \setminus \mathbb{R}_+,
@@ -67,31 +81,39 @@ With definitions of the parameters given above, we choose the $\zeta$ in $\mathb
 \begin{equation*}
 \beta_x = c^2 \frac{(\log q)^4}{4 \chi} - \chi^{1/3} x.
 \end{equation*}
-Then we can transform the left-hand side via the following equality
+Notice that
 \begin{align*}
-\mathbb{E} \left[ \frac{1}{(\zeta q^{X_N(t)+N}; q)_{\infty}} \right] = \mathbb{E} \left[ \frac{1}{( -q^{ \frac{\chi^{1/3}}{\log q} N^{1/3} (\xi_N - x) }; q )_{\infty}} \right]
+-q^{ \frac{\chi^{1/3}}{\log q} N^{1/3} (\xi_N - x) } &= -q^{ \frac{\chi^{1/3}}{\log q} N^{1/3} (\frac{X_N(\tau(N,c)) - p(N,c)}{\chi^{1/3} (\log q)^{-1} N^{1/3}} - x) }\\
+&= -q^{ X_N(\tau) - p(N,c) - \frac{\chi^{1/3}}{\log q} N^{1/3} x }\\
+&= -q^{ X_N(\tau) - (f-1)N - cN^{2/3} + c^2 \frac{(\log q)^3}{4 \chi} N^{1/3}  - \frac{\chi^{1/3}}{\log q} N^{1/3} x} \\
+&= \zeta q^{X_N(\tau) + N}.
 \end{align*}
-That is, we have arrived from the Mellin-Barnes type Fredholm determinants to the following equality that 
+Therefore, we have the following equality that
+\begin{equation}
+\label{eqn:lhs-mb}
+\mathbb{E} \left[ \frac{1}{(\zeta q^{X_N(\tau)+N}; q)_{\infty}} \right] = \mathbb{E} \left[ \frac{1}{( -q^{ \frac{\chi^{1/3}}{\log q} N^{1/3} (\xi_N - x) }; q )_{\infty}} \right]
+\end{equation}
+Combining \eqref{continuation-equation}, \eqref{eqn:rhs-mb} and \eqref{eqn:lhs-mb}, we have
 \begin{equation}
 \label{new-equality-mb-type}
-\mathbb{E} \left[ \frac{1}{( -q^{ \frac{\chi^{1/3}}{\log q} N^{1/3} (\xi_N - x) }; q )_{\infty}} \right] = det(I+\hat{K}_{\zeta}^{q-TASEP}),
+\mathbb{E} \left[ \frac{1}{( -q^{ \frac{\chi^{1/3}}{\log q} N^{1/3} (\xi_N - x) }; q )_{\infty}} \right] = det(I+\hat{K}_{\zeta}^{q-TASEP})_{L^2(\hat{C}_{\mathbb{A}})},
 \end{equation}
 where 
 \begin{align*}
 & \quad \hat{K}_{\zeta}^{q-TASEP}(W,W') \\
-& = \frac{q^W \log q}{2 \pi i} \int_{D^W_{R,d}} \frac{\pi}{sin(\pi (W-Z))} \frac{(-\zeta)^Z}{(-\zeta)^W} \frac{\exp(tq^Z+N\log(q^Z;q)_{\infty})}{\exp(tq^W+N\log(q^W;q)_{\infty})} \frac{dZ}{q^Z - q^{W'}},
+& = \frac{q^W \log q}{2 \pi i} \int_{D^W_{R,d}} \frac{\pi}{sin(\pi (W-Z))} \frac{(-\zeta)^Z}{(-\zeta)^W} \frac{\exp(tq^Z+N\log(q^Z;q)_{\infty})}{\exp(tq^W+N\log(q^W;q)_{\infty})} \frac{dZ}{q^Z - q^{W'}}, \numberthis \label{transformed-kernel}
 \end{align*}
-given that both sides converge absolutely.
+where $\zeta$ is chosen as \eqref{zeta-choice}, given that both sides converge absolutely.
 
 \section{Integration Contours}
 \label{sec:integration-contours}
-In this section, we give some concrete contours of $C_{\mathbb{A}}$ and $D_{R,d}$ that will ensure the convergence of the Fredholm determinants given in last section. We choose these contours also to facilitate our analysis later. We begin by defining some of the contours and then justify the convergence. 
+In this section, we give some concrete contours of $C_{\mathbb{A}}$ and $D_{R,d}$ that will ensure the convergence of the Fredholm determinants given in \eqref{continuation-equation}. We choose these contours also to facilitate our analysis later. We begin by defining some of the contours and then justify the convergence. 
 
 \begin{figure}
 	\centering
 	\includegraphics[width=\textwidth]{contour-cphi}
-	\caption[The contours $\tilde{C}_{\varphi}$(left) and $C_{\varphi}$(right)]
-	{An illustration of the two contours $\tilde{C}_{\varphi}$(left) and $C_{\varphi}$(right) for the parameter $q = 0.5$ and $\theta = 1.5$}
+	\caption[The contours $\tilde{C}_{\varphi}$(left), $C_{\varphi}$(right) and $\tilde{D}_{w}$]
+	{An illustration of the contours $\tilde{C}_{\varphi}$(left), $C_{\varphi}$(middle) for the parameter $q = 0.5$ and $\theta = 1.5$ and $\tilde{D}_{R,d}$(right) for the parameter $R = 5, d = 0.5$}
 	\label{fig:cphi-contour}
 \end{figure}
 
@@ -107,6 +129,8 @@ In this section, we give some concrete contours of $C_{\mathbb{A}}$ and $D_{R,d}
 \end{enumerate}
 \item[(4)] Lastly, for every $W \in C_{\varphi}$, we define the contour $D_W$ to be such that it is the contour $\tilde{D}_{q^W}$ shifted by $W$. If we let $R,d > 0$ be chosen for the contour $\tilde{D}_{q^W}$ such that the two conditions above are satisfied, then $D_W$ is defined by the straight lines going from $R+Re(W)-i \infty$ to $R+Re(W) + i(Im(W) - d)$, to $1/2+Re(W) + i(Im(W) - d)$, to $1/2 + Re(W) + i(Im(W) + d)$, to $R+Re(W) + i(Im(W) + d)$ and to $R+Re(W) + i \infty$.
 \end{enumerate}
+
+Please see \textit{Figure \ref{fig:cphi-contour}} for an illustration of the contours defined.
 \end{definition}
 
 \begin{proposition}
@@ -121,7 +145,7 @@ This follows from \textit{Condition (b)} in \textit{Definition \ref{contours-def
 
 We claim that with the choice of $C_{\mathbb{A}}$ to be $\tilde{C}_{\varphi}$ for any $\varphi \in (0, \pi / 4]$, and the choice of $C_{1, 2, \dots}$ to be $\tilde{D}_{w}$ for $w \in \tilde{C}_{\varphi}$, we have the convergence for the right-hand side of \textit{(\ref{continuation-equation})} as desired. To justify this, we only need to justify the three conditions in \textit{Theorem \ref{mbmb-application-to-qtasep}}, labeled as (1), (2), (3) respectively. For further details of the justification, please refer to \textit{\cite{asymptotics2013} Theorem (4.2)}.
 
-By the change of variables that we have discussed in \textit{Section \ref{sec:reformulation-kernel}}, we have that the contour for $W$ can then be chosen as $C_{\varphi}$ and that for the integral kernel $\hat{K}_{\zeta}^{q-TASEP}(W,W')$ can be chosen as $D_W$. Further more, by re-writing the kernel $\hat{K}_{\zeta}^{q-TASEP}(W,W')$ and substituting in our choice of $\zeta$ as in \textit{(\ref{zeta-choice})}, we have the following result that for $x \in \mathbb{R}$, 
+Recall the change of variables \eqref{change-of-variables}, we have that the contour $\hat{C}_{\mathbb{A}}$ in \eqref{new-equality-mb-type} can then be chosen as $C_{\varphi}$ and that the contour $D_{R,d}^W$ for the integral kernel $\hat{K}_{\zeta}^{q-TASEP}(W,W')$ can be chosen as $D_W$. By further re-writing the kernel in the following form, we have the following result that for $x \in \mathbb{R}$, 
 \begin{equation}
 \label{new-equality-mb-type-2}
 \mathbb{E} \left[ \frac{1}{( -q^{ \frac{\chi^{1/3}}{\log q} N^{1/3} (\xi_N - x) }; q )_{\infty}} \right] = det(I+K_x)_{L^2(C_{\varphi})},
@@ -142,25 +166,28 @@ f_1(Z) = -c (\log q) Z + cq^{Z - \theta}
 f_2(Z) = \beta_x Z.
 \end{equation*}
 
-\section{Asymptotics of the Fredholm determinants}
-In this section we focus on the asymptotic behaviour of the Fredholm determinant $det(I+K_x)_{L^2(C_{\varphi})}$, where $K_x: L^2(C_{\varphi}) \rightarrow L^2(C_{\varphi})$ is defined by the integration kernel as given in $(\ref{new-equality-mb-type-2})$ that
-\begin{align*}
-& \quad K_x(W,W') \\
-& = \frac{q^W \log q}{2 \pi i} \int_{D_W} \frac{dZ}{q^Z - q^{W'}} \frac{\pi}{sin(\pi (W-Z))} \frac{\exp(Nf_0(Z) + N^{2/3} f_1(Z) + N^{1/3} f_2(Z))}{\exp(Nf_0(W) + N^{2/3} f_1(W) + N^{1/3} f_2(W))}.
-\end{align*}
+\begin{figure}
+	\centering
+	\includegraphics[width=\textwidth]{contour-cphi}
+	\caption[Contour replacement of $D_W$]
+	{An illustration of transformation of the contour $D_W$ mentioned in \textit{Remark \ref{circle-deformation}}}
+	\label{fig:contour-dw-circle}
+\end{figure}
 
 \begin{remark}
 \label{circle-deformation}
-It's remarked that the contour $D_W$ in the definition of $K_x$ can be replaced by the straight line from $R + Re(W) - i\infty$ to $R + Re(W) + i \infty$, where $R$ is the same as in the definition of $D_W$ in Section \ref{sec:integration-contours}, and some small circles surrounding the poles coming from the term $\frac{1}{sin(\pi (W - Z))}$, which are $W+1, W+2, \dots, W+k_W$ and $k_W$ denotes the total number of residues. The new contour will also be referred to as $D_W$.
+It's remarked that the contour $D_W$ in the definition of $K_x$ can be further replaced by the straight line from $R + Re(W) - i\infty$ to $R + Re(W) + i \infty$, where $R$ is the same as in the definition of $D_W$ and $d$ in the definition of $D_W$ is chose such that $D_W$ and $C_{\varphi}$ do no intersect, and some small circles surrounding the poles coming from the term $\frac{1}{sin(\pi (W - Z))}$, which are $W+1, W+2, \dots, W+k_W$ and $k_W$ denotes the total number of residues. The new contour will also be referred to as $D_W$. Please see \textit{Figure \ref{fig:contour-dw-circle}} for an illustration. 
 \end{remark}
 
-The main result is given in the following theorem.
+\section{Asymptotics of the Fredholm determinant}
+
+In this section, we focus on the asymptotic behaviour of the Fredholm determinant in \eqref{new-equality-mb-type-2}. The main result is given in the following theorem.
 \begin{theorem}
 \label{asymptotic-theorem}
 Let $x \in \mathbb{R}$ be fixed and choose $\zeta$ as in \textit{(\ref{zeta-choice})}. Then $$det(I+K_x)_{L^2(C_{\varphi})} \rightarrow F_{GUE}(x) \text{ as } N \rightarrow \infty,$$ where $F_{GUE}$ is the GUE Tracy-Widom distribution function. 
 \end{theorem}
 
-The intuition for the proof is that for $N$ large we show that the Fredholm determinants $det(I+K_x)_{L^2(C_{\varphi})}$ and $det(I+K_{Ai})_{L^2(x,\infty)}$ are arbitrarily close. To demonstrate how to achieve this, we quote the following series of propositions from \cite{asymptotics2013} without proof and briefly explain the ideas behind. For more precise treatment, pleass refer to the original paper \cite{asymptotics2013} or \cite{phase2015}.
+The intuition for the proof is that for $N$ large we show that the Fredholm determinants $det(I+K_x)_{L^2(C_{\varphi})}$ and $det(I-K_{Ai})_{L^2(x,\infty)}$ are arbitrarily close. To show how this can be achieved, we quote the following series of propositions from \cite{asymptotics2013} without proof and briefly explain the ideas behind. For more precise treatment, pleass refer to the original paper \cite{asymptotics2013} or \cite{phase2015}.
 
 \begin{proposition} [\textit{\cite{asymptotics2013} Proposition (6.3)}]
 \label{restriction-contour}
@@ -172,12 +199,12 @@ For any fixed $\delta > 0$ and $\epsilon > 0$ small enough, there is an $N_0$ su
 and $C_{\varphi}^{\delta} = C_{\varphi} \cap \{w: |w - \theta| \le \epsilon \}$, $D_W^{\delta} = D_W \cap \{z: |z - \theta| \le \delta\}$.
 \end{proposition}
 
-This proposition essentially says that the asymptotically contribution to the Fredholm determinant outside any neighbourhood of $\theta$ can be ignored. Therefore, we only need to deal with the behavior of the Fredholm determinant around a small neighborhood of $\theta$. 
+This proposition essentially says that the asymptotically contribution to the Fredholm determinant outside any neighbourhood of $\theta$ can be ignored. Therefore, we only need to deal with the behavior of the Fredholm determinant around a small neighborhood of $\theta$. With this, the contour $C_{\varphi}$ and $D_{W}$ can be localized to a small neighborhood of $\theta$ (that is, $C_{\varphi}^{\delta}$ and $D_{W}^{\delta}$ respectively) without affecting the asymptotic behaviour of the determinant.
 
-We can perform the following deformation of the contour $C_{\varphi}^{\delta}$ and $D_W^{\delta}$. Using Cauchy theorem, we are able to deform the contour $C_{\varphi}^{\delta}$ to $\{\theta + |y|e^{i(\pi - \tilde{\varphi}) sgn(y)}: y \in [-\delta, \delta]\}$ with some $\tilde{\varphi} \in (0, \pi / 2)$ chosen such that the two contours have the same endpoint. Similarly, we deform the straignt line part in the contour $D_W^{\delta}$ to be $D_{\varphi}^{\delta} = \{\theta + |t| e^{i \varphi sgn(t)}: t \in [-\delta, \delta] \}$ if the $R$ in the definition of $D_W$ is chosen such that the two endpoints of the two contours coincide. 
+We then perform the following deformation of the contour $C_{\varphi}^{\delta}$ and $D_W^{\delta}$. Using Cauchy theorem, we are able to deform the contour $C_{\varphi}^{\delta}$ to $\{\theta + |y|e^{i(\pi - \tilde{\varphi}) sgn(y)}: y \in [-\delta, \delta]\}$ with some $\tilde{\varphi} \in (0, \pi / 2)$ chosen such that the two contours have the same endpoint. Similarly, we deform the straignt line $R+Re(W) + i \mathbb{R}$ in the contour $D_W^{\delta}$ to be $D_{\varphi}^{\delta} = \{\theta + |t| e^{i \varphi sgn(t)}: t \in [-\delta, \delta] \}$ if the $R$ in the definition of $D_W$ is chosen such that the two endpoints of the two contours coincide. 
 
 After the above deformation, we introduce the following change of variables to $W, W'$ and $Z$: $$W = \theta + wN^{-1/3}, W' = \theta + w' N^{-1/3}, Z = \theta + zN^{-1/3}.$$ From the relationship, we get the corresponding contours for $w, w'$ and $z$ to be $C_{\varphi,\delta N^{1/3}}$ and $D_{\phi, \delta N^{1/3}}$, where
-$$C_{\varphi,L} = \{|y|e^{i(\pi - \varphi) sgn(y)}: y \in [-L, L]\}, D_{\varphi, L} = \{|t| e^{i \varphi sgn(t)}: t \in [-L, L]\}$$ for $L \in (0, \infty].$ To be explicit, we have the following: $$det(I+K_{x, \delta})_{L^2(C_{\varphi}^{\delta})} = det(I +K_{x, \delta}^N )_{L^2(C_{\varphi, \delta N^{1/3}})},$$ where 
+$$C_{\varphi,L} = \{|y|e^{i(\pi - \tilde{\varphi}) sgn(y)}: y \in [-L, L]\}, D_{\varphi, L} = \{|t| e^{i \varphi sgn(t)}: t \in [-L, L]\}$$ for $L \in (0, \infty].$ To be explicit, we have the following: $$det(I+K_{x, \delta})_{L^2(C_{\varphi}^{\delta})} = det(I +K_{x, \delta}^N )_{L^2(C_{\varphi, \delta N^{1/3}})},$$ where 
 \begin{equation}
 \label{rescaled-kernel}
 K_{x, \delta}^N(w,w') = N^{-1/3} K_{x, \delta N^{1/3}} (\theta + wN^{-1/3}, \theta + w'N^{-1/3}).
