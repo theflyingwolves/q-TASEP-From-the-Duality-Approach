@@ -10,25 +10,25 @@ Let K be an integral operator acting on $f(\cdot) \in L^2(X,\mu)$ by $$(Kf)(x) =
 If the above series is absolutely convergent, then we call this a numerical Fredholm determinant expansion.
 \end{definition}
 
-In order to transform a nested contour integrals of similar forms to the ones given in \thmref{thm:nested-contour-integration}, the idea is to deform the nested contours so that they coincide. However, there are two types of deformation, namely the Mellin-Barnes type and the Cauchy type. The philosophy for the Mellin-Barnes type approach is to deform the contours in such a way that all of the poles corresponding to $z_A = qz_B$ for $A < B$ are encountered. This is, in some sense, shrinking the contours so that they coincide. The Cauchy type approach does the opporsite that it enlarges the contours so that they coincide. Poles at $z_k = 0$ are encountered in this process.
+In order to transform a nested contour integrals of similar forms to the ones given in \thmref{thm:nested-contour-integration}, the idea is to deform the nested contours so that they coincide. However, there are two types of deformation, namely the Mellin-Barnes type and the Cauchy type. The strategy for the Mellin-Barnes type approach is to deform the contours in such a way that all of the poles corresponding to $z_A = qz_B$ for $A < B$ that were previously outside the contour for $z_A$ are now enclosed in the contour for $z_A$. This is, in some sense, shrinking the contours. The Cauchy type approach does the opporsite that it enlarges the contours so that they coincide. Poles at $z_k = 0, k = 1,2,\dots$ are added to each of the contours in this process.
 
 In the following sections, we introduce the two approaches in details and see how each of them can be applied to q-TASEP. But before that, we first identify the exact form of nested contours to be manipulated by Definition 3.1 in \cite{macdonald2014}.
 
 \begin{definition}
 \label{mu_k_def}
-For a meromorphic function $f(z)$ and $k \ge 1$ set $\mathbb{A}$ to be a fixed set of poles of $f$ (not including 0) and assume that $q^m \mathbb{A}$ is disjoint from $\mathbb{A}$ for all $m \ge 1$. Define
+For a meromorphic function $f(z)$ and $k \ge 1$ let $\mathbb{A}$ to be a fixed set of poles of $f$ (not including 0) and assume that $q^m \mathbb{A}$ is disjoint from $\mathbb{A}$ for all $m \ge 1$. Define
 $$\mu_k = \frac{(-1)^k q^{k(k-1)/2}}{(2 \pi i)^k} \int \dots \int \prod_{1 \le A < B \le k} \frac{z_A - z_B} {z_A - qz_B} \prod_{i=1}^k f(z_i) \frac{dz_i}{z_i},$$ where the integration contour for $z_A$ contains $\{qz_B\}_{B > A}$, the fixed set of poles $\mathbb{A}$ of $f(z)$ but not $0$ or any other poles. 
 \end{definition}
 
-Notice that when we take $f(z) = \left( \prod_{m=1}^{n} \frac{a_m}{a_m - z} \right) e^{(q-1)tz}$, $u(t;\vec{n})$ for step initial data in \thmref{thm:nested-contour-integration} is recovered.
+Notice that when we take $f(z) = \left( \prod_{m=1}^{n} \frac{a_m}{a_m - z} \right) e^{(q-1)tz}$, then the ansatz solution of the free evoluation equation with step initial data in \thmref{thm:nested-contour-integration} is recovered: $$u(t;\vec{n}) = \mu_k.$$
 
 \section{Mellin-Barnes type determinants}
 
 \subsection{Mellin-Barnes type transformation}
 \label{m-b-type-transformation}
-First, we introduce some notations used. For $\lambda = (\lambda_1 \ge \lambda_2 \ge \dots \ge 0)$, we write $\lambda \vdash k$ if $\sum_i \lambda_i = k$ and $\lambda = 1^{m_1} 2^{m_2} \dots$ if $i$ appears $m_i$ times in $\lambda$. Let $l(\lambda) = \sum_i m_i$ denote the number of non-zero elements of $\lambda$.\\
+First, we introduce some notations to be used. For $\lambda = (\lambda_1 \ge \lambda_2 \ge \dots \ge 0)$, we write $\lambda \vdash k$ if $\sum_i \lambda_i = k$ and $\lambda = 1^{m_1} 2^{m_2} \dots$ if $i$ appears $m_i$ times in $\lambda$. Let $l(\lambda) = \sum_i m_i$ denote the number of non-zero elements of $\lambda$.\\
 
-In Mellin-Barnes type determinants, the nested contours are deformed to coincide so that the only poles encountered are at $z_A = qz_B$ for $A < B$. With this philosophy, we transform the $\mu_k$ as defined in Definition \ref{mu_k_def} into the following form with the contours shrinked to coincide. The result is given in the following proposition.
+Recall that in Mellin-Barnes type determinants, the nested contours are deformed to coincide so that the contour for $z_A$ now encircles poles at $z_A = qz_B$ for $A < B$. By this strategy, we transform the $\mu_k$ as defined in Definition \ref{mu_k_def} into the following form with the contours shrinked to coincide. The result is given in the following proposition.
 \begin{proposition}
 \label{mellin-barnes-transform}
 Define
@@ -41,25 +41,47 @@ $$\gamma_k = \mu_k$$
 \end{proposition}
 
 \begin{remark}
-Note that in $\gamma_k$ the contours have been deformed to coincide with each other containing the same fixed set of singularities. 
+Note that in the definition of $\gamma_k$ the contours have been deformed to coincide with each other containing the same fixed set of singularities. 
 \end{remark}
 
 Before moving on to the proof, we discuss a transformation of the RHS of \eqref{mellin-barnes-transform}. \\
-In $\gamma_k$, in order to evaluate the integral, for each $\lambda \vdash k$, we have to sum over all possible combination of $l(\lambda)$ poles chosen from the fixed set $\mathbb{A}$ of poles of $f(z)$. Because of the determinant, zero contribution would occur if identical poles were chosen for different variable $w_i \neq w_j$ since it would result in two identical columns in the determinant. Therefore, when considering a set of $l(\lambda)$ poles, we will make sure that the poles chosen are mutually distinct.
+In $\gamma_k$, for each $\lambda \vdash k$ fixed, we have the following set of variables $\{w_1, w_2, \dots, w_{l(\lambda)}\}$. In order to evaluate the integral, we need to sum up all combinations of possible poles of each for the $w_i$'s. From definition of the contour $C_{\mathbb{A}}$, we know that the contours for all of the $w_i$'s contain the same fixed set of poles $\mathbb{A}$ and no other poles. Therefore, we need to choose from the set $\mathbb{A}$ all possible combinations of $l(\lambda)$ elements and sum up the corresponding residues. 
 
-Moreover, for a particular $\lambda$ with some $\lambda_i = \lambda_j$ for $i \neq j$, interchanging $\lambda_i$ and $\lambda_j$ will not affect the evaluation. This allows us to cancel away the prefactor of $\frac{1}{m_1! m_2! \dots}$. Hence, we can replace the summation over $\lambda$ in \eqref{mellin-barnes-transform} by a summation over disjoint subsets of $\mathit{J}$ of size $m_1$, $m_2$, etc, where $m_1 + 2m_2 + \dots = k$. Denote these subsets by $S_1, S_2, \dots$ respectively and write $S = (S_1, S_2, \dots ) = (b_1, \dots, b_{m_1}, b_{m_1+1}, \dots, b_{m_1 + m_2}, \dots)$, where $b_i \in S_1$ for $1 \le i \le m_1$, $b_i \in S_2$ for $m_1 < i \le m_2$ and so on. Denote the set of all such collections of subsets $S's$ to be $\mathcal{S}$. Then by evaluating the corresponding residues \eqref{mellin-barnes-transform} can be transformed to
+Notice that for a particular $\lambda$ with some $\lambda_i = \lambda_j$, interchanging the poles for $w_i$ and $w_j$ will result in identical residue. Since we know from the definition of $m_i$ that there are $m_i$ of $\lambda_i$ for each $i$, we can cancel out the prefactor of $\frac{1}{m_1! m_2! \dots}$ and replace the summation over all possible subsets of $\mathbb{A}$ of size $l(\lambda)$ by the summation over the collection of subsets of $\mathbb{A}$ of size $m_1, m_2, \dots$ respectively, where $\sum m_i = l(\lambda) \text{ and } \sum im_i = k$. Denote these subsets by $S_{\lambda,1}, S_{\lambda,2}, \dots$, and therefore we have $|S_{\lambda,1}| = m_1$, $|S_{\lambda,1}| = m_2$, etc. 
+
+Also, because of the determinant, zero contribution would occur if identical poles were chosen for different variable $w_i \neq w_j$ since it would result in two identical columns in the determinant. Therefore, we only need to consider the case that each pair of the $S_i$'s does not have any elements in common. 
+
+By the above strategy, we can replace the summation over $\lambda$ in \eqref{mellin-barnes-transform} by a summation over disjoint subsets of $\mathbb{A}$ of size $m_1$, $m_2$, etc, where we only require that $m_1 + 2m_2 + \dots = k$. (That $\sum m_i = l(\lambda)$ is removed because we are now summing over all $\lambda$.) Similarly, denote these subsets by $S_1, S_2, \dots$ respectively and write 
+$$S = (\underbrace{b_1, \dots, b_{m_1}}_{S_1}, \underbrace{b_{m_1+1}, \dots, b_{m_1 + m_2}}_{S_2},  b_{m_1 + m_2+1}, \dots),$$ 
+where $b_i \in S_1$ for $1 \le i \le m_1$, $b_i \in S_2$ for $m_1 < i \le m_2$ and so on. Denote the set of all such collections of subsets $S$ to be $\mathcal{S}$. Then by evaluating the corresponding residues \eqref{mellin-barnes-transform} can be transformed to
 \begin{equation}
 \gamma_k = \sum_{S \in \mathcal{S}} k_q! (1-q)^k \prod_{j=1}^{m_1+m_2+\dots} Res_{w=b_j} f(w) f(qb_j) \dots f(q^{\lambda(b_j)} b_j) det\left[ \frac{1}{b_iq^{\lambda(b_i)} - b_j} \right]_{i,j=1}^{m_1+m_2+\dots}
 \end{equation}
 
-To illustrate what has been discussed above, we take $k = 4$ for an example. In this case, all possible $\lambda 's$ are $(4,0), (3,1), (2,2), (2,1,1), (1,1,1,1)$. Take $\lambda = (2,1,1')$ (In $1'$ the superscript is to differentiate it from the previous $1$) and we get $m_1 = 2$, $m_2 = 1$, $m_i = 0$ for $i \ge 3$ and $l(\lambda) = 3$. Therefore, $|S_1| = m_1 = 2$ and $|S_2| = m_2 = 1$. One possible collection of such $S_i's$ is $S_1 = \{1,1'\}$ and $S_2 = \{2\}$ and hence $S = (\{1,1'\},  \{2\})$. Therefore, for this particular $k = 3$ and $\lambda$, all possible collections of such $S's$ are 
-\begin{align}
-\mathcal{S}_{\lambda} = \{ &(\{1,1'\},\{2\}), (\{1,2\},\{1'\}), \\ 
-													 &(\{1',1\},\{2\}), (\{1', 2\},\{1\}),\\
-													 &(\{2,1\},\{1'\}), (\{2,1'\},\{1\})\}
-\end{align}
-Notice that the sets $S's$ are ordered sets since they corresponds to poles of different $w_j's$. Also, notice that interchanging $1$ and $1'$ results in equal contributions. Therefore, the prefactor $\frac{1}{m_1! m_2! \dots} = \frac{1}{2}$ is needed to account for this effect.
+To illustrate what has been discussed above, we take $\mathbb{A} = \{a_1, a_2, a_3\}$ and $k = 3$ for an example. In this case, all possible $\lambda 's$ are $(3), (2,1), (1,1,1)$. Prior to the transformation, the summation over $\lambda$, if we take into account the effect that assigning equal poles to two different variables will result in zero contribution, would have been the following:
+\begin{itemize}
+\item[(1)] For $\lambda = (3)$, there are only one variable $w_1$ and we have three poles for it, namely, $$(w_1) = (a_1),(a_2), (a_3);$$
+\item[(2)] For $\lambda = (2,1)$, there are two variables $w_1$ and $w_2$. We have the following all possible assignments of poles:
+\begin{align*}
+(w_1, w_2) &= (a_1, a_2), (a_1, a_3), (a_2, a_1), (a_2, a_3), (a_3, a_1), (a_3, a_2);
+\end{align*}
+\item[(3)] For $\lambda = (1,1,1)$, there are three variables $w_1, w_2, w_3$. We have the following all possible assignments of poles:
+\begin{align*}
+(w_1, w_2, w_3) &= (a_1, a_2, a_3), (a_1, a_3, a_2), (a_2, a_1, a_3), (a_2, a_3, a_1), (a_3, a_1, a_2), (a_3, a_2, a_1).
+\end{align*}
+\end{itemize}
+However, notice that all the assignments in (3) actually results in the same residue because of the determinant, we can combine the case of (3) to be $3! = 6$ times the residue at $(w_1, w_2, w_3) = (a_1, a_2, a_3)$. The factor $6$ cancels out the prefactor of $\frac{1}{3!0!\dots} = \frac{1}{6}$.
 
+Also, in this case, the set $\mathcal{S}$ is
+\begin{align*}
+\mathcal{S} = \{&\underbrace{\{a_1\}, \{a_2\}, \{a_3\}}_{m_3 = 1, m_i = 0 \text{ for } i \neq 3}, \\
+						      &\underbrace{\{a_1, a_2\}, \{a_1, a_3\}, \{a_2, a_1\},  \{a_2, a_3\},  \{a_3, a_1\},  \{a_3, a_2\}}_{m_1 = 1, m_2 = 1, m_i = 0 \text{ for } i \neq 1,2}, \\
+						      &\underbrace{\{a_1, a_2, a_3\}}_{m_1 = 3, m_i = 0 \text{ for } i \neq 1}
+						  \}.
+\end{align*}
+We therefore have the identity for the two types of summation.
+
+With this transformation, we are now ready to present the proof of the proposition. 
 \begin{proof}[Proof of \propref{mellin-barnes-transform}]
 The proof is by induction on $k$. For $k=1$, by definition, 
 $$\mu_1 = - \frac{1}{2 \pi i} \int f(z_1) \frac{dz_1}{z_1}.$$ Moreover, the only $\lambda$ is $\lambda = (1,0)$ and $\gamma_k$ reduces to $$\frac{1-q}{2 \pi i} \int \frac{1}{q w_1 - w_1 } f(w_1) dw_1 = - \frac{1}{2 \pi i} \int f(w_1) \frac{dw_1}{w_1}.$$ Comparing the two expression, we get that $\mu_1 = \gamma_1$.
@@ -77,9 +99,6 @@ Notice that the integral on the right hand side of \eqref{induction-mu} is an $k
 
 From the transformation discussed just before the proof, we can see that \eqref{mu-form-2} can be transformed to 
 \begin{align*}
-%\mu_k &= (-q^{k-1}) (k-1)_q! (1-q)^{k-1} \sum_{j \in \mathit{J}} \sum_{\tilde{S} \in \tilde{\mathcal{S}}_j} \frac{1}{a_j}  det\left[ \frac{1}{ \tilde{b}_i q^{\tilde{\lambda}(\tilde{b}_i)} - \tilde{b}_l } \right]_{\tilde{b}_i, \tilde{b}_l \in \tilde{S}}\\
-%& \quad \times \prod_{\tilde{b} \in \tilde{S} \setminus \{qa_j\}} Res_{w = \tilde{b}} \tilde{f}_j(w) \tilde{f}_j(q\tilde{b}) \dots \tilde{f}_j(q^{\tilde{\lambda}(\tilde{b}) - 1} \tilde{b}) \\
-%& \quad \times Res_{w = a_j} f(w) \times Res_{w = qa_j} \tilde{f}_j(w) \tilde{f}_j(q^2 a_j) \dots \tilde{f}_j(q^{\tilde{\lambda}(qa_j)} a_j) \numberthis \label{mu-form-3}
 \mu_k &= (-q^{k-1}) (k-1)_q! (1-q)^{k-1} \sum_{j \in \mathit{J}} \sum_{\tilde{S} \in \tilde{\mathcal{S}}_j} \frac{1}{a_j}  det\left[ \frac{1}{ \tilde{b}_i q^{\tilde{\lambda}(\tilde{b}_i)} - \tilde{b}_l } \right]_{\tilde{b}_i, \tilde{b}_l \in \tilde{S}}\\
 & \quad \times Res(\tilde{S}) \times Res_{w = a_j} f(w), \numberthis \label{mu-form-3}
 \end{align*}
@@ -146,11 +165,11 @@ With \propref{mellin-barnes-transform}, we have successfully transformed the nes
 
 \subsection{Transformation to Fredholm determinants}
 \label{transformation-to-fd}
-Through out the chapter, the complex power function $z^k$ is defined with respect to a branch cut along $z \in \mathbb{R}^-$.
+Through out the chapter, the complex power function $z^s$ for $s \in \mathbb{C}$ is defined with respect to a branch cut along $z \in \mathbb{R}^-$.
 
 We introduce some contours that will be used in later propositions. First we define the contour $C_{1,2,\dots}$ to be an infinite contour negatively oriented that encloses $1,2,\dots$ and no poles of $f(q^sw)$ for all $s \in \mathbb{Z}$. One possible such contour is $\frac{1}{2} + i\mathbb{R}$ oriented from $\frac{1}{2} - i\infty$ to $\frac{1}{2} + i\infty$. 
 
-Moreover, for any $R > 0, d > 0$, we define the contour $D_{R,d}$ to be such that it goes by straight lines from $R - i\infty$ to $R - i d$, to $1/2 - i d$, to $1/2 + id$, to $R + id$ and lastly to $R+i\infty$. With $D_{R,d}$, for any $k \in \mathbb{Z}_{>0}$, we further define the contour $D_{R,d;k}$ to be as follows: let $p, \bar{p}$ (let $Im(p) > 0$) be the two points at which the contour $D_{R,d}$ and the circle centered at 0 with radius $k+1/2$ intersect. Then $D_{R,d;k}$ is the union of the portion of $D_{R,d}$ inside the circle with reversed orientation, with the arc from $\bar{p}$ to $p$ (oriented counterclockwise). \\
+Moreover, for any $R > 0, d > 0$, we define the contour $D_{R,d}$ to be such that it goes by straight lines from $R - i\infty$ to $R - i d$, to $1/2 - i d$, to $1/2 + id$, to $R + id$ and lastly to $R+i\infty$. Refer to \textit{Figure \ref{contour-cphi}} for an illustration of $D_{R,d}$. With $D_{R,d}$, for any $k \in \mathbb{Z}_{>0}$, we further define the contour $D_{R,d;k}$ to be as follows: let $p, \bar{p}$ (let $Im(p) > 0$) be the two points at which the contour $D_{R,d}$ and the circle centered at 0 with radius $k+1/2$ intersect. Then $D_{R,d;k}$ is the union of the portion of $D_{R,d}$ inside the circle with reversed orientation, with the arc from $\bar{p}$ to $p$ (oriented counterclockwise). \\
 
 The following proposition writes a generating function of $\mu_k$ into the Fredholm determinants form.
 \begin{proposition}
@@ -218,12 +237,12 @@ where $B_1, B_2$ is such that $\left| \frac{g(w)}{g(q^nw)} \right| \le B_1$ and 
 
 \subsection{Application to q-TASEP}
 \label{mb-application-to-qtasep}
-In Section \ref{m-b-type-transformation} and \ref{transformation-to-fd}, we discussed a general manipulation of nested contour integrals of the form $\mu_k$ using the Mellin-Barnes type philosophy. Recall the result from Corollary \ref{nested-contour-corollary} that for step initial data q-TASEP and $\vec{n} \in W^k_{>0}$, 
+In Section \ref{m-b-type-transformation} and \ref{transformation-to-fd}, we discussed a general manipulation of nested contour integrals of the form $\mu_k$ using the Mellin-Barnes type determinant. Recall the result from Corollary \ref{nested-contour-corollary} that for step initial data q-TASEP and $\vec{n} \in W^k_{>0}$, 
 \begin{align*}
 & \mathbb{E} \left[ \prod_{j=1}^k q^{x_{n_j}+n_j} \right] = \\
 & \quad \frac{(-1)^k q^{k(k-1)/2}}{(2 \pi i)^k} \times \int \dots \int \prod_{1 \le A < B \le k} \frac{z_A - z_B}{z_A - qz_B} \prod_{j=1}^k \left( \prod_{m=1}^{n_j} \frac{a_m}{a_m - z_j}\right) e^{(q-1)tz_j} \frac{dz_j}{z_j},
 \end{align*}
-where the integration contour for $z_A$ contains $\{qz_B\}_{B > A}$ and all $a_m's$ but not $0$. As remarked, if we were to take $$f(z) = \left( \prod_{m=1}^{n} \frac{a_m}{a_m - z} \right) e^{(q-1)tz},$$ then $\mathbb{E} \left[ \prod_{j=1}^k q^{x_{n_j}+n_j} \right] = \mu_k$. Further more, in order to apply \propref{step-2-mellin-barnes}, we need a function $g(w)$ such that $f(w) = \frac{g(w)}{g(qw)}$. In this case, we can choose $$g(w) = \prod_{m=1}^{n} \frac{1}{(w/a_m; q)_{\infty}} e^{-tw}.$$ It's easy to verify that the choice of $g(w)$ is valid. Therefore, applying the two propositions, i.e. \propref{step-1-mellin-barnes} and then \propref{step-2-mellin-barnes} to $\mu_k = \mathbb{E} \left[ \prod_{j=1}^k q^{x_{n_j}+n_j} \right]$, we get that for $\vec{n} \in W^k_{>0}$ and for all $t \ge 0$,
+where the integration contour for $z_A$ contains $\{qz_B\}_{B > A}$ and all $a_m's$ but not $0$. As remarked, if we were to take $$f(z) = \left( \prod_{m=1}^{n} \frac{a_m}{a_m - z} \right) e^{(q-1)tz},$$ then $\mathbb{E} \left[ \prod_{j=1}^k q^{x_{n_j}+n_j} \right] = \mu_k$. Further more, in order to apply \propref{step-2-mellin-barnes}, we need a function $g(w)$ such that $f(w) = \frac{g(w)}{g(qw)}$. In this case, we can choose $$g(w) = \prod_{m=1}^{n} \frac{1}{(w/a_m; q)_{\infty}} e^{-tw}.$$ It's easy to verify that the choice of $g(w)$ is valid. Therefore, applying \propref{step-1-mellin-barnes} and then \propref{step-2-mellin-barnes} to $\mu_k = \mathbb{E} \left[ \prod_{j=1}^k q^{x_{n_j}+n_j} \right]$, we get that for $\vec{n} \in W^k_{>0}$ and for all $t \ge 0$,
 \begin{equation}
 \label{m-b-application-to-qtasep-raw}
 \sum_{k \ge 0} \mathbb{E} \left[ \prod_{j=1}^k q^{x_{n_j}(t)+n_j} \right] \frac{\zeta^k}{k_q!} = \det(I+K^2_{\zeta})
@@ -437,7 +456,7 @@ Under the assumptions of \thmref{mbmb-application-to-qtasep}, we have $$\mathbb{
 
 For Cauchy type Fredholm determinants, 
 \begin{proposition}
-Under the assumptions of \thmref{cauchy-type-application-to-qtasep}, we have $$\mathbb{P}(x_n(t) = m) = \frac{-q^n}{2 \pi i} \int_{C_m} \frac{\det(I+K_{\zeta}^{q-TASEP})}{(\zeta;q)_{n+1}} d\zeta,$$ where the contour $C_m$ is any positively oriented contour that encircles poles at $z = q^{-M}$, for $-n \le M \le m-n$.
+Under the assumptions of \thmref{cauchy-type-application-to-qtasep}, we have $$\mathbb{P}(x_n(t) = m) = \frac{-q^n}{2 \pi i} \int_{C_m} \frac{\det(I+\tilde{K}_{\zeta}^{q-TASEP})}{(\zeta;q)_{n+1}} d\zeta,$$ where the contour $C_m$ is any positively oriented contour that encircles poles at $z = q^{-M}$, for $-n \le M \le m-n$.
 \end{proposition}
 \section{q-TASEP with half stationary initial data}
-We do not have similar results in general for the case of half stationary initial data, because for any $\alpha > 0$ fixed, when $k$ gets so large that $\alpha > q^k$, the expectation of $\mathbb{E} \left[ q^{kx_n(y)} \right]$ tends to infinity. Therefore, when forming a generating function of this, we will not be able to get a converging series. 
+We do not have similar results in general for the case of half stationary initial data, because for any $\alpha > 0$ fixed, when $k$ gets so large that $\alpha > q^k$, the expectation of $\mathbb{E} \left[ q^{kx_n(y)} \right]$ tends to infinity because of \textit{Lemma \ref{q-geometric-expectation-lemma}}. Therefore, when forming a generating function of this, we will not be able to get a converging series. 
